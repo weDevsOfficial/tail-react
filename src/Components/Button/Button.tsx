@@ -100,4 +100,4 @@ const Button: React.FC<ButtonProps> = ({
   return renderButton();
 };
 
-export default Button;
+export { Button };
