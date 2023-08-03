@@ -4,9 +4,9 @@ import { twMerge } from 'tailwind-merge';
 interface ButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'danger';
-  style: 'fill' | 'outline' | 'link';
+  style?: 'fill' | 'outline' | 'link';
   type?: 'button' | 'submit' | 'reset';
-  size: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   as?: React.ElementType;
   className?: string;
@@ -18,7 +18,7 @@ interface ButtonProps {
 
 const Styles = {
   'primary:fill':
-    'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600',
+    'bg-indigo-600 text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600',
   'primary:outline':
     'bg-white ring-1 ring-inset ring-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white shadow-sm',
   'primary:link': 'text-indigo-600 hover:text-indigo-500',
@@ -51,7 +51,7 @@ const Button: React.FC<ButtonProps> = ({
       case 'small':
         return 'rounded px-2 py-1 text-xs';
       case 'medium':
-        return 'rounded-md px-3 py-2 text-sm';
+        return 'rounded-md px-4 py-2 text-sm';
       case 'large':
         return 'rounded-md px-4 py-3 text-sm';
       default:
