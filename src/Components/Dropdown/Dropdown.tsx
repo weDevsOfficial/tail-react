@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { Fragment } from 'react';
+import { Menu, Transition } from '@headlessui/react';
 import { twMerge } from 'tailwind-merge';
 
 import DropdownItem from './DropdownItem';
@@ -10,44 +11,26 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ button, children, className }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const handleItemClick = () => {
-    setIsOpen(false);
-  };
-
   return (
-    <div className={twMerge('relative', className)}>
-      <div onClick={() => setIsOpen(!isOpen)}>{button}</div>
-      {isOpen && (
-        <div
-          ref={dropdownRef}
-          className={twMerge(
-            'absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg transition-opacity duration-300 ease-in-out'
-          )}
-        >
-          {React.Children.map(children, (child) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child as React.ReactElement, { onClick: handleItemClick }) // Add onClick prop to children
-              : child
-          )}
-        </div>
-      )}
-    </div>
+    <Menu as="div" className="relative inline-block text-left">
+      <Menu.Button as="div" className={twMerge('flex items-center space-x-2', className)}>
+        {button}
+      </Menu.Button>
+
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items as="div" className="focus:outline-none">
+          {children}
+        </Menu.Items>
+      </Transition>
+    </Menu>
   );
 };
 

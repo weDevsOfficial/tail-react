@@ -1,6 +1,7 @@
 import { Dropdown, DropdownItem } from '@/Components/Dropdown';
-import { Button } from '../Button';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+
+import { Button } from '../Button';
 
 const DropdownExample = () => {
   return (
@@ -14,7 +15,7 @@ const DropdownExample = () => {
         }
         className="mx-4"
       >
-        <div className="divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="mt-2 divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-4 py-3" role="none">
             <p className="text-sm" role="none">
               Signed in as
@@ -24,13 +25,15 @@ const DropdownExample = () => {
             </p>
           </div>
           <div className="py-1" role="none">
-            <DropdownItem onClick={() => console.log('Option 1')}>Account Settings</DropdownItem>
-            <DropdownItem onClick={() => console.log('Option 2')}>Support</DropdownItem>
-            <DropdownItem onClick={() => console.log('Option 3')}>License</DropdownItem>
+            <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">
+              Account Settings
+            </DropdownItem>
+            <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Support</DropdownItem>
+            <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">License</DropdownItem>
           </div>
 
           <div className="py-1" role="none">
-            <DropdownItem onClick={() => console.log('Option 4')}>Sign out</DropdownItem>
+            <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Sign out</DropdownItem>
           </div>
         </div>
       </Dropdown>
