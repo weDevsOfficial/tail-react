@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect, Fragment } from 'react';
-import { Transition } from '@headlessui/react';
-import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import React, { Fragment } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { ContextualHelp } from '../ContextualHelp';
 
 interface TextFieldProps {
   label: string;
@@ -52,22 +51,6 @@ const TextField: React.FC<TextFieldProps> = ({
     onChange(event.target.value);
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
@@ -80,27 +63,7 @@ const TextField: React.FC<TextFieldProps> = ({
           {label} {required && <span className="text-red-500">*</span>}
         </label>
 
-        {contextualHelp && (
-          <div>
-            <div onClick={() => setIsOpen(!isOpen)}>
-              <QuestionMarkCircleIcon className="inline-block w-4 h-4 ml-1 text-gray-500 hover:bg-gray-100" />
-            </div>
-
-            <Transition
-              show={isOpen}
-              ref={dropdownRef}
-              enter="transition duration-100 ease-out"
-              enterFrom="transform scale-95 opacity-0"
-              enterTo="transform scale-100 opacity-100"
-              leave="transition duration-75 ease-out"
-              leaveFrom="transform scale-100 opacity-100"
-              leaveTo="transform scale-95 opacity-0"
-              className={twMerge('absolute z-10 mt-2 -ml-1 w-48 rounded-md shadow-lg')}
-            >
-              {contextualHelp}
-            </Transition>
-          </div>
-        )}
+        {contextualHelp && <ContextualHelp>{contextualHelp}</ContextualHelp>}
       </div>
 
       <div

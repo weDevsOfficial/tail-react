@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import TextField from './TextField';
 import { EnvelopeIcon, UserIcon } from '@heroicons/react/24/outline';
 
@@ -26,13 +26,13 @@ const TextExample = () => {
         type="password"
         required
         contextualHelp={
-          <div className="bg-white border border-gray-200 rounded-md shadow-md p-4 w-72">
+          <Fragment>
             <h3 className="font-medium text-gray-900 mb-2">Need Help?</h3>
             <p className="text-sm text-gray-500">
               If you're having trouble accessing your account, contact our customer support team for
               help.
             </p>
-          </div>
+          </Fragment>
         }
       />
 
