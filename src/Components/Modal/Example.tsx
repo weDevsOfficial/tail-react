@@ -10,7 +10,7 @@ const ModalExample = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-4">Modal</h1>
+      <h1 className="text-2xl font-semibold border-b pb-4 mb-8">Modal</h1>
 
       <Button variant="secondary" onClick={() => setIsOpen(true)}>
         Open Modal

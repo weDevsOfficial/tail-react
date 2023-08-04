@@ -24,6 +24,8 @@ const TableExample = () => {
 
   return (
     <div className="">
+      <h1 className="text-2xl font-semibold border-b pb-4 mb-8">Table</h1>
+
       <Table loading={loading}>
         <TableHeader>
           <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">

@@ -1,5 +1,5 @@
 {
-  "name": "tail-react",
+  "name": "@wedevs/tail-react",
   "version": "0.1.0",
   "description": "A React UI component library based on Tailwind CSS",
   "author": "Tareq Hasan",

@@ -53,7 +53,7 @@ const Button: React.FC<ButtonProps> = ({
       case 'medium':
         return 'rounded-md px-4 py-2 text-sm';
       case 'large':
-        return 'rounded-md px-4 py-3 text-sm';
+        return 'rounded-md px-5 py-3 text-sm';
       default:
         return '';
     }

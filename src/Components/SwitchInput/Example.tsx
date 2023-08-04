@@ -3,7 +3,7 @@ import { SwitchInput } from './SwitchInput';
 const SwitchExample = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold">Switch Example</h1>
+      <h1 className="text-2xl font-semibold border-b pb-4 mb-8">Switch Example</h1>
 
       <div className="mt-4">
         <SwitchInput label="Turn this on" />

@@ -47,9 +47,7 @@ const SwitchInput = ({ initialValue = false, label, help, disabled = false, onCh
       </Switch>
       <Switch.Label as="span" className="ml-3">
         <div className="text-sm leading-6">
-          <label className={classNames('font-semibold cursor-pointer text-gray-900')}>
-            {label}
-          </label>
+          <label className={classNames('font-medium cursor-pointer text-gray-900')}>{label}</label>
 
           {help && <p className="text-gray-500 text-sm">{help}</p>}
         </div>

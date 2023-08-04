@@ -9,26 +9,28 @@ import {
 const ButtonExample = () => {
   return (
     <div>
+      <h1 className="text-2xl font-semibold border-b pb-4 mb-8">Buttons</h1>
+
       <h3 className="text-lg font-medium mb-4">Primary Buttons</h3>
       <div className="mx-auto flex max-w-3xl flex-col items-center justify-start space-y-4 sm:flex-row sm:items-end sm:justify-around sm:space-y-0 mb-8">
         <Button variant="primary" style="fill" size="small">
-          Primary Small
+          Small
         </Button>
 
         <Button variant="primary" style="fill" size="medium">
-          Primary Medium
+          Medium
         </Button>
 
         <Button variant="primary" style="fill" size="large">
-          Primary Large
+          Large
         </Button>
 
         <Button disabled={true} variant="primary" style="fill" size="large">
-          Primary Disabled
+          Disabled
         </Button>
 
         <Button variant="primary" style="link" size="large">
-          Primary Link
+          Link
         </Button>
       </div>
 
@@ -36,23 +38,23 @@ const ButtonExample = () => {
 
       <div className="mx-auto flex max-w-3xl flex-col items-center justify-start space-y-4 sm:flex-row sm:items-end sm:justify-around sm:space-y-0 mb-8">
         <Button variant="secondary" style="fill" size="small">
-          Secondary Small
+          Small
         </Button>
 
         <Button variant="secondary" style="fill" size="medium">
-          Secondary Medium
+          Medium
         </Button>
 
         <Button variant="secondary" style="fill" size="large">
-          Secondary Large
+          Large
         </Button>
 
         <Button disabled={true} variant="secondary" style="fill" size="large">
-          Secondary Large
+          Large
         </Button>
 
         <Button variant="secondary" style="link" size="large">
-          Secondary Link
+          Link
         </Button>
       </div>
 
@@ -60,23 +62,23 @@ const ButtonExample = () => {
 
       <div className="mx-auto flex max-w-3xl flex-col items-center justify-start space-y-4 sm:flex-row sm:items-end sm:justify-around sm:space-y-0 mb-8">
         <Button variant="danger" style="fill" size="small">
-          Danger Small
+          Small
         </Button>
 
         <Button variant="danger" style="fill" size="medium">
-          Danger Medium
+          Medium
         </Button>
 
         <Button variant="danger" style="fill" size="large">
-          Danger Large
+          Large
         </Button>
 
         <Button disabled={true} variant="danger" style="fill" size="large">
-          Danger Large
+          Large
         </Button>
 
         <Button variant="danger" style="link" size="large">
-          Danger Link
+          Link
         </Button>
       </div>
 
