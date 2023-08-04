@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { Switch } from '@headlessui/react';
 import classNames from 'classnames';
 

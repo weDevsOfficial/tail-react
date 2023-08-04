@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Modal, ModalActions, ModalBody, ModalHeader } from './Modal';
 import { Button } from '@/Components/Button';
-import ConfirmModal from './ConfirmModal';
+import { ConfirmModal } from './ConfirmModal';
 
 const ModalExample = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -57,4 +57,4 @@ const ConfirmModal = ({
   );
 };
 
-export default ConfirmModal;
+export { ConfirmModal };

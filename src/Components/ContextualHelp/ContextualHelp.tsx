@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, PropsWithChildren } from 'react';
+import { useState, useRef, useEffect, PropsWithChildren } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Transition } from '@headlessui/react';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';

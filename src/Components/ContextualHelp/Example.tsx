@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ContextualHelp } from './ContextualHelp';
 
 const ContextulExample = () => {

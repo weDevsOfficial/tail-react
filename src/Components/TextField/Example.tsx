@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react';
 import TextField from './TextField';
 import { EnvelopeIcon, UserIcon } from '@heroicons/react/24/outline';
 
