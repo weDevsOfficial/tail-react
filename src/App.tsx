@@ -1,4 +1,3 @@
-import ButtonExample from '@/Components/Button/Example';
 import DropdownExample from '@/Components/Dropdown/Example';
 import TableExample from '@/Components/Table/Example';
 import TextExample from '@/Components/TextField/Example';
@@ -6,7 +5,6 @@ import ContextulExample from './Components/ContextualHelp/Example';
 import ModalExample from './Components/Modal/Example';
 import SwitchExample from './Components/SwitchInput/Example';
 import SelectExample from './Components/SelectInput/Example';
-import CheckboxExample from './Components/Checkbox/Example';
 import RadioExample from './Components/RadioGroup/Example';
 
 const App = () => {
@@ -16,9 +14,6 @@ const App = () => {
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-white p-6 border">
           <TextExample />
-        </div>
-        <div className="bg-white p-6 border">
-          <ButtonExample />
         </div>
         <div className="bg-white p-6 border">
           <DropdownExample />
@@ -39,10 +34,6 @@ const App = () => {
 
         <div className="bg-white p-6 border">
           <SelectExample />
-        </div>
-
-        <div className="bg-white p-6 border">
-          <CheckboxExample />
         </div>
 
         <div className="bg-white p-6 border">
