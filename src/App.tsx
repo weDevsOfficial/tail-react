@@ -6,6 +6,7 @@ import ContextulExample from './Components/ContextualHelp/Example';
 import ModalExample from './Components/Modal/Example';
 import SwitchExample from './Components/SwitchInput/Example';
 import SelectExample from './Components/SelectInput/Example';
+import CheckboxExample from './Components/Checkbox/Example';
 
 const App = () => {
   return (
@@ -37,6 +38,10 @@ const App = () => {
 
         <div className="bg-white p-6 border">
           <SelectExample />
+        </div>
+
+        <div className="bg-white p-6 border">
+          <CheckboxExample />
         </div>
       </div>
     </div>
