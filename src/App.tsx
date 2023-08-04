@@ -7,6 +7,7 @@ import ModalExample from './Components/Modal/Example';
 import SwitchExample from './Components/SwitchInput/Example';
 import SelectExample from './Components/SelectInput/Example';
 import CheckboxExample from './Components/Checkbox/Example';
+import RadioExample from './Components/RadioGroup/Example';
 
 const App = () => {
   return (
@@ -42,6 +43,10 @@ const App = () => {
 
         <div className="bg-white p-6 border">
           <CheckboxExample />
+        </div>
+
+        <div className="bg-white p-6 border">
+          <RadioExample />
         </div>
       </div>
     </div>
