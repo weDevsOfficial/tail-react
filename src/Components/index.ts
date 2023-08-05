@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './Badge';
 export * from './ContextualHelp';
 export * from './Checkbox';
 export * from './Dropdown';
