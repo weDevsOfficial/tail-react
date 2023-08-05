@@ -1,30 +1,26 @@
 import { useState } from 'react';
+import { Meta } from '@storybook/react';
 
-import { Modal, ModalActions, ModalBody, ModalHeader } from './Modal';
 import { Button } from '@/Components/Button';
+import { Modal, ModalHeader, ModalBody, ModalActions } from './Modal';
 import { ConfirmModal } from './ConfirmModal';
 
-const ModalExample = () => {
+const meta: Meta<typeof Modal> = {
+  component: Modal,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+};
+
+export default meta;
+
+export const Default = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold border-b pb-4 mb-8">Modal</h1>
-
-      <Button variant="secondary" onClick={() => setIsOpen(true)}>
-        Open Modal
-      </Button>
-
-      <Button
-        variant="danger"
-        style="outline"
-        onClick={() => setIsDeleteOpen(true)}
-        className="ml-4"
-      >
-        Delete
-      </Button>
-
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <div className="">
           <ModalHeader>Need Help?</ModalHeader>
@@ -46,19 +42,28 @@ const ModalExample = () => {
           </ModalActions>
         </div>
       </Modal>
-
-      <ConfirmModal
-        isOpen={isDeleteOpen}
-        onClose={() => setIsDeleteOpen(false)}
-        title="Are you sure?"
-        message="Are you sure you want to deactivate your account? All of your data will be permanently removed from our servers forever. This action cannot be undone."
-        onConfirm={() => {
-          setIsDeleteOpen(false);
-          alert('Account deleted!');
-        }}
-      />
-    </div>
+    </>
   );
 };
 
-export default ModalExample;
+export const Confirm = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button variant="danger" style="outline" onClick={() => setIsOpen(true)}>
+        Delete
+      </Button>
+      <ConfirmModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="Are you sure?"
+        message="Are you sure you want to deactivate your account? All of your data will be permanently removed from our servers forever. This action cannot be undone."
+        onConfirm={() => {
+          setIsOpen(false);
+          alert('Account deleted!');
+        }}
+      />
+    </>
+  );
+};

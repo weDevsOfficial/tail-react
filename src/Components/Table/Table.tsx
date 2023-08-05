@@ -4,7 +4,6 @@ import { twMerge } from 'tailwind-merge';
 export interface TableProps {
   children: React.ReactNode;
   className?: string;
-  loading?: boolean;
 }
 
 export interface TableHeaderProps {
@@ -18,11 +17,7 @@ export interface TableBodyProps<T> {
   renderRow: (item: T) => React.ReactNode;
 }
 
-export const Table = ({ loading = false, className, children }: TableProps) => {
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+export const Table = ({ className, children }: TableProps) => {
   return (
     <div>
       <table className={twMerge('min-w-full divide-y divide-gray-300', className)}>

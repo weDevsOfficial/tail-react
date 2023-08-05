@@ -10,13 +10,15 @@ interface DropdownItemProps {
 
 const DropdownItem: React.FC<DropdownItemProps> = ({
   children,
-  activeClass = 'bg-gray-300',
+  activeClass = 'bg-gray-100 text-gray-900',
   className,
 }) => {
   return (
     <Menu.Item>
       {({ active }) => (
-        <div className={twMerge('', active ? activeClass : '', className)}>{children}</div>
+        <div className={twMerge('hover:cursor-pointer', active ? activeClass : '', className)}>
+          {children}
+        </div>
       )}
     </Menu.Item>
   );
