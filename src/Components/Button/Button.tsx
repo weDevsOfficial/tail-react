@@ -1,3 +1,4 @@
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -9,6 +10,7 @@ interface ButtonProps {
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   as?: React.ElementType;
+  loading?: boolean;
   className?: string;
   onClick?: () => void;
   href?: string;
@@ -39,6 +41,7 @@ const Button: React.FC<ButtonProps> = ({
   type = 'button',
   disabled = false,
   as = 'button',
+  loading = false,
   className = '',
   onClick,
   href,
@@ -93,6 +96,7 @@ const Button: React.FC<ButtonProps> = ({
         target,
         rel,
       },
+      loading ? <ArrowPathIcon className="w-5 h-5 inline-block mr-2 animate-spin" /> : null,
       children
     );
   };

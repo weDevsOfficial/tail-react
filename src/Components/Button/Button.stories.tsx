@@ -58,6 +58,15 @@ export const DangerOutline: Story = {
   },
 };
 
+export const PrimaryLoading: Story = {
+  name: 'Primary Loading',
+  args: {
+    variant: 'primary',
+    loading: true,
+    children: 'I am doing something',
+  },
+};
+
 export const PrimaryDisabled: Story = {
   name: 'Primary Disabled',
   args: {
