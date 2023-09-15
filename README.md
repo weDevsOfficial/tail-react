@@ -22,7 +22,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-+    "node_modules/tail-react/dist/index.js"
++    "node_modules/@wedevs/tail-react/dist/index.js"
   ],
   theme: {
     extend: {},
