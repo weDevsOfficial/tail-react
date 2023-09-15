@@ -73,16 +73,24 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
   );
 };
 
-const ModalHeader = ({ children }: PropsWithChildren) => {
-  return <div className="text-lg font-medium text-gray-900 mb-4 px-5 pt-5">{children}</div>;
+const ModalHeader = ({ children, className }: PropsWithChildren<{ className: string }>) => {
+  return (
+    <div className={classNames('text-lg font-medium text-gray-900 mb-4 px-5 pt-5', className)}>
+      {children}
+    </div>
+  );
 };
 
-const ModalBody = ({ children }: PropsWithChildren) => {
-  return <div className="px-5 pt-0">{children}</div>;
+const ModalBody = ({ children, className }: PropsWithChildren<{ className: string }>) => {
+  return <div className={classNames('px-5 pt-0', className)}>{children}</div>;
 };
 
-const ModalActions = ({ children }: PropsWithChildren) => {
-  return <div className="px-5 py-4 mt-4 sm:px-6 sm:flex sm:flex-row-reverse">{children}</div>;
+const ModalActions = ({ children, className }: PropsWithChildren<{ className: string }>) => {
+  return (
+    <div className={classNames('px-5 py-4 mt-4 sm:px-6 sm:flex sm:flex-row-reverse', className)}>
+      {children}
+    </div>
+  );
 };
 
 export { Modal, ModalHeader, ModalBody, ModalActions };
