@@ -73,7 +73,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
   );
 };
 
-const ModalHeader = ({ children, className }: PropsWithChildren<{ className: string }>) => {
+const ModalHeader = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
   return (
     <div className={classNames('text-lg font-medium text-gray-900 mb-4 px-5 pt-5', className)}>
       {children}
@@ -81,11 +81,11 @@ const ModalHeader = ({ children, className }: PropsWithChildren<{ className: str
   );
 };
 
-const ModalBody = ({ children, className }: PropsWithChildren<{ className: string }>) => {
+const ModalBody = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
   return <div className={classNames('px-5 pt-0', className)}>{children}</div>;
 };
 
-const ModalActions = ({ children, className }: PropsWithChildren<{ className: string }>) => {
+const ModalActions = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
   return (
     <div className={classNames('px-5 py-4 mt-4 sm:px-6 sm:flex sm:flex-row-reverse', className)}>
       {children}
