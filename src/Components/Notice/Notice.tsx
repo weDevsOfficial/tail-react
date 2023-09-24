@@ -1,4 +1,5 @@
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 import {
   ExclamationTriangleIcon,
   XCircleIcon,
@@ -41,10 +42,11 @@ const getIcon = (type: NoticeProps['type']) => {
   }
 };
 
-const Notice: React.FC<NoticeProps> = ({ label, type = 'success', children }) => {
+const Notice: React.FC<NoticeProps> = ({ label, type = 'success', className, children }) => {
   const color = getNoticeColor(type);
+
   return (
-    <div className={'rounded-md p-4 ring-1 ring-inset w-full ' + color}>
+    <div className={twMerge('rounded-md p-4 ring-1 ring-inset w-full', color, className)}>
       <div className="flex">
         <div className="flex-shrink-0">{getIcon(type)}</div>
         <div className="ml-3">
