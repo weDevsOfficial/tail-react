@@ -6,6 +6,7 @@ export * from './Dropdown';
 export * from './Modal';
 export * from './Notice';
 export * from './RadioGroup';
+export * from './SelectCard';
 export * from './SwitchInput';
 export * from './SelectInput';
 export * from './Table';
