@@ -1,6 +1,6 @@
 {
   "name": "@wedevs/tail-react",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "A React UI component library based on Tailwind CSS",
   "author": "Tareq Hasan",
   "license": "MIT",
