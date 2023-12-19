@@ -7,6 +7,7 @@ interface Option {
   key: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
+  disabled?: boolean;
 }
 
 interface SelectCardProps {
@@ -18,7 +19,7 @@ interface SelectCardProps {
   selectedKey?: string;
   className?: string;
   onChange?: (selectedOption: Option) => void;
-  renderItem: (item: Option) => React.ReactNode;
+  renderItem: (option: Option) => React.JSX.Element;
 }
 
 const SelectCard = ({
@@ -41,6 +42,10 @@ const SelectCard = ({
   });
 
   const handleChange = (option: Option) => {
+    if (option.disabled) {
+      return;
+    }
+
     setSelectedOption(option);
 
     if (onChange) {
@@ -62,9 +67,10 @@ const SelectCard = ({
         {options.map((option: Option, index: React.Key | null | undefined) => (
           <div
             key={index}
-            className={classNames(
+            className={twMerge(
               selectedOption.key === option.key ? 'border-indigo-600' : 'border-gray-200',
-              'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white focus:outline-none'
+              'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white focus:outline-none',
+              option.disabled ? 'opacity-75 cursor-not-allowed grayscale' : '',
             )}
             onClick={() => handleChange(option)}
           >
