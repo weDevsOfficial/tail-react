@@ -65,8 +65,6 @@ const SelectCard = ({
 
       <div className={twMerge('flex space-x-4', className)}>
         {options.map((option: Option, index: React.Key | null | undefined) => (
-          <>
-          <div>{option.disabled}</div>
           <div
             key={index}
             className={twMerge(
@@ -87,7 +85,6 @@ const SelectCard = ({
               <CheckCircleIcon className="h-5 w-5" />
             </div>
           </div>
-          </>
         ))}
       </div>
 

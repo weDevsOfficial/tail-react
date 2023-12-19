@@ -214,6 +214,7 @@ export const WithDisabled: Story = {
             />
           </svg>
         ),
+        disabled: true,
       },
       {
         key: 'do',
@@ -248,6 +249,7 @@ export const WithDisabled: Story = {
             </g>
           </svg>
         ),
+        disabled: true,
       },
     ],
     renderItem: (item) => (
