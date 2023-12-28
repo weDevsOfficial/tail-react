@@ -14,6 +14,7 @@ interface SelectProps {
   options: Option[];
   selectedKey?: string;
   className?: string;
+  wrapperClassName?: string;
   onChange?: (selectedOption: Option) => void;
   props?: React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>;
 }
@@ -26,6 +27,7 @@ const SelectInput: React.FC<SelectProps> = ({
   required = false,
   selectedKey,
   className,
+  wrapperClassName,
   onChange,
   ...props
 }) => {
@@ -47,7 +49,7 @@ const SelectInput: React.FC<SelectProps> = ({
   };
 
   return (
-    <div className="mb-4">
+    <div className={twMerge('mb-4', wrapperClassName)}>
       {label && (
         <div className="mb-2">
           <label
