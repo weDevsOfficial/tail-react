@@ -1,25 +1,40 @@
 import React from 'react';
-import * as RadixTooltip from '@radix-ui/react-tooltip';
-import './styles.css';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import { twMerge } from 'tailwind-merge';
 
 interface TooltipProps {
-  children: React.ReactNode;
+  children: string | React.ReactNode;
+  sideOffset?: number;
+  tooltipContent: string | React.ReactNode;
+  className?: string;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ children }): JSX.Element => {
+const Tooltip: React.FC<TooltipProps> = ({
+  children,
+  sideOffset = 5,
+  tooltipContent,
+  className,
+}): JSX.Element => {
+  const triggerContent = typeof children === 'string' ? <span>{children}</span> : children;
+
   return (
-    <RadixTooltip.Provider>
-      <RadixTooltip.Root>
-        <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
-        <RadixTooltip.Portal>
-          <RadixTooltip.Content className="RadixTooltipContent" sideOffset={5}>
-            Add to library
-            <RadixTooltip.Arrow className="RadixTooltipArrow" />
-          </RadixTooltip.Content>
-        </RadixTooltip.Portal>
-      </RadixTooltip.Root>
-    </RadixTooltip.Provider>
+    <TooltipPrimitive.Provider>
+      <TooltipPrimitive.Root>
+        <TooltipPrimitive.Trigger asChild>{triggerContent}</TooltipPrimitive.Trigger>
+        <TooltipPrimitive.Portal>
+          <TooltipPrimitive.Content
+            className={twMerge(
+              'z-50 overflow-hidden rounded-md border bg-white px-3 py-1.5 text-sm text-black shadow-md',
+              className
+            )}
+            sideOffset={sideOffset}
+          >
+            {tooltipContent}
+          </TooltipPrimitive.Content>
+        </TooltipPrimitive.Portal>
+      </TooltipPrimitive.Root>
+    </TooltipPrimitive.Provider>
   );
 };
 
-export default Tooltip;
+export { Tooltip };
