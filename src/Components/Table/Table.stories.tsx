@@ -46,14 +46,14 @@ export const Default: Story = {
         </TableHeader>
         <TableBody
           items={rows}
-          renderRow={(item) => (
-            <>
+          renderRow={(item, index) => (
+            <tr key={index}>
               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                 {item.id}
               </td>
               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.name}</td>
               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.age}</td>
-            </>
+            </tr>
           )}
         />
       </>
