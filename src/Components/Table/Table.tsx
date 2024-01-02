@@ -14,7 +14,7 @@ export interface TableHeaderProps {
 export interface TableBodyProps<T> {
   className?: string;
   items: T[];
-  renderRow: (item: T) => React.ReactNode;
+  renderRow: (item: T, index: number) => React.ReactNode;
 }
 
 export const Table = ({ className, children }: TableProps) => {
@@ -38,9 +38,7 @@ export const TableHeader = ({ className, children }: TableHeaderProps) => {
 export const TableBody = <T extends object>({ items, className, renderRow }: TableBodyProps<T>) => {
   return (
     <tbody className={twMerge('divide-y divide-gray-200', className)}>
-      {items.map((item, index) => (
-        <tr key={index}>{renderRow(item)}</tr>
-      ))}
+      {items.map((item, index) => renderRow(item, index))}
     </tbody>
   );
 };
