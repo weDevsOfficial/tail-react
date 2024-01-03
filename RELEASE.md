@@ -2,13 +2,6 @@
 
 This guide outlines the steps to release a new version of the React component library by tagging and pushing to GitHub and npm.
 
-## Prerequisites
-
-Before proceeding with the release process, ensure that you have the following:
-
-- Access to the GitHub repository for the component library.
-- An npm user account with publishing permissions for the component library.
-
 ## Release Process
 
 Follow these steps to release a new version:
@@ -19,13 +12,13 @@ Follow these steps to release a new version:
 
    ```shell
    git add package.json
-   git commit -m "Bump version to X.X.X"
+   git commit -m "Bump version to vX.X.X"
    ```
 
 3. **Tag the release**: Create a new Git tag for the release using the following command:
 
    ```shell
-   git tag -a vX.X.X -m "Release X.X.X"
+   git tag -a vX.X.X -m "Release vX.X.X"
    ```
 
    Replace `X.X.X` with the actual version number.
@@ -37,15 +30,9 @@ Follow these steps to release a new version:
    git push origin vX.X.X
    ```
 
-5. **Publish to npm**: Publish the new version to npm using the following command:
+5. **Create a GitHub release**: Create a new release in GitHub with the new tag. This will trigger a GitHub action that will automatically publish the new version to npm.
 
-   ```shell
-   npm publish
-   ```
-
-   Note: Make sure you are logged in to the correct npm user account.
-
-6. **Verify the release**: Visit the GitHub repository and npm package page to verify that the new version has been successfully released.
+6. **Verify the release**: Visit the GitHub repository and [npm package](https://www.npmjs.com/package/@wedevs/tail-react) page to verify that the new version has been successfully released.
 
 ## Conclusion
 
