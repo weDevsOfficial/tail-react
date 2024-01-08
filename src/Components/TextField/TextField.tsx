@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { ContextualHelp } from '../ContextualHelp';
 
-interface TextFieldProps {
-  label: string;
+interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  label?: string;
   value: string;
   disabled?: boolean;
   readonly?: boolean;
@@ -20,6 +20,7 @@ interface TextFieldProps {
   contextualHelp?: React.ReactNode;
   className?: string;
   wrapperClassName?: string;
+  inputWrapperClassName?: string;
   addon?: React.ReactNode;
   trailingAddon?: React.ReactNode;
   onChange: (value: string) => void;
@@ -43,9 +44,11 @@ const TextField: React.FC<TextFieldProps> = ({
   contextualHelp,
   className,
   wrapperClassName,
+  inputWrapperClassName,
   addon,
   trailingAddon,
   onChange,
+  ...rest
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -54,17 +57,19 @@ const TextField: React.FC<TextFieldProps> = ({
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
-    <div className={twMerge('mb-4')}>
-      <div className={twMerge('mb-2', contextualHelp && ' flex')}>
-        <label
-          htmlFor={id}
-          className={twMerge('block text-sm font-medium leading-6 text-gray-900')}
-        >
-          {label} {required && <span className="text-red-500">*</span>}
-        </label>
+    <div className={twMerge('mb-4 w-full', wrapperClassName)}>
+      {label && (
+        <div className={twMerge('mb-2', contextualHelp && ' flex')}>
+          <label
+            htmlFor={id}
+            className={twMerge('block text-sm font-medium leading-6 text-gray-900')}
+          >
+            {label} {required && <span className="text-red-500">*</span>}
+          </label>
 
-        {contextualHelp && <ContextualHelp>{contextualHelp}</ContextualHelp>}
-      </div>
+          {contextualHelp && <ContextualHelp>{contextualHelp}</ContextualHelp>}
+        </div>
+      )}
 
       <div
         className={twMerge(
@@ -72,7 +77,7 @@ const TextField: React.FC<TextFieldProps> = ({
           addon || trailingAddon
             ? 'flex ring-1 ring-inset ring-gray-300 rounded-md shadow-sm focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600'
             : '',
-          wrapperClassName
+          inputWrapperClassName
         )}
       >
         {addon && <Fragment>{addon}</Fragment>}
@@ -98,6 +103,7 @@ const TextField: React.FC<TextFieldProps> = ({
               'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200',
             error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
           )}
+          {...rest}
         />
 
         {trailingAddon && <Fragment>{trailingAddon}</Fragment>}
