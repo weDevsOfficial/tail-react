@@ -23,6 +23,7 @@ interface TextFieldProps {
   addon?: React.ReactNode;
   trailingAddon?: React.ReactNode;
   onChange: (value: string) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -46,6 +47,7 @@ const TextField: React.FC<TextFieldProps> = ({
   addon,
   trailingAddon,
   onChange,
+  onBlur,
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -90,6 +92,7 @@ const TextField: React.FC<TextFieldProps> = ({
           placeholder={placeholder}
           name={name}
           onChange={handleChange}
+          onBlur={onBlur}
           className={twMerge(
             'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-none',
             className,
