@@ -1,9 +1,11 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface TextareaProps {
-  label: string;
+interface TextareaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
+  label?: string;
   className?: string;
+  wrapperClassName?: string;
   help?: React.ReactNode;
   disabled?: boolean;
   placeholder?: string;
@@ -19,7 +21,9 @@ const Textarea: React.FC<TextareaProps> = ({
   help,
   error,
   className,
+  wrapperClassName,
   onChange,
+  value = '',
   disabled = false,
   required = false,
   rows = 3,
@@ -29,12 +33,14 @@ const Textarea: React.FC<TextareaProps> = ({
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
-    <div className="mb-4 w-full">
-      <div className="mb-2">
-        <label htmlFor={id} className="block text-sm font-medium leading-6 text-gray-900">
-          {label} {required && <span className="text-red-500">*</span>}
-        </label>
-      </div>
+    <div className={twMerge('mb-4 w-full', wrapperClassName)}>
+      {label && (
+        <div className="mb-2">
+          <label htmlFor={id} className="block text-sm font-medium leading-6 text-gray-900">
+            {label} {required && <span className="text-red-500">*</span>}
+          </label>
+        </div>
+      )}
 
       <div className="relative">
         <textarea
@@ -47,7 +53,7 @@ const Textarea: React.FC<TextareaProps> = ({
               'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200',
             error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
           )}
-          defaultValue={''}
+          value={value}
           onChange={(e) => onChange && onChange(e.target.value)}
           disabled={disabled}
           placeholder={placeholder}
