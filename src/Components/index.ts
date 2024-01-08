@@ -12,3 +12,4 @@ export * from './SelectInput';
 export * from './Table';
 export * from './TextField';
 export * from './Textarea';
+export * from './Tooltip';
