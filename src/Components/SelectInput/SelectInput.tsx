@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface Option {
@@ -34,6 +34,10 @@ const SelectInput: React.FC<SelectProps> = ({
   const [selectedOption, setSelectedOption] = useState(
     options.find((option) => option.key === selectedKey) || options[0]
   );
+
+  useEffect(() => {
+    setSelectedOption(options.find((option) => option.key === selectedKey) || options[0]);
+  }, [options, selectedKey]);
 
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
