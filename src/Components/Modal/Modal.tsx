@@ -1,15 +1,22 @@
 import { Dialog, Transition } from '@headlessui/react';
 import classNames from 'classnames';
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, Ref, forwardRef } from 'react';
 import ReactDOM from 'react-dom';
 
 export interface ModalProps {
   isOpen: boolean;
   onClose(): void;
   maxWidth?: string;
+  initialFocus?: React.RefObject<HTMLElement>;
 }
 
-const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren<ModalProps>) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  maxWidth = 'lg',
+  children,
+  initialFocus,
+}: PropsWithChildren<ModalProps>) => {
   const maxWidthClass = {
     sm: 'sm:max-w-sm',
     md: 'sm:max-w-md',
@@ -30,6 +37,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
         className="fixed z-10 inset-0 overflow-y-auto"
         open={isOpen}
         onClose={onClose}
+        initialFocus={initialFocus}
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
@@ -73,24 +81,49 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
   );
 };
 
-const ModalHeader = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
-  return (
-    <div className={classNames('text-lg font-medium text-gray-900 mb-4 px-5 pt-5', className)}>
-      {children}
-    </div>
-  );
-};
+const ModalHeader = forwardRef(
+  (
+    { children, className }: PropsWithChildren<{ className?: string }>,
+    ref?: Ref<HTMLDivElement>
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={classNames('text-lg font-medium text-gray-900 mb-4 px-5 pt-5', className)}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
-const ModalBody = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
-  return <div className={classNames('px-5 pt-0', className)}>{children}</div>;
-};
+const ModalBody = forwardRef(
+  (
+    { children, className }: PropsWithChildren<{ className?: string }>,
+    ref?: Ref<HTMLDivElement>
+  ) => {
+    return (
+      <div ref={ref} className={classNames('px-5 pt-0', className)}>
+        {children}
+      </div>
+    );
+  }
+);
 
-const ModalActions = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
-  return (
-    <div className={classNames('px-5 py-4 mt-4 sm:px-6 sm:flex sm:flex-row-reverse', className)}>
-      {children}
-    </div>
-  );
-};
+const ModalActions = forwardRef(
+  (
+    { children, className }: PropsWithChildren<{ className?: string }>,
+    ref?: Ref<HTMLDivElement>
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={classNames('px-5 py-4 mt-4 sm:px-6 sm:flex sm:flex-row-reverse', className)}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
-export { Modal, ModalHeader, ModalBody, ModalActions };
+export { Modal, ModalActions, ModalBody, ModalHeader };
