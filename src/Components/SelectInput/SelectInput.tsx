@@ -32,14 +32,19 @@ const SelectInput: React.FC<SelectProps> = ({
   ...props
 }) => {
   const [selectedOption, setSelectedOption] = useState(
-    options.find((option) => option.key === selectedKey) || options[0]
+    options.find((option) => option.key === selectedKey) ?? options[0]
   );
 
   useEffect(() => {
-    setSelectedOption(options.find((option) => option.key === selectedKey) || options[0]);
+    if (!selectedKey) {
+      return;
+    }
+
+    setSelectedOption(options.find((option) => option.key === selectedKey) ?? options[0]);
   }, [options, selectedKey]);
 
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = options.find((option) => option.key == event.target.value);
 
