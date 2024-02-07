@@ -28,7 +28,7 @@ jobs:
           restore-keys: ${{ runner.os }}-yarn-
 
       - name: Build
-        run: yarn install && yarn build
+        run: yarn install --immutable && yarn build
 
       - name: Set up .npmrc file for authentication
         run: echo "registry=https://registry.npmjs.org/" >> .npmrc && echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
