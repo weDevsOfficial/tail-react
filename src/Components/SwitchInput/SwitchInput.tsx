@@ -1,16 +1,25 @@
 import { useState, useEffect, ReactNode } from 'react';
 import { Switch } from '@headlessui/react';
 import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   label: string;
   initialValue?: boolean;
   help?: ReactNode;
   disabled?: boolean;
+  className?: string;
   onChange?: (status: boolean) => void;
 };
 
-const SwitchInput = ({ initialValue = false, label, help, disabled = false, onChange }: Props) => {
+const SwitchInput = ({
+  initialValue = false,
+  label,
+  help,
+  disabled = false,
+  className,
+  onChange,
+}: Props) => {
   const [enabled, setState] = useState(initialValue);
 
   // Reset the state when the initialValue changes
@@ -27,7 +36,7 @@ const SwitchInput = ({ initialValue = false, label, help, disabled = false, onCh
   };
 
   return (
-    <Switch.Group as="div" className="relative flex items-start">
+    <Switch.Group as="div" className={twMerge('relative flex items-start mb-4', className)}>
       <Switch
         checked={enabled}
         disabled={disabled}
