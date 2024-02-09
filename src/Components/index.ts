@@ -5,6 +5,7 @@ export * from './Checkbox';
 export * from './Dropdown';
 export * from './Modal';
 export * from './Notice';
+export * from './Popover';
 export * from './RadioGroup';
 export * from './SelectCard';
 export * from './SwitchInput';
