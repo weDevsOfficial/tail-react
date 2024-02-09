@@ -55,4 +55,4 @@ const Popover = ({
   );
 };
 
-export default Popover;
+export { Popover };
