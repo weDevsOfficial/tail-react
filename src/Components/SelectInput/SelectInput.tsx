@@ -63,7 +63,7 @@ const SelectInput: React.FC<SelectProps> = ({
         <div className="mb-2">
           <label
             htmlFor={id}
-            className={twMerge('block text-sm font-medium leading-6 text-gray-900')}
+            className={twMerge('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
           >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
@@ -71,7 +71,7 @@ const SelectInput: React.FC<SelectProps> = ({
       )}
       <select
         className={twMerge(
-          'block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-none',
+          'block w-full dark:bg-white/5 rounded-md border-0 py-1.5 px-2 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-none',
           className,
           error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
         )}
@@ -87,8 +87,8 @@ const SelectInput: React.FC<SelectProps> = ({
         ))}
       </select>
 
-      {help && <p className="text-gray-500 text-sm mt-2">{help}</p>}
-      {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+      {help && <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">{help}</p>}
+      {error && <p className="text-red-600 dark:text-red-500 text-sm mt-2">{error}</p>}
     </div>
   );
 };

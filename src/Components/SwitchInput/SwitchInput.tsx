@@ -42,7 +42,7 @@ const SwitchInput = ({
         disabled={disabled}
         onChange={toggleInput}
         className={classNames(
-          enabled ? 'bg-indigo-600' : 'bg-gray-200',
+          enabled ? 'bg-indigo-600 dark:bg-indigo-500' : 'bg-gray-200 dark:bg-gray-600',
           'relative mt-1 inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
           disabled ? 'cursor-not-allowed opacity-50' : ''
         )}
@@ -57,9 +57,11 @@ const SwitchInput = ({
       </Switch>
       <Switch.Label as="span" className="ml-3">
         <div className="text-sm leading-6">
-          <label className={classNames('font-medium cursor-pointer text-gray-900')}>{label}</label>
+          <label className={classNames('font-medium cursor-pointer text-gray-900 dark:text-white')}>
+            {label}
+          </label>
 
-          {help && <p className="text-gray-500 text-sm">{help}</p>}
+          {help && <p className="text-gray-500 dark:text-gray-400 text-sm">{help}</p>}
         </div>
       </Switch.Label>
     </Switch.Group>

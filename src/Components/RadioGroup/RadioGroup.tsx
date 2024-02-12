@@ -28,12 +28,12 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
         <div className="mb-3">
           <label
             htmlFor={props.label}
-            className={twMerge('block text-sm font-medium leading-6 text-gray-900')}
+            className={twMerge('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
           >
             {props.label} {required && <span className="text-red-500">*</span>}
           </label>
 
-          {help && <div className="text-gray-500 text-sm mt-1">{help}</div>}
+          {help && <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{help}</div>}
         </div>
       )}
 
@@ -53,7 +53,10 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
             </div>
 
             <div className="ml-3 text-sm leading-6">
-              <label htmlFor={option.key} className="block text-sm text-gray-900">
+              <label
+                htmlFor={option.key}
+                className="block text-sm text-gray-900 dark:text-gray-300"
+              >
                 {option.value}
               </label>
             </div>
