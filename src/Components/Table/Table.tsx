@@ -20,7 +20,12 @@ export interface TableBodyProps<T> {
 export const Table = ({ className, children }: TableProps) => {
   return (
     <div>
-      <table className={twMerge('min-w-full divide-y divide-gray-300', className)}>
+      <table
+        className={twMerge(
+          'min-w-full divide-y divide-gray-300 dark:divide-gray-800 dark:border-gray-800',
+          className
+        )}
+      >
         {children}
       </table>
     </div>
@@ -29,7 +34,7 @@ export const Table = ({ className, children }: TableProps) => {
 
 export const TableHeader = ({ className, children }: TableHeaderProps) => {
   return (
-    <thead className={twMerge('bg-gray-50', className)}>
+    <thead className={twMerge('bg-gray-50 dark:bg-gray-800', className)}>
       <tr>{children}</tr>
     </thead>
   );
@@ -37,7 +42,7 @@ export const TableHeader = ({ className, children }: TableHeaderProps) => {
 
 export const TableBody = <T extends object>({ items, className, renderRow }: TableBodyProps<T>) => {
   return (
-    <tbody className={twMerge('divide-y divide-gray-200', className)}>
+    <tbody className={twMerge('divide-y divide-gray-200 dark:divide-gray-900', className)}>
       {items.map((item, index) => renderRow(item, index))}
     </tbody>
   );

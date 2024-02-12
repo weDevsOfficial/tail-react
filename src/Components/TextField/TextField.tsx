@@ -19,6 +19,7 @@ interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
   contextualHelp?: React.ReactNode;
   className?: string;
+  labelClassName?: string;
   wrapperClassName?: string;
   inputWrapperClassName?: string;
   addon?: React.ReactNode;
@@ -43,6 +44,7 @@ const TextField: React.FC<TextFieldProps> = ({
   type = 'text',
   contextualHelp,
   className,
+  labelClassName,
   wrapperClassName,
   inputWrapperClassName,
   addon,
@@ -62,7 +64,10 @@ const TextField: React.FC<TextFieldProps> = ({
         <div className={twMerge('mb-2', contextualHelp && ' flex')}>
           <label
             htmlFor={id}
-            className={twMerge('block text-sm font-medium leading-6 text-gray-900')}
+            className={twMerge(
+              'block text-sm font-medium leading-6 text-gray-900 dark:text-white',
+              labelClassName
+            )}
           >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
@@ -75,7 +80,7 @@ const TextField: React.FC<TextFieldProps> = ({
         className={twMerge(
           'relative',
           addon || trailingAddon
-            ? 'flex ring-1 ring-inset ring-gray-300 rounded-md shadow-sm focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600'
+            ? 'flex bg-white dark:bg-white/5 ring-1 ring-inset ring-gray-300 dark:ring-white/10 rounded-md shadow-sm focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600'
             : '',
           inputWrapperClassName
         )}
@@ -96,7 +101,7 @@ const TextField: React.FC<TextFieldProps> = ({
           name={name}
           onChange={handleChange}
           className={twMerge(
-            'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-none',
+            'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-none bg-white dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500',
             className,
             addon && 'pl-1',
             disabled &&
@@ -108,8 +113,8 @@ const TextField: React.FC<TextFieldProps> = ({
 
         {trailingAddon && <Fragment>{trailingAddon}</Fragment>}
       </div>
-      {help && <p className="text-gray-500 text-sm mt-2">{help}</p>}
-      {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+      {help && <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">{help}</p>}
+      {error && <p className="text-red-600 dark:text-red-500 text-sm mt-2">{error}</p>}
     </div>
   );
 };

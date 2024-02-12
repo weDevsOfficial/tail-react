@@ -57,7 +57,9 @@ const SelectCard = ({
     <div className="mb-4">
       {label && (
         <div className="mb-2">
-          <label className={twMerge('block text-sm font-medium leading-6 text-gray-900')}>
+          <label
+            className={twMerge('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
+          >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
         </div>
@@ -68,9 +70,11 @@ const SelectCard = ({
           <div
             key={index}
             className={twMerge(
-              selectedOption.key === option.key ? 'border-indigo-600' : 'border-gray-200',
-              'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white focus:outline-none',
-              option.disabled ? 'opacity-75 cursor-not-allowed grayscale' : '',
+              selectedOption.key === option.key
+                ? 'border-indigo-600 dark:border-indigo-300'
+                : 'border-gray-200 dark:border-gray-600',
+              'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white dark:bg-white/10 dark:text-gray-200 focus:outline-none',
+              option.disabled ? 'opacity-75 cursor-not-allowed grayscale' : ''
             )}
             onClick={() => handleChange(option)}
           >
@@ -79,7 +83,9 @@ const SelectCard = ({
             <div
               className={classNames(
                 'absolute top-0 right-0 p-1 rounded-full',
-                selectedOption.key === option.key ? ' text-indigo-600' : 'invisible'
+                selectedOption.key === option.key
+                  ? ' text-indigo-600 dark:text-indigo-400'
+                  : 'invisible'
               )}
             >
               <CheckCircleIcon className="h-5 w-5" />
@@ -88,8 +94,8 @@ const SelectCard = ({
         ))}
       </div>
 
-      {help && <p className="text-gray-500 text-sm mt-2">{help}</p>}
-      {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+      {help && <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">{help}</p>}
+      {error && <p className="text-red-600 dark:text-red-400 text-sm mt-2">{error}</p>}
     </div>
   );
 };

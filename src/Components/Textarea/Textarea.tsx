@@ -5,6 +5,7 @@ interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
   label?: string;
   className?: string;
+  labelClassName?: string;
   wrapperClassName?: string;
   help?: React.ReactNode;
   disabled?: boolean;
@@ -21,6 +22,7 @@ const Textarea: React.FC<TextareaProps> = ({
   help,
   error,
   className,
+  labelClassName,
   wrapperClassName,
   onChange,
   value = '',
@@ -36,7 +38,13 @@ const Textarea: React.FC<TextareaProps> = ({
     <div className={twMerge('mb-4 w-full', wrapperClassName)}>
       {label && (
         <div className="mb-2">
-          <label htmlFor={id} className="block text-sm font-medium leading-6 text-gray-900">
+          <label
+            htmlFor={id}
+            className={twMerge(
+              'block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300',
+              labelClassName
+            )}
+          >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
         </div>
@@ -47,10 +55,10 @@ const Textarea: React.FC<TextareaProps> = ({
           id={id}
           rows={rows}
           className={twMerge(
-            'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+            'block dark:bg-white/5 w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
             className,
             disabled &&
-              'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200',
+              'disabled:cursor-not-allowed disabled:bg-gray-50 dark:disabled:bg-gray-600 disabled:text-gray-500 disabled:ring-gray-200',
             error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
           )}
           value={value}
