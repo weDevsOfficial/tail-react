@@ -18,14 +18,14 @@ export interface NoticeProps {
 const getNoticeColor = (type: NoticeProps['type']) => {
   switch (type) {
     case 'warning':
-      return 'bg-yellow-50 text-yellow-800 ring-yellow-600/20';
+      return 'bg-yellow-50 text-yellow-800 ring-yellow-600/20 dark:bg-yellow-700 dark:text-yellow-200 dark:ring-yellow-500/50';
     case 'error':
-      return 'bg-red-50 text-red-700 ring-red-600/10';
+      return 'bg-red-50 text-red-700 ring-red-600/10 dark:bg-red-700 dark:text-red-200 dark:ring-red-500/50';
     case 'info':
-      return 'bg-blue-50 text-blue-700 ring-blue-700/10';
+      return 'bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blue-700 dark:text-blue-200 dark:ring-blue-500/50';
     case 'success':
     default:
-      return 'bg-green-50 text-green-700 ring-green-600/20';
+      return 'bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-700 dark:text-green-200 dark:ring-green-500/50';
   }
 };
 
@@ -65,7 +65,7 @@ const Notice: React.FC<NoticeProps> = ({ label, type = 'success', className, chi
           className="flex-shrink-0 ml-4"
           title="Dismiss the notice"
         >
-          <XMarkIcon className="h-4 w-4 text-gray-500" aria-hidden="true" />
+          <XMarkIcon className="h-4 w-4 text-gray-500 dark:text-gray-300" aria-hidden="true" />
         </button>
       </div>
     </div>
