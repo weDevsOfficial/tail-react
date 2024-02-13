@@ -59,7 +59,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
           >
             <div
               className={classNames(
-                'inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full',
+                'inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full',
                 maxWidthClass
               )}
             >
@@ -75,7 +75,12 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
 
 const ModalHeader = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
   return (
-    <div className={classNames('text-lg font-medium text-gray-900 mb-4 px-5 pt-5', className)}>
+    <div
+      className={classNames(
+        'text-lg font-medium text-gray-900 dark:text-gray-300 mb-4 px-5 pt-5',
+        className
+      )}
+    >
       {children}
     </div>
   );
