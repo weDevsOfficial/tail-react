@@ -8,6 +8,7 @@ type Props = {
   initialValue?: boolean;
   help?: ReactNode;
   disabled?: boolean;
+  html?: boolean;
   className?: string;
   onChange?: (status: boolean) => void;
 };
@@ -17,6 +18,7 @@ const SwitchInput = ({
   label,
   help,
   disabled = false,
+  html = false,
   className,
   onChange,
 }: Props) => {
@@ -61,7 +63,14 @@ const SwitchInput = ({
             {label}
           </label>
 
-          {help && <p className="text-gray-500 dark:text-gray-400 text-sm">{help}</p>}
+          {help && !html && <p className="text-gray-500 dark:text-gray-400 text-sm">{help}</p>}
+
+          {help && html && (
+            <p
+              className="text-gray-500 dark:text-gray-400 text-sm"
+              dangerouslySetInnerHTML={{ __html: help }}
+            />
+          )}
         </div>
       </Switch.Label>
     </Switch.Group>
