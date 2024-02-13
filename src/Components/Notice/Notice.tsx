@@ -13,6 +13,7 @@ export interface NoticeProps {
   type?: 'success' | 'warning' | 'error' | 'info';
   className?: string;
   children?: React.ReactNode;
+  dismissible?: boolean;
 }
 
 const getNoticeColor = (type: NoticeProps['type']) => {
@@ -43,7 +44,13 @@ const getIcon = (type: NoticeProps['type']) => {
   }
 };
 
-const Notice: React.FC<NoticeProps> = ({ label, type = 'success', className, children }) => {
+const Notice: React.FC<NoticeProps> = ({
+  label,
+  type = 'success',
+  className,
+  dismissible = false,
+  children,
+}) => {
   const [isVisible, setIsVisible] = useState(true);
   const color = getNoticeColor(type);
 
@@ -60,13 +67,15 @@ const Notice: React.FC<NoticeProps> = ({ label, type = 'success', className, chi
           </div>
         </div>
 
-        <button
-          onClick={() => setIsVisible(false)}
-          className="flex-shrink-0 ml-4"
-          title="Dismiss the notice"
-        >
-          <XMarkIcon className="h-4 w-4 text-gray-500 dark:text-gray-300" aria-hidden="true" />
-        </button>
+        {dismissible && (
+          <button
+            onClick={() => setIsVisible(false)}
+            className="flex-shrink-0 ml-4"
+            title="Dismiss the notice"
+          >
+            <XMarkIcon className="h-4 w-4 text-gray-500 dark:text-gray-300" aria-hidden="true" />
+          </button>
+        )}
       </div>
     </div>
   );
