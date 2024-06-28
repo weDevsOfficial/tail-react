@@ -1,6 +1,7 @@
 import { Modal, ModalActions, ModalBody, ModalHeader } from './Modal';
 import { Button } from '@/Components/Button';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -9,7 +10,7 @@ interface ConfirmModalProps {
   buttonLabel?: string;
   buttonVariant?: 'primary' | 'secondary' | 'danger';
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm: () => Promise<void> | void;
 }
 
 const ConfirmModal = ({
@@ -21,6 +22,17 @@ const ConfirmModal = ({
   onClose,
   onConfirm,
 }: ConfirmModalProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleConfirm = async () => {
+    setIsLoading(true);
+    try {
+      await onConfirm();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>
       <div className="flex">
@@ -37,12 +49,10 @@ const ConfirmModal = ({
           <ModalActions>
             <Button
               variant={buttonVariant}
-              onClick={() => {
-                if (onConfirm) {
-                  onConfirm();
-                }
-              }}
+              onClick={handleConfirm}
               className="ml-3"
+              disabled={isLoading}
+              loading={isLoading}
             >
               {buttonLabel}
             </Button>
