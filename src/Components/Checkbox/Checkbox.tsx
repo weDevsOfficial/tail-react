@@ -55,7 +55,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
           {label}
         </label>
 
-        {help && <div className="text-gray-500">{help}</div>}
+        {help && <div className="text-gray-500 dark:text-gray-400">{help}</div>}
       </div>
     </div>
   );
