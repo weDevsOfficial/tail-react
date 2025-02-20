@@ -1,5 +1,5 @@
+import { cn } from '@/utils';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 interface CheckboxProps {
   label: string;
@@ -31,7 +31,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
           id={id}
           disabled={disabled}
           {...props}
-          className={twMerge(
+          className={cn(
             'h-4 w-4 rounded form-checkbox border-gray-300 text-indigo-600 dark:text-indigo-500 focus:ring-indigo-600',
             className,
             disabled && 'disabled:opacity-50 cursor-not-allowed'
@@ -46,7 +46,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
       <div className="text-sm leading-6">
         <label
           htmlFor={id}
-          className={twMerge(
+          className={cn(
             'font-medium text-gray-900 dark:text-gray-300',
             labelClassName,
             disabled && 'cursor-not-allowed'

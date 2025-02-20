@@ -1,5 +1,5 @@
+import { cn } from '@/utils';
 import React, { useEffect, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
 
 interface Option {
   key: string;
@@ -58,22 +58,22 @@ const SelectInput: React.FC<SelectProps> = ({
   };
 
   return (
-    <div className={twMerge('mb-4', wrapperClassName)}>
+    <div className={cn('mb-4', wrapperClassName)}>
       {label && (
         <div className="mb-2">
           <label
             htmlFor={id}
-            className={twMerge('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
+            className={cn('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
           >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
         </div>
       )}
       <select
-        className={twMerge(
+        className={cn(
           'block w-full dark:bg-white/5 rounded-md border-0 py-1.5 px-2 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-none',
           className,
-          error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
+          { error: 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500' }
         )}
         value={selectedOption.key}
         onChange={handleChange}

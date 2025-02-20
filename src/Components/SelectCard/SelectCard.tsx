@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import classNames from 'classnames';
-import { twMerge } from 'tailwind-merge';
+
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { cn } from '@/utils';
 
 interface Option {
   key: string;
@@ -58,18 +58,18 @@ const SelectCard = ({
       {label && (
         <div className="mb-2">
           <label
-            className={twMerge('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
+            className={cn('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
           >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
         </div>
       )}
 
-      <div className={twMerge('flex space-x-4', className)}>
+      <div className={cn('flex space-x-4', className)}>
         {options.map((option: Option, index: React.Key | null | undefined) => (
           <div
             key={index}
-            className={twMerge(
+            className={cn(
               selectedOption.key === option.key
                 ? 'border-indigo-600 dark:border-indigo-300'
                 : 'border-gray-200 dark:border-gray-600',
@@ -81,7 +81,7 @@ const SelectCard = ({
             {renderItem(option)}
 
             <div
-              className={classNames(
+              className={cn(
                 'absolute top-0 right-0 p-1 rounded-full',
                 selectedOption.key === option.key
                   ? ' text-indigo-600 dark:text-indigo-400'

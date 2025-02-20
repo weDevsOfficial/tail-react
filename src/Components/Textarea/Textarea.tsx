@@ -1,5 +1,5 @@
+import { cn } from '@/utils';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
@@ -35,12 +35,12 @@ const Textarea: React.FC<TextareaProps> = ({
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
-    <div className={twMerge('mb-4 w-full', wrapperClassName)}>
+    <div className={cn('mb-4 w-full', wrapperClassName)}>
       {label && (
         <div className="mb-2">
           <label
             htmlFor={id}
-            className={twMerge(
+            className={cn(
               'block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300',
               labelClassName
             )}
@@ -54,12 +54,14 @@ const Textarea: React.FC<TextareaProps> = ({
         <textarea
           id={id}
           rows={rows}
-          className={twMerge(
+          className={cn(
             'block dark:bg-white/5 w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
-            className,
-            disabled &&
-              'disabled:cursor-not-allowed disabled:bg-gray-50 dark:disabled:bg-gray-600 disabled:text-gray-500 disabled:ring-gray-200',
-            error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
+            {
+              className,
+              disabled:
+                'disabled:cursor-not-allowed disabled:bg-gray-50 dark:disabled:bg-gray-600 disabled:text-gray-500 disabled:ring-gray-200',
+              error: 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500',
+            }
           )}
           value={value}
           onChange={(e) => onChange && onChange(e.target.value)}

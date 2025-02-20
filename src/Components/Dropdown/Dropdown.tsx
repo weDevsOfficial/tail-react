@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import { twMerge } from 'tailwind-merge';
 
 import DropdownItem from './DropdownItem';
+import { cn } from '@/utils';
 
 interface DropdownProps {
   button: React.ReactNode;
@@ -13,7 +13,7 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ button, children, className }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <Menu.Button as="div" className={twMerge('flex items-center space-x-2', className)}>
+      <Menu.Button as="div" className={cn('flex items-center space-x-2', className)}>
         {button}
       </Menu.Button>
 

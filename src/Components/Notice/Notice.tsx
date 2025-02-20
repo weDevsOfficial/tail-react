@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+
 import {
   ExclamationTriangleIcon,
   XCircleIcon,
@@ -7,6 +7,7 @@ import {
   InformationCircleIcon,
 } from '@heroicons/react/20/solid';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { cn } from '@/utils';
 
 export interface NoticeProps {
   label?: React.ReactNode;
@@ -57,7 +58,7 @@ const Notice: React.FC<NoticeProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={twMerge('rounded-md p-4 ring-1 ring-inset w-full', color, className)}>
+    <div className={cn('rounded-md p-4 ring-1 ring-inset w-full', color, className)}>
       <div className="flex justify-between">
         <div className="flex">
           <div className="flex-shrink-0">{getIcon(type)}</div>

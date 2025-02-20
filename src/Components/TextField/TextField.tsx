@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import { twMerge } from 'tailwind-merge';
+
 import { ContextualHelp } from '../ContextualHelp';
+import { cn } from '@/utils';
 
 interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label?: string;
@@ -59,12 +60,12 @@ const TextField: React.FC<TextFieldProps> = ({
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
-    <div className={twMerge('mb-4 w-full', wrapperClassName)}>
+    <div className={cn('mb-4 w-full', wrapperClassName)}>
       {label && (
-        <div className={twMerge('mb-2', contextualHelp && ' flex')}>
+        <div className={cn('mb-2', { contextualHelp: ' flex' })}>
           <label
             htmlFor={id}
-            className={twMerge(
+            className={cn(
               'block text-sm font-medium leading-6 text-gray-900 dark:text-white',
               labelClassName
             )}
@@ -77,7 +78,7 @@ const TextField: React.FC<TextFieldProps> = ({
       )}
 
       <div
-        className={twMerge(
+        className={cn(
           'relative',
           addon || trailingAddon
             ? 'flex bg-white dark:bg-white/5 ring-1 ring-inset ring-gray-300 dark:ring-white/10 rounded-md shadow-sm focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600'
@@ -100,13 +101,15 @@ const TextField: React.FC<TextFieldProps> = ({
           placeholder={placeholder}
           name={name}
           onChange={handleChange}
-          className={twMerge(
+          className={cn(
             'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-none bg-white dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500',
-            className,
-            addon && 'pl-1',
-            disabled &&
-              'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200',
-            error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
+            {
+              className,
+              addon: 'pl-1',
+              disabled:
+                'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200',
+              error: 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500',
+            }
           )}
           {...rest}
         />

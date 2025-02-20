@@ -1,7 +1,6 @@
 import { useState, useEffect, ReactNode } from 'react';
 import { Switch } from '@headlessui/react';
-import classNames from 'classnames';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/utils';
 
 type Props = {
   label: string;
@@ -38,12 +37,12 @@ const SwitchInput = ({
   };
 
   return (
-    <Switch.Group as="div" className={twMerge('relative flex items-start mb-4', className)}>
+    <Switch.Group as="div" className={cn('relative flex items-start mb-4', className)}>
       <Switch
         checked={enabled}
         disabled={disabled}
         onChange={toggleInput}
-        className={classNames(
+        className={cn(
           enabled ? 'bg-indigo-600 dark:bg-indigo-500' : 'bg-gray-200 dark:bg-gray-600',
           'relative mt-1 inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
           disabled ? 'cursor-not-allowed opacity-50' : ''
@@ -51,7 +50,7 @@ const SwitchInput = ({
       >
         <span
           aria-hidden="true"
-          className={classNames(
+          className={cn(
             enabled ? 'translate-x-5' : 'translate-x-0',
             'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
           )}
@@ -59,7 +58,7 @@ const SwitchInput = ({
       </Switch>
       <Switch.Label as="span" className="ml-3">
         <div className="text-sm leading-6">
-          <label className={classNames('font-medium cursor-pointer text-gray-900 dark:text-white')}>
+          <label className={cn('font-medium cursor-pointer text-gray-900 dark:text-white')}>
             {label}
           </label>
 

@@ -1,6 +1,6 @@
+import { cn } from '@/utils';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -83,7 +83,7 @@ const Button: React.FC<ButtonProps> = ({
     return React.createElement(
       as,
       {
-        className: twMerge(
+        className: cn(
           commonStyles,
           Styles[`${variant}:${style}`],
           sizeStyles,

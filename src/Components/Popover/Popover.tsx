@@ -1,7 +1,8 @@
 import React, { ForwardedRef } from 'react';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { twMerge } from 'tailwind-merge';
+
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { cn } from '@/utils';
 
 type Props = {
   trigger: React.ReactNode;
@@ -34,7 +35,7 @@ const Popover = React.forwardRef(
         <PopoverPrimitive.Trigger asChild>{trigger}</PopoverPrimitive.Trigger>
         <PopoverPrimitive.Portal>
           <PopoverPrimitive.Content
-            className={twMerge(
+            className={cn(
               'bg-white px-4 py-2 overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 data-[state=open]:data-[side=top]:animate-slideDownAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade',
               className
             )}
@@ -46,9 +47,7 @@ const Popover = React.forwardRef(
             {children}
 
             {showArrow && (
-              <PopoverPrimitive.Arrow
-                className={twMerge('fill-white opacity-100', arrowClassName)}
-              />
+              <PopoverPrimitive.Arrow className={cn('fill-white opacity-100', arrowClassName)} />
             )}
 
             {showCloseButton && (

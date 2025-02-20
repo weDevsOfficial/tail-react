@@ -1,5 +1,5 @@
+import { cn } from '@/utils';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 interface BadgeProps {
   label: React.ReactNode;
@@ -43,7 +43,7 @@ const getBadgeBorderColor = (type: BadgeProps['type']) => {
 const Badge: React.FC<BadgeProps> = ({ label, type = 'neutral', className, border = true }) => {
   return (
     <span
-      className={twMerge(
+      className={cn(
         'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium',
         getBadgeColor(type, border),
         border && getBadgeBorderColor(type),

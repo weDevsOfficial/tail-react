@@ -1,5 +1,5 @@
-import { Dialog, Transition } from '@headlessui/react';
-import classNames from 'classnames';
+import { cn } from '@/utils';
+import { Dialog, DialogPanel, Transition } from '@headlessui/react';
 import React, { PropsWithChildren } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -23,7 +23,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
   }
 
   return ReactDOM.createPortal(
-    <Transition.Root show={isOpen} as={React.Fragment}>
+    <Transition show={isOpen} as={React.Fragment}>
       <Dialog
         as="div"
         static
@@ -41,7 +41,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            <DialogPanel className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -58,7 +58,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className={classNames(
+              className={cn(
                 'inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full',
                 maxWidthClass
               )}
@@ -68,7 +68,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
           </Transition.Child>
         </div>
       </Dialog>
-    </Transition.Root>,
+    </Transition>,
     document.body
   );
 };
@@ -76,7 +76,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
 const ModalHeader = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
   return (
     <div
-      className={classNames(
+      className={cn(
         'text-lg font-medium text-gray-900 dark:text-gray-300 mb-4 px-5 pt-5',
         className
       )}
@@ -87,12 +87,12 @@ const ModalHeader = ({ children, className }: PropsWithChildren<{ className?: st
 };
 
 const ModalBody = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
-  return <div className={classNames('px-5 pt-0', className)}>{children}</div>;
+  return <div className={cn('px-5 pt-0', className)}>{children}</div>;
 };
 
 const ModalActions = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
   return (
-    <div className={classNames('px-5 py-4 mt-4 sm:px-6 sm:flex sm:flex-row-reverse', className)}>
+    <div className={cn('px-5 py-4 mt-4 sm:px-6 sm:flex sm:flex-row-reverse', className)}>
       {children}
     </div>
   );
