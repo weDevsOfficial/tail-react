@@ -1,6 +1,6 @@
-import { cn } from '@/utils';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -25,7 +25,7 @@ const Styles = {
     'bg-white dark:bg-transparent ring-1 ring-inset ring-indigo-600 dark:ring-indigo-400 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 dark:hover:bg-indigo-400 hover:text-white dark:hover:text-indigo-700 shadow-sm',
   'primary:link': 'text-indigo-600 dark:text-indigo-400 hover:text-indigo-500',
   'secondary:fill':
-    'bg-white dark:bg-white/10 ring-1 ring-inset ring-gray-300 dark:ring-white/10 hover:bg-gray-50 hover:bg-white/5 text-gray-900 dark:text-black shadow-sm',
+    'bg-white dark:bg-white/10 ring-1 ring-inset ring-gray-300 dark:ring-white/10 hover:bg-gray-50 hover:bg-white/5 text-gray-900 dark:text-white shadow-sm',
   'secondary:outline':
     'bg-white dark:bg-transparent dark:ring-1 dark:ring-gray-400 hover:bg-gray-50 text-gray-900 dark:text-gray-400 shadow-sm',
   'secondary:link': 'text-gray-900 dark:text-gray-400 hover:text-gray-500',
@@ -83,7 +83,7 @@ const Button: React.FC<ButtonProps> = ({
     return React.createElement(
       as,
       {
-        className: cn(
+        className: twMerge(
           commonStyles,
           Styles[`${variant}:${style}`],
           sizeStyles,

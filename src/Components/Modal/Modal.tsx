@@ -1,7 +1,7 @@
-import { cn } from '@/utils';
-import { Dialog, DialogPanel, Transition } from '@headlessui/react';
-import React, { PropsWithChildren } from 'react';
+import { Fragment, PropsWithChildren } from 'react';
 import ReactDOM from 'react-dom';
+import { cn } from '@/utils';
+import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -23,7 +23,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
   }
 
   return ReactDOM.createPortal(
-    <Transition show={isOpen} as={React.Fragment}>
+    <Transition show={isOpen} as={Fragment}>
       <Dialog
         as="div"
         static
@@ -32,8 +32,8 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
         onClose={onClose}
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <Transition.Child
-            as={React.Fragment}
+          <TransitionChild
+            as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
@@ -42,14 +42,14 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
             leaveTo="opacity-0"
           >
             <DialogPanel className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          </Transition.Child>
+          </TransitionChild>
 
           {/* This element is to trick the browser into centering the modal contents. */}
           <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
             &#8203;
           </span>
-          <Transition.Child
-            as={React.Fragment}
+          <TransitionChild
+            as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             enterTo="opacity-100 translate-y-0 sm:scale-100"
@@ -65,7 +65,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
             >
               {children}
             </div>
-          </Transition.Child>
+          </TransitionChild>
         </div>
       </Dialog>
     </Transition>,
