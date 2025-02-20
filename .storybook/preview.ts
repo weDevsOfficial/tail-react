@@ -5,7 +5,6 @@ import '../src/index.css';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     darkMode: {
       dark: { ...themes.dark, appBg: 'black', base: 'dark', appPreviewBg: 'black' },
       stylePreview: true,
@@ -18,6 +17,8 @@ const preview: Preview = {
       },
     },
   },
+
+  tags: ['autodocs', 'autodocs']
 };
 
 export default preview;
