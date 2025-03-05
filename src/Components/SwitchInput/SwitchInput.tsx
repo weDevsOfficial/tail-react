@@ -44,7 +44,7 @@ const SwitchInput = ({
         onChange={toggleInput}
         className={cn(
           enabled ? 'bg-indigo-600 dark:bg-indigo-500' : 'bg-gray-200 dark:bg-gray-600',
-          'relative mt-1 inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+          'relative mt-1 inline-flex h-5 w-10 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
           disabled ? 'cursor-not-allowed opacity-50' : ''
         )}
       >
@@ -52,7 +52,7 @@ const SwitchInput = ({
           aria-hidden="true"
           className={cn(
             enabled ? 'translate-x-5' : 'translate-x-0',
-            'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+            'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out'
           )}
         />
       </Switch>

@@ -24,7 +24,7 @@ export const Default: Story = {
       </Button>
     ),
     children: (
-      <div className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+      <div className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
         <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">
           Account Settings
         </DropdownItem>
@@ -43,7 +43,7 @@ export const WithSimpleHeader: Story = {
       </Button>
     ),
     children: (
-      <div className="absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+      <div className="absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-black/5 focus:outline-none">
         <div className="px-4 py-3" role="none">
           <p className="text-sm" role="none">
             Signed in as
@@ -76,7 +76,7 @@ export const WithDivider: Story = {
       </Button>
     ),
     children: (
-      <div className="absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+      <div className="absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-black/5 focus:outline-none">
         <div className="py-1">
           <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Edit</DropdownItem>
           <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Duplicate</DropdownItem>

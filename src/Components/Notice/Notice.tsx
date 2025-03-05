@@ -61,7 +61,7 @@ const Notice: React.FC<NoticeProps> = ({
     <div className={cn('rounded-md p-4 ring-1 ring-inset w-full', color, className)}>
       <div className="flex justify-between">
         <div className="flex">
-          <div className="flex-shrink-0">{getIcon(type)}</div>
+          <div className="shrink-0">{getIcon(type)}</div>
           <div className="ml-3">
             {label && <h3 className="text-sm font-medium">{label}</h3>}
             {children && <div className="text-sm mt-2">{children}</div>}
@@ -71,7 +71,7 @@ const Notice: React.FC<NoticeProps> = ({
         {dismissible && (
           <button
             onClick={() => setIsVisible(false)}
-            className="flex-shrink-0 ml-4"
+            className="shrink-0 ml-4"
             title="Dismiss the notice"
           >
             <XMarkIcon className="h-4 w-4 text-gray-500 dark:text-gray-300" aria-hidden="true" />

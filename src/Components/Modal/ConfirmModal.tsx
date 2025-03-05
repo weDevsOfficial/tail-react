@@ -36,7 +36,7 @@ const ConfirmModal = ({
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>
       <div className="flex">
-        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:h-10 sm:w-10 ml-5 mt-5">
+        <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:h-10 sm:w-10 ml-5 mt-5">
           <ExclamationTriangleIcon className="h-6 w-6 text-red-600" />
         </div>
 

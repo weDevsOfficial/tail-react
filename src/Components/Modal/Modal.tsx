@@ -41,7 +41,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <DialogPanel className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            <DialogPanel className="fixed inset-0 bg-gray-500/75 transition-opacity" />
           </TransitionChild>
 
           {/* This element is to trick the browser into centering the modal contents. */}

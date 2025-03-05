@@ -6,7 +6,7 @@ const RadioExample = () => {
 
   return (
     <div className="">
-      <h1 className="text-2xl font-semibold border-b pb-4 mb-8">Radio Group</h1>
+      <h1 className="text-2xl font-semibold border-b border-gray-200 pb-4 mb-8">Radio Group</h1>
 
       <RadioGroup
         label="Notifications"
