@@ -56,8 +56,8 @@ const Textarea: React.FC<TextareaProps> = ({
           rows={rows}
           className={cn(
             'block dark:bg-white/5 w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-300 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+            className,
             {
-              className,
               disabled:
                 'disabled:cursor-not-allowed disabled:bg-gray-50 dark:disabled:bg-gray-600 disabled:text-gray-500 disabled:ring-gray-200',
               error: 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500',

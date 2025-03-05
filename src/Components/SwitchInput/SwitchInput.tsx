@@ -58,7 +58,7 @@ const SwitchInput = ({
       </Switch>
       <Switch.Label as="span" className="ml-3">
         <div className="text-sm leading-6">
-          <label className={cn('font-medium cursor-pointer text-gray-900 dark:text-white')}>
+          <label className="font-medium cursor-pointer text-gray-900 dark:text-white">
             {label}
           </label>
 

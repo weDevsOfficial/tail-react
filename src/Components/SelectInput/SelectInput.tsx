@@ -63,7 +63,7 @@ const SelectInput: React.FC<SelectProps> = ({
         <div className="mb-2">
           <label
             htmlFor={id}
-            className={cn('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
+            className={'block text-sm font-medium leading-6 text-gray-900 dark:text-white'}
           >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
