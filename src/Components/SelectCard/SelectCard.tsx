@@ -73,7 +73,7 @@ const SelectCard = ({
               selectedOption.key === option.key
                 ? 'border-indigo-600 dark:border-indigo-300'
                 : 'border-gray-200 dark:border-gray-600',
-              'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white dark:bg-white/10 dark:text-gray-200 focus:outline-none',
+              'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white dark:bg-white/10 dark:text-gray-200 focus:outline-hidden',
               option.disabled ? 'opacity-75 cursor-not-allowed grayscale' : ''
             )}
             onClick={() => handleChange(option)}

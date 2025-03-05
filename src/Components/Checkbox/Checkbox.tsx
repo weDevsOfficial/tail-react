@@ -32,7 +32,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
           disabled={disabled}
           {...props}
           className={cn(
-            'h-4 w-4 rounded form-checkbox border-gray-300 text-indigo-600 dark:text-indigo-500 focus:ring-indigo-600',
+            'h-4 w-4 rounded-sm form-checkbox border-gray-300 text-indigo-600 dark:text-indigo-500 focus:ring-indigo-600',
             className,
             disabled && 'disabled:opacity-50 cursor-not-allowed'
           )}

@@ -129,7 +129,7 @@ export const WithTrailingIconAddon: Story = {
     className: 'flex-1 border-0 ring-0 focus:ring-0 bg-transparent',
     trailingAddon: (
       <span className="flex select-none items-center pl-3 pr-2 text-gray-500 sm:text-sm">
-        <kbd className="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">
+        <kbd className="inline-flex items-center rounded-sm border border-gray-200 px-1 font-sans text-xs text-gray-400">
           ⌘K
         </kbd>
       </span>
