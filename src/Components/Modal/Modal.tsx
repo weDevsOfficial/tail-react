@@ -34,6 +34,7 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
             transition
             className={cn(
               'inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl sm:my-8 sm:align-middle sm:w-full',
+              'overflow-scroll max-h-[calc(100vh-4rem)]',
               'transition duration-300 ease-out translate-y-4 sm:translate-y-0 sm:scale-95 opacity-0 data-[open]:translate-y-0 data-[open]:scale-100 data-[open]:opacity-100 data-[closed]:opacity-0 data-[closed]:translate-y-4 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95 data-[closed]:ease-in data-[closed]:duration-200',
               maxWidthClass
             )}
