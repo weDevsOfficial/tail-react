@@ -23,7 +23,7 @@ export const Table = ({ className, children }: TableProps) => {
       <table
         className={cn(
           'min-w-full divide-y divide-gray-300 dark:divide-gray-800 dark:border-gray-800',
-          className
+          className,
         )}
       >
         {children}
@@ -40,9 +40,15 @@ export const TableHeader = ({ className, children }: TableHeaderProps) => {
   );
 };
 
-export const TableBody = <T extends object>({ items, className, renderRow }: TableBodyProps<T>) => {
+export const TableBody = <T extends object>({
+  items,
+  className,
+  renderRow,
+}: TableBodyProps<T>) => {
   return (
-    <tbody className={cn('divide-y divide-gray-200 dark:divide-gray-900', className)}>
+    <tbody
+      className={cn('divide-y divide-gray-200 dark:divide-gray-900', className)}
+    >
       {items.map((item, index) => renderRow(item, index))}
     </tbody>
   );

@@ -13,7 +13,7 @@ import { SwitchInput } from '@wedevs/tail-react';
 const App = () => {
   const [isEnabled, setIsEnabled] = useState(false);
 
-  const handleToggle = (status) => {
+  const handleToggle = status => {
     setIsEnabled(status);
     // Your custom logic here when the switch is toggled
   };

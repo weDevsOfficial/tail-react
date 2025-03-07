@@ -16,7 +16,13 @@ const DropdownItem: React.FC<DropdownItemProps> = ({
   return (
     <Menu.Item>
       {({ active }) => (
-        <div className={cn('hover:cursor-pointer', active ? activeClass : '', className)}>
+        <div
+          className={cn(
+            'hover:cursor-pointer',
+            active ? activeClass : '',
+            className,
+          )}
+        >
           {children}
         </div>
       )}

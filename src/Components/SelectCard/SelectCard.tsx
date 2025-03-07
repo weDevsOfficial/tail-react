@@ -38,7 +38,10 @@ const SelectCard = ({
       return { key: '' };
     }
 
-    return options.find((option: { key: string }) => option.key === selectedKey) || options[0];
+    return (
+      options.find((option: { key: string }) => option.key === selectedKey) ||
+      options[0]
+    );
   });
 
   const handleChange = (option: Option) => {
@@ -58,7 +61,9 @@ const SelectCard = ({
       {label && (
         <div className="mb-2">
           <label
-            className={cn('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
+            className={cn(
+              'block text-sm leading-6 font-medium text-gray-900 dark:text-white',
+            )}
           >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
@@ -73,8 +78,8 @@ const SelectCard = ({
               selectedOption.key === option.key
                 ? 'border-indigo-600 dark:border-indigo-300'
                 : 'border-gray-200 dark:border-gray-600',
-              'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white dark:bg-white/10 dark:text-gray-200 focus:outline-hidden',
-              option.disabled ? 'opacity-75 cursor-not-allowed grayscale' : ''
+              'relative flex cursor-pointer rounded-lg border-2 bg-white p-4 text-center focus:outline-hidden dark:bg-white/10 dark:text-gray-200',
+              option.disabled ? 'cursor-not-allowed opacity-75 grayscale' : '',
             )}
             onClick={() => handleChange(option)}
           >
@@ -82,10 +87,10 @@ const SelectCard = ({
 
             <div
               className={cn(
-                'absolute top-0 right-0 p-1 rounded-full',
+                'absolute top-0 right-0 rounded-full p-1',
                 selectedOption.key === option.key
-                  ? ' text-indigo-600 dark:text-indigo-400'
-                  : 'invisible'
+                  ? 'text-indigo-600 dark:text-indigo-400'
+                  : 'invisible',
               )}
             >
               <CheckCircleIcon className="h-5 w-5" />
@@ -94,8 +99,12 @@ const SelectCard = ({
         ))}
       </div>
 
-      {help && <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">{help}</p>}
-      {error && <p className="text-red-600 dark:text-red-400 text-sm mt-2">{error}</p>}
+      {help && (
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{help}</p>
+      )}
+      {error && (
+        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>
+      )}
     </div>
   );
 };

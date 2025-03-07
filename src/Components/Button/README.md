@@ -47,7 +47,12 @@ const MyComponent = () => {
 
   return (
     <div>
-      <Button onClick={handleButtonClick} variant="primary" style="fill" size="medium">
+      <Button
+        onClick={handleButtonClick}
+        variant="primary"
+        style="fill"
+        size="medium"
+      >
         Click Me
       </Button>
 

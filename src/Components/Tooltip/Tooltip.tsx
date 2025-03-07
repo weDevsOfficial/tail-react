@@ -22,7 +22,9 @@ const Tooltip: React.FC<TooltipProps> = ({
   return (
     <TooltipPrimitive.Provider delayDuration={100}>
       <TooltipPrimitive.Root>
-        <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
+        <TooltipPrimitive.Trigger asChild>
+          {typeof children === 'string' ? <span>{children}</span> : children}
+        </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Content
           sideOffset={offset}
           side={side}
@@ -31,8 +33,8 @@ const Tooltip: React.FC<TooltipProps> = ({
           {typeof content === 'string' ? (
             <span
               className={cn(
-                'block max-w-xs px-2.5 py-1.5 text-center text-xs text-white bg-gray-900 opacity-90 rounded-md shadow-lg',
-                className
+                'block max-w-xs rounded-md bg-gray-900 px-2.5 py-1.5 text-center text-xs text-white opacity-90 shadow-lg',
+                className,
               )}
             >
               {content}
@@ -40,7 +42,9 @@ const Tooltip: React.FC<TooltipProps> = ({
           ) : (
             content
           )}
-          <TooltipPrimitive.Arrow className={cn('fill-gray-900 opacity-90', arrowClassName)} />
+          <TooltipPrimitive.Arrow
+            className={cn('fill-gray-900 opacity-90', arrowClassName)}
+          />
         </TooltipPrimitive.Content>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>

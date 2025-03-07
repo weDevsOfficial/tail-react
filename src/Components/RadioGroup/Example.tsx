@@ -6,7 +6,9 @@ const RadioExample = () => {
 
   return (
     <div className="">
-      <h1 className="text-2xl font-semibold border-b border-gray-200 pb-4 mb-8">Radio Group</h1>
+      <h1 className="mb-8 border-b border-gray-200 pb-4 text-2xl font-semibold">
+        Radio Group
+      </h1>
 
       <RadioGroup
         label="Notifications"
@@ -18,7 +20,7 @@ const RadioExample = () => {
           { value: 'SMS', key: 'option2' },
           { value: 'Push notification', key: 'option3' },
         ]}
-        onChange={(selectedOption) => setRadio(selectedOption)}
+        onChange={selectedOption => setRadio(selectedOption)}
       />
     </div>
   );

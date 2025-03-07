@@ -53,10 +53,10 @@ export const WithContextualHelp: Story = {
     required: true,
     contextualHelp: (
       <Fragment>
-        <h3 className="font-medium text-gray-900 mb-2">Need Help?</h3>
+        <h3 className="mb-2 font-medium text-gray-900">Need Help?</h3>
         <p className="text-sm text-gray-500">
-          If you're having trouble accessing your account, contact our customer support team for
-          help.
+          If you're having trouble accessing your account, contact our customer
+          support team for help.
         </p>
       </Fragment>
     ),
@@ -89,7 +89,9 @@ export const WithAddon: Story = {
     value: 'example.com',
     className: 'flex-1 border-0 ring-0 focus:ring-0 bg-transparent',
     addon: (
-      <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">https://</span>
+      <span className="flex items-center pl-3 text-gray-500 select-none sm:text-sm">
+        https://
+      </span>
     ),
   },
 };
@@ -100,9 +102,15 @@ export const WithTrailingAddon: Story = {
     label: 'Price',
     value: '100',
     className: 'flex-1 border-0 ring-0 focus:ring-0 bg-transparent',
-    addon: <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">$</span>,
+    addon: (
+      <span className="flex items-center pl-3 text-gray-500 select-none sm:text-sm">
+        $
+      </span>
+    ),
     trailingAddon: (
-      <span className="flex select-none items-center pr-3 text-gray-500 sm:text-sm">USD</span>
+      <span className="flex items-center pr-3 text-gray-500 select-none sm:text-sm">
+        USD
+      </span>
     ),
   },
 };
@@ -114,7 +122,7 @@ export const WithIconAddon: Story = {
     value: 'John Doe',
     className: 'flex-1 border-0 ring-0 focus:ring-0 bg-transparent',
     addon: (
-      <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
+      <span className="flex items-center pl-3 text-gray-500 select-none sm:text-sm">
         <UserIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
       </span>
     ),
@@ -128,7 +136,7 @@ export const WithTrailingIconAddon: Story = {
     placeholder: 'Search',
     className: 'flex-1 border-0 ring-0 focus:ring-0 bg-transparent',
     trailingAddon: (
-      <span className="flex select-none items-center pl-3 pr-2 text-gray-500 sm:text-sm">
+      <span className="flex items-center pr-2 pl-3 text-gray-500 select-none sm:text-sm">
         <kbd className="inline-flex items-center rounded-sm border border-gray-200 px-1 font-sans text-xs text-gray-400">
           ⌘K
         </kbd>

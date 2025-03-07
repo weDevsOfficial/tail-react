@@ -28,7 +28,7 @@ const Popover = React.forwardRef(
       side,
       ...props
     }: Props,
-    forwardedRef: ForwardedRef<HTMLDivElement>
+    forwardedRef: ForwardedRef<HTMLDivElement>,
   ) => {
     return (
       <PopoverPrimitive.Root>
@@ -36,8 +36,8 @@ const Popover = React.forwardRef(
         <PopoverPrimitive.Portal>
           <PopoverPrimitive.Content
             className={cn(
-              'bg-white px-4 py-2 overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 data-[state=open]:data-[side=top]:animate-slideDownAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade',
-              className
+              'data-[state=open]:data-[side=top]:animate-slideDownAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade overflow-hidden rounded-lg bg-white px-4 py-2 shadow-lg ring-1 ring-black/5',
+              className,
             )}
             sideOffset={sideOffset}
             side={side}
@@ -47,7 +47,9 @@ const Popover = React.forwardRef(
             {children}
 
             {showArrow && (
-              <PopoverPrimitive.Arrow className={cn('fill-white opacity-100', arrowClassName)} />
+              <PopoverPrimitive.Arrow
+                className={cn('fill-white opacity-100', arrowClassName)}
+              />
             )}
 
             {showCloseButton && (
@@ -59,7 +61,7 @@ const Popover = React.forwardRef(
         </PopoverPrimitive.Portal>
       </PopoverPrimitive.Root>
     );
-  }
+  },
 );
 
 export { Popover };

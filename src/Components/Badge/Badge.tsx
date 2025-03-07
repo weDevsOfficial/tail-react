@@ -8,12 +8,19 @@ interface BadgeProps {
   border?: boolean;
 }
 
-const getBadgeColor = (type: BadgeProps['type'], border: BadgeProps['border']) => {
+const getBadgeColor = (
+  type: BadgeProps['type'],
+  border: BadgeProps['border'],
+) => {
   switch (type) {
     case 'success':
-      return border ? 'bg-green-50 text-green-700' : 'bg-green-100 text-green-700';
+      return border
+        ? 'bg-green-50 text-green-700'
+        : 'bg-green-100 text-green-700';
     case 'warning':
-      return border ? 'bg-yellow-50 text-yellow-800' : 'bg-yellow-100 text-yellow-800';
+      return border
+        ? 'bg-yellow-50 text-yellow-800'
+        : 'bg-yellow-100 text-yellow-800';
     case 'error':
       return border ? 'bg-red-50 text-red-700' : 'bg-red-100 text-red-700';
     case 'info':
@@ -40,14 +47,19 @@ const getBadgeBorderColor = (type: BadgeProps['type']) => {
   }
 };
 
-const Badge: React.FC<BadgeProps> = ({ label, type = 'neutral', className, border = true }) => {
+const Badge: React.FC<BadgeProps> = ({
+  label,
+  type = 'neutral',
+  className,
+  border = true,
+}) => {
   return (
     <span
       className={cn(
         'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium',
         getBadgeColor(type, border),
         border && getBadgeBorderColor(type),
-        className
+        className,
       )}
     >
       {label}

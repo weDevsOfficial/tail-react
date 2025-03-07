@@ -8,7 +8,12 @@ Once installed, you can import and use the `Modal` component in your React appli
 
 ```jsx
 import React, { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalActions } from '@wedevs/tail-react';
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalActions,
+} from '@wedevs/tail-react';
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +28,10 @@ const App = () => {
 
   return (
     <div>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-md" onClick={handleOpenModal}>
+      <button
+        className="rounded-md bg-blue-500 px-4 py-2 text-white"
+        onClick={handleOpenModal}
+      >
         Open Modal
       </button>
 
@@ -34,13 +42,13 @@ const App = () => {
         </ModalBody>
         <ModalActions>
           <button
-            className="bg-red-500 text-white px-4 py-2 rounded-md mr-2"
+            className="mr-2 rounded-md bg-red-500 px-4 py-2 text-white"
             onClick={handleCloseModal}
           >
             Cancel
           </button>
           <button
-            className="bg-green-500 text-white px-4 py-2 rounded-md"
+            className="rounded-md bg-green-500 px-4 py-2 text-white"
             onClick={handleCloseModal}
           >
             Save
@@ -125,7 +133,10 @@ const App = () => {
 
   return (
     <div>
-      <button className="bg-red-500 text-white px-4 py-2 rounded-md" onClick={handleOpenModal}>
+      <button
+        className="rounded-md bg-red-500 px-4 py-2 text-white"
+        onClick={handleOpenModal}
+      >
         Delete Item
       </button>
 

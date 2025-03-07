@@ -19,17 +19,30 @@ type Story = StoryObj<typeof Dropdown>;
 export const Default: Story = {
   args: {
     button: (
-      <Button variant="secondary" style="fill" size="medium" className="inline-flex">
-        Options <ChevronDownIcon className="w-5 h-5 ml-2 -mr-1 text-gray-400" aria-hidden="true" />
+      <Button
+        variant="secondary"
+        style="fill"
+        size="medium"
+        className="inline-flex"
+      >
+        Options{' '}
+        <ChevronDownIcon
+          className="-mr-1 ml-2 h-5 w-5 text-gray-400"
+          aria-hidden="true"
+        />
       </Button>
     ),
     children: (
       <div className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden">
-        <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">
+        <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
           Account Settings
         </DropdownItem>
-        <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Support</DropdownItem>
-        <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">License</DropdownItem>
+        <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+          Support
+        </DropdownItem>
+        <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+          License
+        </DropdownItem>
       </div>
     ),
   },
@@ -38,8 +51,17 @@ export const Default: Story = {
 export const WithSimpleHeader: Story = {
   args: {
     button: (
-      <Button variant="secondary" style="fill" size="medium" className="inline-flex">
-        Settings <ChevronDownIcon className="w-5 h-5 ml-2 -mr-1 text-gray-400" aria-hidden="true" />
+      <Button
+        variant="secondary"
+        style="fill"
+        size="medium"
+        className="inline-flex"
+      >
+        Settings{' '}
+        <ChevronDownIcon
+          className="-mr-1 ml-2 h-5 w-5 text-gray-400"
+          aria-hidden="true"
+        />
       </Button>
     ),
     children: (
@@ -53,15 +75,21 @@ export const WithSimpleHeader: Story = {
           </p>
         </div>
         <div className="py-1" role="none">
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
             Account Settings
           </DropdownItem>
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Support</DropdownItem>
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">License</DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            Support
+          </DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            License
+          </DropdownItem>
         </div>
 
         <div className="py-1" role="none">
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Sign out</DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            Sign out
+          </DropdownItem>
         </div>
       </div>
     ),
@@ -71,31 +99,52 @@ export const WithSimpleHeader: Story = {
 export const WithDivider: Story = {
   args: {
     button: (
-      <Button variant="secondary" style="fill" size="medium" className="inline-flex">
-        Options <ChevronDownIcon className="w-5 h-5 ml-2 -mr-1 text-gray-400" aria-hidden="true" />
+      <Button
+        variant="secondary"
+        style="fill"
+        size="medium"
+        className="inline-flex"
+      >
+        Options{' '}
+        <ChevronDownIcon
+          className="-mr-1 ml-2 h-5 w-5 text-gray-400"
+          aria-hidden="true"
+        />
       </Button>
     ),
     children: (
       <div className="absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-black/5 focus:outline-hidden">
         <div className="py-1">
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Edit</DropdownItem>
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Duplicate</DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            Edit
+          </DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            Duplicate
+          </DropdownItem>
         </div>
 
         <div className="py-1">
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Archive</DropdownItem>
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Move</DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            Archive
+          </DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            Move
+          </DropdownItem>
         </div>
 
         <div className="py-1">
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Share</DropdownItem>
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            Share
+          </DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
             Add to favorites
           </DropdownItem>
         </div>
 
         <div className="py-1">
-          <DropdownItem className="text-gray-700 block px-4 py-2 text-sm">Delete</DropdownItem>
+          <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+            Delete
+          </DropdownItem>
         </div>
       </div>
     ),

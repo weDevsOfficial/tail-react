@@ -32,7 +32,8 @@ const Styles = {
   'danger:fill': 'bg-red-600 dark:bg-red-500 hover:bg-red-500 text-white',
   'danger:outline':
     'bg-white ring-1 ring-inset ring-red-600 hover:bg-red-600 text-red-600 hover:text-white shadow-xs',
-  'danger:link': 'text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400',
+  'danger:link':
+    'text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400',
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -88,7 +89,7 @@ const Button: React.FC<ButtonProps> = ({
           Styles[`${variant}:${style}`],
           sizeStyles,
           disabledStyles,
-          className
+          className,
         ),
         type,
         disabled: disabled,
@@ -97,8 +98,10 @@ const Button: React.FC<ButtonProps> = ({
         target,
         rel,
       },
-      loading ? <ArrowPathIcon className="w-5 h-5 inline-block mr-2 animate-spin" /> : null,
-      children
+      loading ? (
+        <ArrowPathIcon className="inline-blockanimate-spin mr-2 h-5 w-5" />
+      ) : null,
+      children,
     );
   };
 
