@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { cn } from '@/utils';
-import { Dialog, DialogPanel } from '@headlessui/react';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -29,12 +29,13 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
         onClose={onClose}
         className="fixed z-10 overflow-auto inset-0 flex w-screen items-center justify-center bg-black/30 p-4 transition duration-300 ease-out data-[closed]:opacity-0 data-[closed]:ease-in data-[closed]:duration-200"
       >
+        <DialogBackdrop className="fixed inset-0 bg-black/30" />
+
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
           <DialogPanel
             transition
             className={cn(
-              'inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left shadow-xl sm:my-8 sm:align-middle sm:w-full overflow-scroll max-h-[calc(100vh-4rem)]',
-              'transition duration-300 ease-out translate-y-4 sm:translate-y-0 sm:scale-95 opacity-0 data-[open]:translate-y-0 data-[open]:scale-100 data-[open]:opacity-100 data-[closed]:opacity-0 data-[closed]:translate-y-4 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95 data-[closed]:ease-in data-[closed]:duration-200',
+              'inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left shadow-xl sm:my-8 sm:align-middle sm:w-full overflow-scroll max-h-[calc(100vh-4rem)] transition duration-300 ease-out translate-y-4 sm:translate-y-0 sm:scale-95 data-[open]:translate-y-0 data-[open]:scale-100 data-[open]:opacity-100 data-[closed]:opacity-0 data-[closed]:translate-y-4 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95 data-[closed]:ease-in data-[closed]:duration-200',
               maxWidthClass
             )}
           >

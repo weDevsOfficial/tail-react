@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-
+import { Fragment } from 'react';
 import { ContextualHelp } from '../ContextualHelp';
 import { cn } from '@/utils';
 
@@ -17,6 +16,7 @@ interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement
   pattern?: string;
   placeholder?: string;
   name?: string;
+  id?: string;
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
   contextualHelp?: React.ReactNode;
   className?: string;
@@ -42,6 +42,7 @@ const TextField: React.FC<TextFieldProps> = ({
   pattern,
   placeholder,
   name,
+  id = `input-${crypto.randomUUID()}`,
   type = 'text',
   contextualHelp,
   className,
@@ -57,12 +58,10 @@ const TextField: React.FC<TextFieldProps> = ({
     onChange(event.target.value);
   };
 
-  const id = `input-${Math.random().toString(36).substr(2, 9)}`;
-
   return (
     <div className={cn('mb-4 w-full', wrapperClassName)}>
       {label && (
-        <div className={cn('mb-2', { contextualHelp: ' flex' })}>
+        <div className={cn('mb-2', { flex: contextualHelp })}>
           <label
             htmlFor={id}
             className={cn(
@@ -78,15 +77,12 @@ const TextField: React.FC<TextFieldProps> = ({
       )}
 
       <div
-        className={cn(
-          'relative',
-          addon || trailingAddon
-            ? 'flex bg-white dark:bg-white/5 ring-1 ring-inset ring-gray-300 dark:ring-white/10 rounded-md shadow-xs focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600'
-            : '',
-          inputWrapperClassName
-        )}
+        className={cn('relative', inputWrapperClassName, {
+          'flex bg-white dark:bg-white/5 ring-1 ring-inset ring-gray-300 dark:ring-white/10 rounded-md shadow-xs focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600':
+            addon || trailingAddon,
+        })}
       >
-        {addon && <Fragment>{addon}</Fragment>}
+        {addon ? <>{addon}</> : null}
 
         <input
           id={id}
@@ -105,10 +101,10 @@ const TextField: React.FC<TextFieldProps> = ({
             'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-hidden bg-white dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500',
             className,
             {
-              addon: 'pl-1',
-              disabled:
-                'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200',
-              error: 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500',
+              'pl-1': addon,
+              'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200':
+                disabled,
+              'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500': error,
             }
           )}
           {...rest}

@@ -10,6 +10,7 @@ interface TextareaProps
   help?: React.ReactNode;
   disabled?: boolean;
   placeholder?: string;
+  id?: string;
   value?: string;
   required?: boolean;
   rows?: number;
@@ -25,6 +26,7 @@ const Textarea: React.FC<TextareaProps> = ({
   labelClassName,
   wrapperClassName,
   onChange,
+  id = `input-${crypto.randomUUID()}`,
   value = '',
   disabled = false,
   required = false,
@@ -32,8 +34,6 @@ const Textarea: React.FC<TextareaProps> = ({
   placeholder,
   ...props
 }) => {
-  const id = `input-${Math.random().toString(36).substr(2, 9)}`;
-
   return (
     <div className={cn('mb-4 w-full', wrapperClassName)}>
       {label && (
