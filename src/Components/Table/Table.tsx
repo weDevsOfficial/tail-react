@@ -22,7 +22,7 @@ export const Table = ({ className, children }: TableProps) => {
     <div>
       <table
         className={cn(
-          'min-w-full divide-y divide-gray-300 dark:divide-gray-700 dark:border-gray-700',
+          'min-w-full divide-y divide-gray-200 dark:divide-gray-700 dark:border-gray-700',
           className,
         )}
       >
