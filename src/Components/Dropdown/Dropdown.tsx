@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, MenuButton, Transition } from '@headlessui/react';
 
 import DropdownItem from './DropdownItem';
 import { cn } from '@/utils';
@@ -13,12 +13,12 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ button, children, className }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <Menu.Button
+      <MenuButton
         as="div"
         className={cn('flex items-center space-x-2', className)}
       >
         {button}
-      </Menu.Button>
+      </MenuButton>
 
       <Transition
         as={Fragment}

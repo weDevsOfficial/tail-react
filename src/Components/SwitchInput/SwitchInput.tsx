@@ -1,5 +1,5 @@
 import { useState, useEffect, ReactNode } from 'react';
-import { Switch } from '@headlessui/react';
+import { Field, Label, Switch } from '@headlessui/react';
 import { cn } from '@/utils';
 
 type Props = {
@@ -37,10 +37,7 @@ const SwitchInput = ({
   };
 
   return (
-    <Switch.Group
-      as="div"
-      className={cn('relative mb-4 flex items-start', className)}
-    >
+    <Field as="div" className={cn('relative mb-4 flex items-start', className)}>
       <Switch
         checked={enabled}
         disabled={disabled}
@@ -61,7 +58,7 @@ const SwitchInput = ({
           )}
         />
       </Switch>
-      <Switch.Label as="span" className="ml-3">
+      <Label as="span" className="ml-3">
         <div className="text-sm leading-6">
           <label className="cursor-pointer font-medium text-gray-900 dark:text-white">
             {label}
@@ -78,8 +75,8 @@ const SwitchInput = ({
             />
           )}
         </div>
-      </Switch.Label>
-    </Switch.Group>
+      </Label>
+    </Field>
   );
 };
 
