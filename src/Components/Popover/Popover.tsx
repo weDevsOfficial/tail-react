@@ -1,7 +1,8 @@
 import React, { ForwardedRef } from 'react';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { twMerge } from 'tailwind-merge';
+
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { cn } from '@/utils';
 
 type Props = {
   trigger: React.ReactNode;
@@ -27,16 +28,16 @@ const Popover = React.forwardRef(
       side,
       ...props
     }: Props,
-    forwardedRef: ForwardedRef<HTMLDivElement>
+    forwardedRef: ForwardedRef<HTMLDivElement>,
   ) => {
     return (
       <PopoverPrimitive.Root>
         <PopoverPrimitive.Trigger asChild>{trigger}</PopoverPrimitive.Trigger>
         <PopoverPrimitive.Portal>
           <PopoverPrimitive.Content
-            className={twMerge(
-              'bg-white px-4 py-2 overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 data-[state=open]:data-[side=top]:animate-slideDownAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade',
-              className
+            className={cn(
+              'data-[state=open]:data-[side=top]:animate-slideDownAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade overflow-hidden rounded-lg bg-white px-4 py-2 shadow-lg ring-1 ring-black/5',
+              className,
             )}
             sideOffset={sideOffset}
             side={side}
@@ -47,7 +48,7 @@ const Popover = React.forwardRef(
 
             {showArrow && (
               <PopoverPrimitive.Arrow
-                className={twMerge('fill-white opacity-100', arrowClassName)}
+                className={cn('fill-white opacity-100', arrowClassName)}
               />
             )}
 
@@ -60,7 +61,7 @@ const Popover = React.forwardRef(
         </PopoverPrimitive.Portal>
       </PopoverPrimitive.Root>
     );
-  }
+  },
 );
 
 export { Popover };

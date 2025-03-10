@@ -1,6 +1,6 @@
+import { cn } from '@/utils';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -20,19 +20,20 @@ interface ButtonProps {
 
 const Styles = {
   'primary:fill':
-    'bg-indigo-600 dark:bg-indigo-500 text-white shadow-sm hover:bg-indigo-700 dark:hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600',
+    'bg-indigo-600 dark:bg-indigo-500 text-white shadow-xs hover:bg-indigo-700 dark:hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600',
   'primary:outline':
-    'bg-white dark:bg-transparent ring-1 ring-inset ring-indigo-600 dark:ring-indigo-400 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 dark:hover:bg-indigo-400 hover:text-white dark:hover:text-indigo-700 shadow-sm',
+    'bg-white dark:bg-transparent ring-1 ring-inset ring-indigo-600 dark:ring-indigo-400 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 dark:hover:bg-indigo-400 hover:text-white dark:hover:text-indigo-700 shadow-xs',
   'primary:link': 'text-indigo-600 dark:text-indigo-400 hover:text-indigo-500',
   'secondary:fill':
-    'bg-white dark:bg-white/10 ring-1 ring-inset ring-gray-300 dark:ring-white/10 hover:bg-gray-50 hover:bg-white/5 text-gray-900 dark:text-white shadow-sm',
+    'bg-white dark:bg-white/10 ring-1 ring-inset ring-gray-300 dark:ring-white/10 hover:bg-gray-50 hover:bg-white/5 text-gray-900 dark:text-white shadow-xs',
   'secondary:outline':
-    'bg-white dark:bg-transparent dark:ring-1 dark:ring-gray-400 hover:bg-gray-50 text-gray-900 dark:text-gray-400 shadow-sm',
+    'bg-white dark:bg-transparent dark:ring-1 dark:ring-gray-400 hover:bg-gray-50 text-gray-900 dark:text-gray-400 shadow-xs',
   'secondary:link': 'text-gray-900 dark:text-gray-400 hover:text-gray-500',
   'danger:fill': 'bg-red-600 dark:bg-red-500 hover:bg-red-500 text-white',
   'danger:outline':
-    'bg-white ring-1 ring-inset ring-red-600 hover:bg-red-600 text-red-600 hover:text-white shadow-sm',
-  'danger:link': 'text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400',
+    'bg-white ring-1 ring-inset ring-red-600 hover:bg-red-600 text-red-600 hover:text-white shadow-xs',
+  'danger:link':
+    'text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400',
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -53,7 +54,7 @@ const Button: React.FC<ButtonProps> = ({
   const getSizeStyles = () => {
     switch (size) {
       case 'small':
-        return 'rounded px-2 py-1 text-xs';
+        return 'rounded-sm px-2 py-1 text-xs';
       case 'medium':
         return 'rounded-md px-4 py-2 text-sm';
       case 'large':
@@ -75,7 +76,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const renderButton = () => {
-    const commonStyles = 'font-semibold focus:outline-none';
+    const commonStyles = 'font-semibold focus:outline-hidden';
     const sizeStyles = getSizeStyles();
 
     const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : '';
@@ -83,12 +84,12 @@ const Button: React.FC<ButtonProps> = ({
     return React.createElement(
       as,
       {
-        className: twMerge(
+        className: cn(
           commonStyles,
           Styles[`${variant}:${style}`],
           sizeStyles,
           disabledStyles,
-          className
+          className,
         ),
         type,
         disabled: disabled,
@@ -97,8 +98,10 @@ const Button: React.FC<ButtonProps> = ({
         target,
         rel,
       },
-      loading ? <ArrowPathIcon className="w-5 h-5 inline-block mr-2 animate-spin" /> : null,
-      children
+      loading ? (
+        <ArrowPathIcon className="mr-2 inline-block h-5 w-5 animate-spin" />
+      ) : null,
+      children,
     );
   };
 

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/utils';
 
 interface TooltipProps {
   content: ReactNode | string;
@@ -22,7 +22,9 @@ const Tooltip: React.FC<TooltipProps> = ({
   return (
     <TooltipPrimitive.Provider delayDuration={100}>
       <TooltipPrimitive.Root>
-        <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
+        <TooltipPrimitive.Trigger asChild>
+          {typeof children === 'string' ? <span>{children}</span> : children}
+        </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Content
           sideOffset={offset}
           side={side}
@@ -30,9 +32,9 @@ const Tooltip: React.FC<TooltipProps> = ({
         >
           {typeof content === 'string' ? (
             <span
-              className={twMerge(
-                'block max-w-xs px-2.5 py-1.5 text-center text-xs text-white bg-gray-900 opacity-90 rounded-md shadow-lg',
-                className
+              className={cn(
+                'block max-w-xs rounded-md bg-gray-900 px-2.5 py-1.5 text-center text-xs text-white opacity-90 shadow-lg',
+                className,
               )}
             >
               {content}
@@ -40,7 +42,9 @@ const Tooltip: React.FC<TooltipProps> = ({
           ) : (
             content
           )}
-          <TooltipPrimitive.Arrow className={twMerge('fill-gray-900 opacity-90', arrowClassName)} />
+          <TooltipPrimitive.Arrow
+            className={cn('fill-gray-900 opacity-90', arrowClassName)}
+          />
         </TooltipPrimitive.Content>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>

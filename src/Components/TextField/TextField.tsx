@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { Fragment } from 'react';
 import { ContextualHelp } from '../ContextualHelp';
+import { cn } from '@/utils';
 
-interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+interface TextFieldProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label?: string;
   value: string;
   disabled?: boolean;
@@ -16,6 +17,7 @@ interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement
   pattern?: string;
   placeholder?: string;
   name?: string;
+  id?: string;
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
   contextualHelp?: React.ReactNode;
   className?: string;
@@ -41,6 +43,7 @@ const TextField: React.FC<TextFieldProps> = ({
   pattern,
   placeholder,
   name,
+  id = `input-${Math.random().toString(12)}`,
   type = 'text',
   contextualHelp,
   className,
@@ -56,17 +59,15 @@ const TextField: React.FC<TextFieldProps> = ({
     onChange(event.target.value);
   };
 
-  const id = `input-${Math.random().toString(36).substr(2, 9)}`;
-
   return (
-    <div className={twMerge('mb-4 w-full', wrapperClassName)}>
+    <div className={cn('mb-4 w-full', wrapperClassName)}>
       {label && (
-        <div className={twMerge('mb-2', contextualHelp && ' flex')}>
+        <div className={cn('mb-2', { flex: contextualHelp })}>
           <label
             htmlFor={id}
-            className={twMerge(
-              'block text-sm font-medium leading-6 text-gray-900 dark:text-white',
-              labelClassName
+            className={cn(
+              'block text-sm leading-6 font-medium text-gray-900 dark:text-white',
+              labelClassName,
             )}
           >
             {label} {required && <span className="text-red-500">*</span>}
@@ -77,15 +78,12 @@ const TextField: React.FC<TextFieldProps> = ({
       )}
 
       <div
-        className={twMerge(
-          'relative',
-          addon || trailingAddon
-            ? 'flex bg-white dark:bg-white/5 ring-1 ring-inset ring-gray-300 dark:ring-white/10 rounded-md shadow-sm focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600'
-            : '',
-          inputWrapperClassName
-        )}
+        className={cn('relative', inputWrapperClassName, {
+          'flex rounded-md bg-white shadow-xs ring-1 ring-gray-300 ring-inset focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-inset dark:bg-white/5 dark:ring-white/10':
+            addon || trailingAddon,
+        })}
       >
-        {addon && <Fragment>{addon}</Fragment>}
+        {addon ? <>{addon}</> : null}
 
         <input
           id={id}
@@ -100,21 +98,28 @@ const TextField: React.FC<TextFieldProps> = ({
           placeholder={placeholder}
           name={name}
           onChange={handleChange}
-          className={twMerge(
-            'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 outline-none bg-white dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500',
+          className={cn(
+            'block w-full rounded-md border-0 bg-white px-3 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 outline-hidden ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500',
             className,
-            addon && 'pl-1',
-            disabled &&
-              'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200',
-            error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
+            {
+              'pl-1': addon,
+              'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200':
+                disabled,
+              'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500':
+                error,
+            },
           )}
           {...rest}
         />
 
         {trailingAddon && <Fragment>{trailingAddon}</Fragment>}
       </div>
-      {help && <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">{help}</p>}
-      {error && <p className="text-red-600 dark:text-red-500 text-sm mt-2">{error}</p>}
+      {help && (
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{help}</p>
+      )}
+      {error && (
+        <p className="mt-2 text-sm text-red-600 dark:text-red-500">{error}</p>
+      )}
     </div>
   );
 };

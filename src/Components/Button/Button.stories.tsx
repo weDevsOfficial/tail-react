@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PlusIcon, TrashIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import {
+  PlusIcon,
+  TrashIcon,
+  UserGroupIcon,
+} from '@heroicons/react/24/outline';
 
 import { Button } from './Button';
 
@@ -83,7 +87,7 @@ export const PrimaryIcon: Story = {
     className: 'inline-flex',
     children: (
       <>
-        <PlusIcon className="h-5 w-5 mr-2" />
+        <PlusIcon className="mr-2 h-5 w-5" />
         Add People
       </>
     ),
@@ -97,7 +101,7 @@ export const SecondaryIcon: Story = {
     className: 'inline-flex',
     children: (
       <>
-        <UserGroupIcon className="h-5 w-5 mr-2" />
+        <UserGroupIcon className="mr-2 h-5 w-5" />
         Add People
       </>
     ),
@@ -111,7 +115,7 @@ export const DangerIcon: Story = {
     className: 'inline-flex',
     children: (
       <>
-        <TrashIcon className="h-5 w-5 mr-2" />
+        <TrashIcon className="mr-2 h-5 w-5" />
         Delete
       </>
     ),

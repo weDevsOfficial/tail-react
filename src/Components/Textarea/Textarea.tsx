@@ -1,5 +1,5 @@
+import { cn } from '@/utils';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
@@ -10,6 +10,7 @@ interface TextareaProps
   help?: React.ReactNode;
   disabled?: boolean;
   placeholder?: string;
+  id?: string;
   value?: string;
   required?: boolean;
   rows?: number;
@@ -25,6 +26,7 @@ const Textarea: React.FC<TextareaProps> = ({
   labelClassName,
   wrapperClassName,
   onChange,
+  id = `input-${Math.random().toString(12)}`,
   value = '',
   disabled = false,
   required = false,
@@ -32,17 +34,15 @@ const Textarea: React.FC<TextareaProps> = ({
   placeholder,
   ...props
 }) => {
-  const id = `input-${Math.random().toString(36).substr(2, 9)}`;
-
   return (
-    <div className={twMerge('mb-4 w-full', wrapperClassName)}>
+    <div className={cn('mb-4 w-full', wrapperClassName)}>
       {label && (
         <div className="mb-2">
           <label
             htmlFor={id}
-            className={twMerge(
-              'block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300',
-              labelClassName
+            className={cn(
+              'block text-sm leading-6 font-medium text-gray-900 dark:text-gray-300',
+              labelClassName,
             )}
           >
             {label} {required && <span className="text-red-500">*</span>}
@@ -54,22 +54,25 @@ const Textarea: React.FC<TextareaProps> = ({
         <textarea
           id={id}
           rows={rows}
-          className={twMerge(
-            'block dark:bg-white/5 w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+          className={cn(
+            'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300',
             className,
-            disabled &&
-              'disabled:cursor-not-allowed disabled:bg-gray-50 dark:disabled:bg-gray-600 disabled:text-gray-500 disabled:ring-gray-200',
-            error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
+            {
+              disabled:
+                'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 dark:disabled:bg-gray-600',
+              error:
+                'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500',
+            },
           )}
           value={value}
-          onChange={(e) => onChange && onChange(e.target.value)}
+          onChange={e => onChange && onChange(e.target.value)}
           disabled={disabled}
           placeholder={placeholder}
           {...props}
         />
 
-        {help && <div className="text-gray-500 text-sm mt-2">{help}</div>}
-        {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+        {help && <div className="mt-2 text-sm text-gray-500">{help}</div>}
+        {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
       </div>
     </div>
   );

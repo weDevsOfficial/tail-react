@@ -1,7 +1,6 @@
-import { Dialog, Transition } from '@headlessui/react';
-import classNames from 'classnames';
-import React, { PropsWithChildren } from 'react';
-import ReactDOM from 'react-dom';
+import { PropsWithChildren } from 'react';
+import { cn } from '@/utils';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -9,7 +8,12 @@ export interface ModalProps {
   maxWidth?: string;
 }
 
-const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren<ModalProps>) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  maxWidth = 'lg',
+  children,
+}: PropsWithChildren<ModalProps>) => {
   const maxWidthClass = {
     sm: 'sm:max-w-sm',
     md: 'sm:max-w-md',
@@ -22,63 +26,41 @@ const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren
     return null;
   }
 
-  return ReactDOM.createPortal(
-    <Transition.Root show={isOpen} as={React.Fragment}>
+  return (
+    <>
       <Dialog
-        as="div"
-        static
-        className="fixed z-10 inset-0 overflow-y-auto"
+        transition
         open={isOpen}
         onClose={onClose}
+        className="fixed inset-0 z-10 flex w-screen items-center justify-center overflow-auto bg-black/30 p-4 transition duration-300 ease-out data-closed:opacity-0 data-closed:duration-200 data-closed:ease-in"
       >
-        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <Transition.Child
-            as={React.Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          </Transition.Child>
+        <DialogBackdrop className="fixed inset-0 bg-black/30" />
 
-          {/* This element is to trick the browser into centering the modal contents. */}
-          <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
-            &#8203;
-          </span>
-          <Transition.Child
-            as={React.Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+          <DialogPanel
+            transition
+            className={cn(
+              'inline-block max-h-[calc(100vh-4rem)] translate-y-4 overflow-scroll rounded-lg bg-white text-left align-bottom shadow-xl transition duration-300 ease-out data-closed:translate-y-4 data-closed:opacity-0 data-closed:duration-200 data-closed:ease-in data-open:translate-y-0 data-open:scale-100 data-open:opacity-100 sm:my-8 sm:w-full sm:translate-y-0 sm:scale-95 sm:align-middle data-closed:sm:translate-y-0 data-closed:sm:scale-95 dark:bg-gray-800',
+              maxWidthClass,
+            )}
           >
-            <div
-              className={classNames(
-                'inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full',
-                maxWidthClass
-              )}
-            >
-              {children}
-            </div>
-          </Transition.Child>
+            {children}
+          </DialogPanel>
         </div>
       </Dialog>
-    </Transition.Root>,
-    document.body
+    </>
   );
 };
 
-const ModalHeader = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
+const ModalHeader = ({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) => {
   return (
     <div
-      className={classNames(
-        'text-lg font-medium text-gray-900 dark:text-gray-300 mb-4 px-5 pt-5',
-        className
+      className={cn(
+        'mb-4 px-5 pt-5 text-lg font-medium text-gray-900 dark:text-gray-300',
+        className,
       )}
     >
       {children}
@@ -86,13 +68,24 @@ const ModalHeader = ({ children, className }: PropsWithChildren<{ className?: st
   );
 };
 
-const ModalBody = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
-  return <div className={classNames('px-5 pt-0', className)}>{children}</div>;
+const ModalBody = ({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) => {
+  return <div className={cn('px-5 pt-0', className)}>{children}</div>;
 };
 
-const ModalActions = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
+const ModalActions = ({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) => {
   return (
-    <div className={classNames('px-5 py-4 mt-4 sm:px-6 sm:flex sm:flex-row-reverse', className)}>
+    <div
+      className={cn(
+        'mt-4 px-5 py-4 sm:flex sm:flex-row-reverse sm:px-6',
+        className,
+      )}
+    >
       {children}
     </div>
   );

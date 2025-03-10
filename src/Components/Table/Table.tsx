@@ -1,5 +1,5 @@
+import { cn } from '@/utils';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 export interface TableProps {
   children: React.ReactNode;
@@ -21,9 +21,9 @@ export const Table = ({ className, children }: TableProps) => {
   return (
     <div>
       <table
-        className={twMerge(
-          'min-w-full divide-y divide-gray-300 dark:divide-gray-800 dark:border-gray-800',
-          className
+        className={cn(
+          'min-w-full divide-y divide-gray-200 dark:divide-gray-700 dark:border-gray-700',
+          className,
         )}
       >
         {children}
@@ -34,15 +34,21 @@ export const Table = ({ className, children }: TableProps) => {
 
 export const TableHeader = ({ className, children }: TableHeaderProps) => {
   return (
-    <thead className={twMerge('bg-gray-50 dark:bg-gray-800', className)}>
+    <thead className={cn('bg-gray-50 dark:bg-gray-800', className)}>
       <tr>{children}</tr>
     </thead>
   );
 };
 
-export const TableBody = <T extends object>({ items, className, renderRow }: TableBodyProps<T>) => {
+export const TableBody = <T extends object>({
+  items,
+  className,
+  renderRow,
+}: TableBodyProps<T>) => {
   return (
-    <tbody className={twMerge('divide-y divide-gray-200 dark:divide-gray-900', className)}>
+    <tbody
+      className={cn('divide-y divide-gray-200 dark:divide-gray-700', className)}
+    >
       {items.map((item, index) => renderRow(item, index))}
     </tbody>
   );

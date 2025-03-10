@@ -12,12 +12,12 @@ import { ContextualHelp } from '@wedevs/tail-react';
 
 const App = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex min-h-screen items-center justify-center">
       <ContextualHelp>
-        <h3 className="font-medium text-gray-900 mb-2">Need Help?</h3>
+        <h3 className="mb-2 font-medium text-gray-900">Need Help?</h3>
         <p className="text-sm text-gray-500">
-          If you're having trouble accessing your account, contact our customer support team for
-          help.
+          If you're having trouble accessing your account, contact our customer
+          support team for help.
         </p>
       </ContextualHelp>
     </div>

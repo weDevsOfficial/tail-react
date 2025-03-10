@@ -1,11 +1,10 @@
 import type { Preview } from '@storybook/react';
 import { themes } from '@storybook/theming';
 
-import '../src/index.css';
+import '../src/app.css';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     darkMode: {
       dark: { ...themes.dark, appBg: 'black', base: 'dark', appPreviewBg: 'black' },
       stylePreview: true,
@@ -18,6 +17,8 @@ const preview: Preview = {
       },
     },
   },
+
+  tags: ['autodocs', 'autodocs']
 };
 
 export default preview;

@@ -12,16 +12,24 @@ import { Dropdown, DropdownItem } from '@wedevs/tail-react';
 
 const MyComponent = () => {
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex h-screen items-center justify-center">
       <Dropdown
         button={
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md">Toggle Dropdown</button>
+          <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
+            Toggle Dropdown
+          </button>
         }
         className="mx-4"
       >
-        <DropdownItem onClick={() => console.log('Option 1')}>Option 1</DropdownItem>
-        <DropdownItem onClick={() => console.log('Option 2')}>Option 2</DropdownItem>
-        <DropdownItem onClick={() => console.log('Option 3')}>Option 3</DropdownItem>
+        <DropdownItem onClick={() => console.log('Option 1')}>
+          Option 1
+        </DropdownItem>
+        <DropdownItem onClick={() => console.log('Option 2')}>
+          Option 2
+        </DropdownItem>
+        <DropdownItem onClick={() => console.log('Option 3')}>
+          Option 3
+        </DropdownItem>
       </Dropdown>
     </div>
   );

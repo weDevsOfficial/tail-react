@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/utils';
 
 interface Option {
   key: string;
@@ -28,17 +28,23 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
         <div className="mb-3">
           <label
             htmlFor={props.label}
-            className={twMerge('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
+            className={cn(
+              'block text-sm leading-6 font-medium text-gray-900 dark:text-white',
+            )}
           >
             {props.label} {required && <span className="text-red-500">*</span>}
           </label>
 
-          {help && <div className="text-gray-500 dark:text-gray-400 text-sm mt-1">{help}</div>}
+          {help && (
+            <div className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              {help}
+            </div>
+          )}
         </div>
       )}
 
       <div className="space-y-1">
-        {options.map((option) => (
+        {options.map(option => (
           <div key={option.key} className="relative flex items-start">
             <div className="flex h-6 items-center">
               <input
