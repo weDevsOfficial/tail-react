@@ -17,9 +17,8 @@ yarn add @wedevs/tail-react
 v4: On your app.css file, add the source file:
 
 ```diff
-+ @source '../../node_modules/@wedevs/tail-react/dist/index.{js,ts,jsx,tsx}';
++ @source './node_modules/@wedevs/tail-react/dist/index.{js,ts,jsx,tsx}';
 ```
-
 
 v3: On your `tailwind.config.js` file, update the content entry:
 
