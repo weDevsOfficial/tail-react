@@ -19,16 +19,14 @@ export interface TableBodyProps<T> {
 
 export const Table = ({ className, children }: TableProps) => {
   return (
-    <div>
-      <table
-        className={cn(
-          'min-w-full divide-y divide-gray-200 dark:divide-gray-700 dark:border-gray-700',
-          className,
-        )}
-      >
-        {children}
-      </table>
-    </div>
+    <table
+      className={cn(
+        'min-w-full divide-y divide-gray-200 dark:divide-gray-700 dark:border-gray-700',
+        className,
+      )}
+    >
+      {children}
+    </table>
   );
 };
 
