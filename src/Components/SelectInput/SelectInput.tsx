@@ -11,6 +11,7 @@ interface SelectProps {
   help?: React.ReactNode;
   error?: React.ReactNode;
   required?: boolean;
+  disabled?: boolean;
   options: Option[];
   selectedKey?: string;
   className?: string;
@@ -28,6 +29,7 @@ const SelectInput: React.FC<SelectProps> = ({
   error,
   options,
   required = false,
+  disabled = false,
   selectedKey,
   className,
   wrapperClassName,
@@ -83,13 +85,16 @@ const SelectInput: React.FC<SelectProps> = ({
           'block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 outline-hidden ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500',
           className,
           {
-            error:
-              'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500',
+            'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500':
+              error,
+            'cursor-not-allowed opacity-50 dark:bg-gray-600 dark:text-gray-400':
+              disabled,
           },
         )}
         value={selectedOption.key}
         onChange={handleChange}
         required={required}
+        disabled={disabled}
         {...props}
       >
         {options.map(option => (
