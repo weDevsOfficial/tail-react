@@ -32,3 +32,25 @@ export default {
   ],
 }
 ```
+
+## Development
+
+To get started with development:
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Build the library:
+   ```bash
+   npm run build
+   ```
+5. Run Storybook:
+   ```bash
+   npm run storybook
+   ```
