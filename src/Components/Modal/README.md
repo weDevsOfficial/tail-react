@@ -1,168 +1,275 @@
 # Modal Component
 
-The `Modal` component is a customizable and accessible modal dialog built with React and Tailwind CSS. It allows you to create responsive, visually appealing, and interactive modal windows for displaying content or gathering user input.
+The `Modal` component is a flexible, accessible modal dialog implementation built with React and Tailwind CSS. It uses Headless UI's `Dialog` component under the hood, providing robust keyboard navigation and accessibility features out of the box.
+
+## Features
+
+- 🎯 Click-triggered modal dialog
+- ⌨️ Full keyboard navigation support
+- 🎨 Smooth animations with configurable transitions
+- 🖱️ Click-outside behavior to dismiss
+- 📱 Responsive and properly positioned
+- 🌙 Dark mode compatible
+- ♿ WAI-ARIA compliant
+
+## Installation
+
+The Modal component is part of the @wedevs/tail-react package:
+
+```bash
+npm install @wedevs/tail-react
+# or
+yarn add @wedevs/tail-react
+```
 
 ## Usage
 
-Once installed, you can import and use the `Modal` component in your React application as follows:
+### Basic Modal
 
 ```jsx
-import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalActions } from '@wedevs/tail-react';
+import { Button } from '@wedevs/tail-react';
 
-const App = () => {
+function MyComponent() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-
   return (
-    <div>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-md" onClick={handleOpenModal}>
-        Open Modal
-      </button>
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
 
-      <Modal isOpen={isOpen} onClose={handleCloseModal} maxWidth="lg">
-        <ModalHeader>Modal Title</ModalHeader>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalHeader>Need Help?</ModalHeader>
         <ModalBody>
-          <p>This is the modal content.</p>
+          <p className="text-sm text-gray-500">
+            If you're having trouble accessing your account, contact our customer support team for
+            help.
+          </p>
         </ModalBody>
         <ModalActions>
-          <button
-            className="bg-red-500 text-white px-4 py-2 rounded-md mr-2"
-            onClick={handleCloseModal}
-          >
-            Cancel
-          </button>
-          <button
-            className="bg-green-500 text-white px-4 py-2 rounded-md"
-            onClick={handleCloseModal}
-          >
-            Save
-          </button>
+          <Button variant="primary" onClick={() => setIsOpen(false)}>
+            Contact Support
+          </Button>
+          <Button variant="secondary" onClick={() => setIsOpen(false)}>
+            Close
+          </Button>
         </ModalActions>
       </Modal>
-    </div>
+    </>
   );
-};
-
-export default App;
+}
 ```
 
 ## Components
 
-The `Modal` component library includes the following components:
+### Modal Component
 
-1. `Modal`: The main modal component that wraps the modal dialog and handles its state and interactions.
+The main wrapper component that handles the modal functionality.
 
-2. `ModalHeader`: Represents the header section of the modal dialog, usually used for displaying the modal title.
+#### Props
 
-3. `ModalBody`: Represents the main content section of the modal dialog.
+- `isOpen` (boolean, required): Controls the visibility of the modal.
 
-4. `ModalActions`: Represents the footer section of the modal dialog, usually used for adding action buttons.
+- `onClose` (() => void, required): Callback function called when the modal should close.
 
-## Features
+- `maxWidth` ('sm' | 'md' | 'lg' | 'xl' | '2xl', optional, default: 'lg'): Controls the maximum width of the modal content.
 
-- Responsive and customizable modal dialog.
-- Smooth transition animations for modal opening and closing.
-- Accessible design with ARIA roles and attributes.
+### ModalHeader Component
 
-## Props
+The header section of the modal, typically used for titles.
 
-### Modal Component Props
+#### Props
 
-- `isOpen` (boolean, required): Indicates whether the modal is open or closed.
+- `children` (React.ReactNode, required): The content of the header.
+- `className` (string, optional): Additional CSS classes.
 
-- `onClose` (() => void, required): A callback function to be executed when the modal is closed.
+### ModalBody Component
 
-- `maxWidth` (string, optional): The maximum width of the modal dialog. Supported values: 'sm', 'md', 'lg', 'xl', '2xl'.
+The main content section of the modal.
 
-### ModalHeader, ModalBody, and ModalActions Props
+#### Props
 
-These components do not have any specific props and can be used as child components within the `Modal` component.
+- `children` (React.ReactNode, required): The content of the body.
+- `className` (string, optional): Additional CSS classes.
 
-## Customization
+### ModalActions Component
 
-The `Modal` component can be easily customized to fit your project's design and requirements. You can adjust the modal's appearance, animation, and behavior by modifying the Tailwind CSS classes or adding custom styles.
+The footer section of the modal, typically used for action buttons.
 
-# ConfirmModal Component
+#### Props
 
-The `ConfirmModal` component is a reusable and customizable confirmation modal built on top of the `Modal` component. It provides a simple way to create a confirmation dialog with an optional icon, a title, a message, and action buttons for confirming or canceling an action.
+- `children` (React.ReactNode, required): The content of the actions section.
+- `className` (string, optional): Additional CSS classes.
 
-## Installation
+## Examples
 
-Make sure you have the required dependencies installed in your project:
-
-## Usage
-
-Once installed, you can import and use the `ConfirmModal` component in your React application as follows:
+### Different Sizes
 
 ```jsx
-import React, { useState } from 'react';
+<Modal isOpen={isOpen} onClose={onClose} maxWidth="sm">
+  {/* Small modal content */}
+</Modal>
+
+<Modal isOpen={isOpen} onClose={onClose} maxWidth="lg">
+  {/* Large modal content */}
+</Modal>
+
+<Modal isOpen={isOpen} onClose={onClose} maxWidth="2xl">
+  {/* Extra large modal content */}
+</Modal>
+```
+
+### Custom Styling
+
+```jsx
+<Modal isOpen={isOpen} onClose={onClose}>
+  <ModalHeader className="bg-gray-50">Custom Header</ModalHeader>
+  <ModalBody className="bg-white">
+    <div className="custom-content">{/* Custom content */}</div>
+  </ModalBody>
+  <ModalActions className="bg-gray-50">{/* Custom actions */}</ModalActions>
+</Modal>
+```
+
+## Styling
+
+The Modal component uses Tailwind CSS for styling:
+
+### Default Styles
+
+1. **Modal Overlay**:
+
+   - Semi-transparent gray background
+   - Smooth fade transition
+   - Full viewport coverage
+
+2. **Modal Content**:
+
+   - White background (dark mode compatible)
+   - Rounded corners
+   - Drop shadow
+   - Responsive padding
+   - Proper spacing between sections
+
+3. **Animations**:
+   - Fade-in/out for overlay
+   - Scale and slide for content
+   - Smooth transitions
+
+### Customization
+
+You can customize the appearance using:
+
+1. **className prop** on all modal components
+2. **maxWidth prop** for different sizes
+3. **Tailwind CSS classes** in the content
+
+## Accessibility
+
+The Modal component follows WAI-ARIA practices for dialogs:
+
+1. **Keyboard Navigation**:
+
+   - `Esc` to close modal
+   - `Tab` to navigate focusable elements
+   - `Shift + Tab` for reverse navigation
+   - Focus trapping within modal
+
+2. **ARIA Attributes**:
+
+   - Proper role attributes
+   - State management (open/closed)
+   - Focus management
+   - Proper labeling
+
+3. **Screen Reader Support**:
+   - Announces modal state changes
+   - Proper heading hierarchy
+   - Clear interaction model
+
+## Best Practices
+
+1. **Content Structure**:
+
+   - Use clear, descriptive titles
+   - Keep content focused and concise
+   - Group related actions together
+   - Use proper heading hierarchy
+
+2. **Interaction**:
+
+   - Provide clear action buttons
+   - Include a way to dismiss
+   - Handle loading states
+   - Consider mobile interactions
+
+3. **Positioning**:
+
+   - Center modal in viewport
+   - Ensure content is visible
+   - Handle overflow gracefully
+   - Consider mobile viewports
+
+4. **State Management**:
+   - Control modal state in parent
+   - Handle async operations
+   - Provide feedback for actions
+   - Clean up on unmount
+
+## ConfirmModal Component
+
+The `ConfirmModal` is a specialized modal for confirmation dialogs:
+
+```jsx
 import { ConfirmModal } from '@wedevs/tail-react';
 
-const App = () => {
+function DeleteConfirmation() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-
-  const handleConfirmAction = () => {
-    // Handle the confirmed action here
-    console.log('Action confirmed');
-    setIsOpen(false);
-  };
-
   return (
-    <div>
-      <button className="bg-red-500 text-white px-4 py-2 rounded-md" onClick={handleOpenModal}>
-        Delete Item
-      </button>
+    <>
+      <Button variant="danger" onClick={() => setIsOpen(true)}>
+        Delete Account
+      </Button>
 
       <ConfirmModal
         isOpen={isOpen}
-        title="Confirm Delete"
-        message="Are you sure you want to delete this item? This action cannot be undone."
+        onClose={() => setIsOpen(false)}
+        title="Delete Account"
+        message="Are you sure you want to delete your account? This action cannot be undone."
         buttonVariant="danger"
         buttonLabel="Delete"
-        onClose={handleCloseModal}
-        onConfirm={handleConfirmAction}
+        onConfirm={async () => {
+          // Handle deletion
+          await deleteAccount();
+          setIsOpen(false);
+        }}
       />
-    </div>
+    </>
   );
-};
-
-export default App;
+}
 ```
 
-## Props
+### ConfirmModal Props
 
-### ConfirmModal Component Props
+- `isOpen` (boolean, required): Controls modal visibility
+- `title` (string, required): Confirmation title
+- `message` (string, required): Confirmation message
+- `buttonVariant` ('primary' | 'secondary' | 'danger', optional): Action button style
+- `buttonLabel` (string, optional): Action button text
+- `onClose` (() => void, required): Close handler
+- `onConfirm` (() => Promise<void> | void, required): Confirmation handler
 
-- `isOpen` (boolean, required): Indicates whether the confirmation modal is open or closed.
+## Implementation Details
 
-- `title` (string, required): The title of the confirmation modal.
+The component uses:
 
-- `message` (string, required): The message or content of the confirmation modal.
+- Headless UI's `Dialog` for core functionality
+- `Transition` for smooth animations
+- `ReactDOM.createPortal` for proper rendering
+- `twMerge` for class name handling
 
-- `buttonVariant` ('primary' | 'secondary' | 'danger', optional): The variant of the confirmation button. Default is 'danger'.
+## Browser Support
 
-- `buttonLabel` (string, optional): The label text for the confirmation button. Default is 'Delete'.
+The component is compatible with all modern browsers and degrades gracefully in older browsers. The animations may not be available in browsers that don't support CSS transitions.
 
-- `onClose` (() => void, required): A callback function to be executed when the modal is closed or canceled.
-
-- `onConfirm` (() => void, optional): A callback function to be executed when the confirmation button is clicked.
-
-## Customization
-
-The `ConfirmModal` component can be easily customized to fit your project's design and requirements. You can adjust the appearance, button labels, and other content based on your specific use case.
+For further customization and integration with your application, refer to the official documentation of React, Headless UI, and Tailwind CSS.

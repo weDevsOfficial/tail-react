@@ -22,6 +22,8 @@ The `Button` component accepts the following props:
 
 - `disabled` (boolean, optional, default: false): If true, the button will be disabled and not clickable.
 
+- `loading` (boolean, optional, default: false): If true, displays a spinning loading indicator before the button content.
+
 - `as` (React.ElementType, optional, default: 'button'): The HTML element type or React component to be used as the underlying element. This allows you to render the button as an anchor (`<a>`) or any other valid HTML element.
 
 - `className` (string, optional): Additional CSS classes to be applied to the button.
@@ -34,29 +36,56 @@ The `Button` component accepts the following props:
 
 - `rel` (string, optional): If `href` is provided and `as` is set to 'a', the value of the `rel` attribute for the anchor element.
 
-### Example
+### Examples
 
 ```jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@wedevs/tail-react';
 
 const MyComponent = () => {
-  const handleButtonClick = () => {
-    console.log('Button clicked!');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsLoading(false);
   };
 
   return (
-    <div>
-      <Button onClick={handleButtonClick} variant="primary" style="fill" size="medium">
-        Click Me
+    <div className="space-y-4">
+      {/* Basic Button */}
+      <Button onClick={() => console.log('Clicked!')}>Click Me</Button>
+
+      {/* Different Variants */}
+      <div className="space-x-2">
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="danger">Danger</Button>
+      </div>
+
+      {/* Different Styles */}
+      <div className="space-x-2">
+        <Button style="fill">Fill</Button>
+        <Button style="outline">Outline</Button>
+        <Button style="link">Link</Button>
+      </div>
+
+      {/* Different Sizes */}
+      <div className="space-x-2">
+        <Button size="small">Small</Button>
+        <Button size="medium">Medium</Button>
+        <Button size="large">Large</Button>
+      </div>
+
+      {/* Loading State */}
+      <Button loading={isLoading} onClick={handleSubmit}>
+        {isLoading ? 'Submitting...' : 'Submit Form'}
       </Button>
 
-      <Button variant="secondary" style="outline" size="large">
-        Learn More
-      </Button>
-
-      <Button variant="danger" style="link" size="small" disabled>
-        Disabled Button
+      {/* Link Button */}
+      <Button as="a" href="https://example.com" target="_blank" rel="noopener noreferrer">
+        Visit Website
       </Button>
     </div>
   );
@@ -64,8 +93,6 @@ const MyComponent = () => {
 
 export default MyComponent;
 ```
-
-In this example, the `Button` component is used with different styles, sizes, and states. When the button is clicked, the `handleButtonClick` function is executed, and the console will log "Button clicked!". The last button is disabled and cannot be clicked due to the `disabled` prop being set to `true`.
 
 ## Styles Object
 
@@ -75,23 +102,40 @@ The `Styles` object includes the following style options:
 
 - Primary Styles:
 
-  - `primary:fill`: Primary button with a solid background.
-  - `primary:outline`: Primary button with a border and transparent background.
-  - `primary:link`: Primary button styled as a link with no background.
+  - `primary:fill`: Primary button with a solid background and hover effects
+  - `primary:outline`: Primary button with a border and transparent background
+  - `primary:link`: Primary button styled as a link with no background
 
 - Secondary Styles:
 
-  - `secondary:fill`: Secondary button with a solid background.
-  - `secondary:outline`: Secondary button with a border and transparent background.
-  - `secondary:link`: Secondary button styled as a link with no background.
+  - `secondary:fill`: Secondary button with a solid background
+  - `secondary:outline`: Secondary button with a border and transparent background
+  - `secondary:link`: Secondary button styled as a link with no background
 
 - Danger Styles:
-  - `danger:fill`: Danger button with a solid background.
-  - `danger:outline`: Danger button with a border and transparent background.
-  - `danger:link`: Danger button styled as a link with no background.
+  - `danger:fill`: Danger button with a solid background
+  - `danger:outline`: Danger button with a border and transparent background
+  - `danger:link`: Danger button styled as a link with no background
+
+## Dark Mode Support
+
+The Button component includes built-in dark mode support through Tailwind CSS's dark mode classes. The styles automatically adjust when dark mode is enabled in your application.
+
+## Accessibility
+
+The Button component follows accessibility best practices:
+
+- Uses semantic HTML elements
+- Maintains proper focus states
+- Disables interaction when the `disabled` prop is true
+- Provides visual feedback during loading states
 
 ## Customization
 
-You can customize the appearance and behavior of the `Button` component by adjusting the `Styles` object or adding custom CSS classes to the `className` prop.
+You can customize the appearance and behavior of the `Button` component by:
 
-Please note that this documentation assumes you have set up your project with React and Tailwind CSS properly. For further customization and integration with your application, refer to the official documentation of React and Tailwind CSS.
+1. Using the provided props to configure the button
+2. Adding custom CSS classes through the `className` prop
+3. Extending the `Styles` object in your theme configuration
+
+For further customization and integration with your application, refer to the official documentation of React and Tailwind CSS.
