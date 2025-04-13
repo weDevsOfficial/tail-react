@@ -1,4 +1,5 @@
 import { twMerge } from 'tailwind-merge';
+import { getColorClass } from '../../utils/colorUtils';
 
 interface Option {
   key: string;
@@ -22,6 +23,10 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   help,
   ...props
 }) => {
+  // Get color classes
+  const textColor = getColorClass('text', '600');
+  const focusRingColor = getColorClass('focus:ring', '600');
+
   return (
     <div className="mb-4">
       {props.label && (
@@ -48,7 +53,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
                 value={option.key}
                 checked={value === option.key}
                 onChange={() => onChange(option.key)}
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                className={`h-4 w-4 border-gray-300 ${textColor} ${focusRingColor}`}
               />
             </div>
 

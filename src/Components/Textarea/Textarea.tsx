@@ -1,5 +1,6 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
+import { getColorClass } from '../../utils/colorUtils';
 
 interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
@@ -34,6 +35,9 @@ const Textarea: React.FC<TextareaProps> = ({
 }) => {
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
 
+  // Get color classes
+  const focusRingColor = getColorClass('focus:ring', '600');
+
   return (
     <div className={twMerge('mb-4 w-full', wrapperClassName)}>
       {label && (
@@ -55,7 +59,7 @@ const Textarea: React.FC<TextareaProps> = ({
           id={id}
           rows={rows}
           className={twMerge(
-            'block dark:bg-white/5 w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+            `block dark:bg-white/5 w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset ${focusRingColor} sm:text-sm sm:leading-6`,
             className,
             disabled &&
               'disabled:cursor-not-allowed disabled:bg-gray-50 dark:disabled:bg-gray-600 disabled:text-gray-500 disabled:ring-gray-200',

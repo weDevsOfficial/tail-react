@@ -2,6 +2,7 @@ import { useState, useEffect, ReactNode } from 'react';
 import { Switch } from '@headlessui/react';
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
+import { getColorClass } from '../../utils/colorUtils';
 
 type Props = {
   label: string;
@@ -37,6 +38,11 @@ const SwitchInput = ({
     }
   };
 
+  // Get color classes
+  const bgColor = getColorClass('bg', '600');
+  const darkBgColor = getColorClass('dark:bg', '500');
+  const focusRingColor = getColorClass('focus:ring', '500');
+
   return (
     <Switch.Group as="div" className={twMerge('relative flex items-start mb-4', className)}>
       <Switch
@@ -44,8 +50,8 @@ const SwitchInput = ({
         disabled={disabled}
         onChange={toggleInput}
         className={classNames(
-          enabled ? 'bg-indigo-600 dark:bg-indigo-500' : 'bg-gray-200 dark:bg-gray-600',
-          'relative mt-1 inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+          enabled ? `${bgColor} ${darkBgColor}` : 'bg-gray-200 dark:bg-gray-600',
+          `relative mt-1 inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 ${focusRingColor} focus:ring-offset-2`,
           disabled ? 'cursor-not-allowed opacity-50' : ''
         )}
       >

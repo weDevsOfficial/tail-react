@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { getColorClass } from '../../utils/colorUtils';
 
 interface Option {
   key: string;
@@ -41,6 +42,12 @@ const SelectCard = ({
     return options.find((option: { key: string }) => option.key === selectedKey) || options[0];
   });
 
+  // Get color classes
+  const borderColor = getColorClass('border', '600');
+  const darkBorderColor = getColorClass('dark:border', '300');
+  const textColor = getColorClass('text', '600');
+  const darkTextColor = getColorClass('dark:text', '400');
+
   const handleChange = (option: Option) => {
     if (option.disabled) {
       return;
@@ -71,7 +78,7 @@ const SelectCard = ({
             key={index}
             className={twMerge(
               selectedOption.key === option.key
-                ? 'border-indigo-600 dark:border-indigo-300'
+                ? `${borderColor} ${darkBorderColor}`
                 : 'border-gray-200 dark:border-gray-600',
               'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white dark:bg-white/10 dark:text-gray-200 focus:outline-none',
               option.disabled ? 'opacity-75 cursor-not-allowed grayscale' : ''
@@ -83,9 +90,7 @@ const SelectCard = ({
             <div
               className={classNames(
                 'absolute top-0 right-0 p-1 rounded-full',
-                selectedOption.key === option.key
-                  ? ' text-indigo-600 dark:text-indigo-400'
-                  : 'invisible'
+                selectedOption.key === option.key ? `${textColor} ${darkTextColor}` : 'invisible'
               )}
             >
               <CheckCircleIcon className="h-5 w-5" />
