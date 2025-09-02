@@ -144,7 +144,6 @@ export const Basic: Story = {
     data: createMockData(1, 5),
     align: 'end',
     showInfo: false,
-    donNotRenderIfLessThanThreeLinks: false,
     buttonStyle: 'fill',
     paginationButtonAs: 'a',
   },

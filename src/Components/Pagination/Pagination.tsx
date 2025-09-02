@@ -27,7 +27,6 @@ interface PaginationProps<T = Record<string, unknown>> {
   data: Pagination<T>;
   align?: 'start' | 'center' | 'end';
   showInfo?: boolean;
-  donNotRenderIfLessThanThreeLinks?: boolean;
   buttonStyle?: 'fill' | 'outline' | 'link';
   paginationButtonAs?: 'a' | 'button';
 }
@@ -36,7 +35,6 @@ export function Pagination<T = Record<string, unknown>>({
   data,
   align = 'end',
   showInfo = false,
-  donNotRenderIfLessThanThreeLinks = false,
   buttonStyle = 'fill',
   paginationButtonAs = 'a',
 }: PaginationProps<T>) {
@@ -50,9 +48,6 @@ export function Pagination<T = Record<string, unknown>>({
     total,
     links,
   } = data;
-
-  if (donNotRenderIfLessThanThreeLinks && !next_page_url && !prev_page_url)
-    return null;
 
   const pageLinks = links.filter(
     link =>

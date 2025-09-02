@@ -16,8 +16,6 @@ The `Pagination` component accepts the following props:
 
 - `showInfo` (boolean, optional, default: false): If true, displays information about the current page range and total entries.
 
-- `donNotRenderIfLessThanThreeLinks` (boolean, optional, default: false): If true, the component won't render if there are fewer than 3 navigation links (Previous, Next, and at least one page).
-
 - `buttonStyle` ('fill' | 'outline' | 'link', optional, default: 'fill'): The visual style type of the buttons. Options are 'fill' (solid background), 'outline' (border only), or 'link' (minimal styling).
 
 - `paginationButtonAs` ('a' | 'button', optional, default: 'a'): The HTML element type to use for pagination buttons. 'a' for anchor links, 'button' for form submissions.
@@ -55,7 +53,7 @@ interface Link {
 
 ```jsx
 import React from 'react';
-import { Pagination } from '@wedevs/tail-react';
+import { Pagination } from './Pagination';
 
 const MyComponent = () => {
   // Example pagination data (typically from an API)
@@ -99,12 +97,6 @@ const MyComponent = () => {
         data={paginationData}
         align="center"
         buttonStyle="outline"
-      />
-
-      {/* Pagination that only renders with multiple pages */}
-      <Pagination
-        data={paginationData}
-        donNotRenderIfLessThanThreeLinks={true}
       />
 
       {/* Pagination using button elements instead of links */}
