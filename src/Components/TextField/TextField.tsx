@@ -28,7 +28,7 @@ interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement
   onChange: (value: string) => void;
 }
 
-const TextField: React.FC<TextFieldProps> = ({
+const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(({
   label,
   value,
   disabled = false,
@@ -52,7 +52,7 @@ const TextField: React.FC<TextFieldProps> = ({
   trailingAddon,
   onChange,
   ...rest
-}) => {
+}, ref) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -93,6 +93,7 @@ const TextField: React.FC<TextFieldProps> = ({
         {addon && <Fragment>{addon}</Fragment>}
 
         <input
+          ref={ref}
           id={id}
           type={type}
           value={value}
@@ -122,6 +123,8 @@ const TextField: React.FC<TextFieldProps> = ({
       {error && <p className="text-red-600 dark:text-red-500 text-sm mt-2">{error}</p>}
     </div>
   );
-};
+});
+
+TextField.displayName = 'TextField';
 
 export { TextField };
