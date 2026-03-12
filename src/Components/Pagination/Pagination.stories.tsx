@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Pagination } from './Pagination';
+import type { PaginationData } from './Pagination';
 
 const meta: Meta<typeof Pagination> = {
   component: Pagination,
@@ -29,7 +30,11 @@ export default meta;
 type Story = StoryObj<typeof Pagination>;
 
 // Mock pagination data for different scenarios
-const createMockData = (currentPage: number, totalPages: number, showEllipsis = false) => {
+const createMockData = (
+  currentPage: number,
+  totalPages: number,
+  showEllipsis = false,
+): PaginationData<{ id: number; name: string }> => {
   const links = [];
 
   // Previous link
@@ -124,7 +129,7 @@ const createMockData = (currentPage: number, totalPages: number, showEllipsis = 
       id: (currentPage - 1) * 10 + i + 1,
       name: `Item ${(currentPage - 1) * 10 + i + 1}`,
     })),
-    links: links.filter(link => !link.label.includes('&laquo;') && !link.label.includes('&raquo;')),
+    links,
     current_page: currentPage,
     last_page: totalPages,
     first_page_url: '/page/1',

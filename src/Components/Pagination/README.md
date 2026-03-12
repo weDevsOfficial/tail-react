@@ -10,7 +10,7 @@ To use the `Pagination` component, import it into your React component and pass 
 
 The `Pagination` component accepts the following props:
 
-- `data` (Pagination<T>, required): The pagination data object containing links, current page info, and metadata.
+- `data` (PaginationData<T>, required): The pagination data object containing links, current page info, and metadata.
 
 - `align` ('start' | 'center' | 'end', optional, default: 'end'): The alignment of the pagination controls. Options are 'start', 'center', or 'end'.
 
@@ -25,7 +25,7 @@ The `Pagination` component accepts the following props:
 The `data` prop expects an object with the following structure:
 
 ```typescript
-interface Pagination<T = Record<string, unknown>> {
+interface PaginationData<T = Record<string, unknown>> {
   data: T[];                    // Array of items for the current page
   links: Link[];               // Array of pagination links
   current_page: number;        // Current page number
@@ -37,8 +37,8 @@ interface Pagination<T = Record<string, unknown>> {
   path?: string;               // Base path for pagination URLs
   per_page: number;            // Number of items per page
   total: number;               // Total number of items
-  from: number;                // First item number on current page
-  to: number;                  // Last item number on current page
+  from: number | null;         // First item number on current page (nullable)
+  to: number | null;           // Last item number on current page (nullable)
 }
 
 interface Link {
@@ -53,7 +53,7 @@ interface Link {
 
 ```jsx
 import React from 'react';
-import { Pagination } from './Pagination';
+import { Pagination } from '@wedevs/tail-react';
 
 const MyComponent = () => {
   // Example pagination data (typically from an API)
@@ -128,6 +128,7 @@ The component follows accessibility best practices:
 - Uses semantic `<nav>` element with proper ARIA labels
 - Provides `aria-current="page"` for the active page
 - Includes descriptive `aria-label` attributes for all buttons
+- Disabled buttons use `pointer-events-none` to prevent interaction
 - Maintains proper focus management and keyboard navigation
 - Screen reader friendly with live region updates for info text
 

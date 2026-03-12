@@ -1,13 +1,13 @@
 import { Button } from '../Button';
 
-interface Link {
+export interface Link {
   label: string;
   url: string | null;
   active: boolean;
   page: number | null;
 }
 
-interface Pagination<T = Record<string, unknown>> {
+export interface PaginationData<T = Record<string, unknown>> {
   data: T[];
   links: Link[];
   current_page: number;
@@ -19,12 +19,12 @@ interface Pagination<T = Record<string, unknown>> {
   path?: string;
   per_page: number;
   total: number;
-  from: number;
-  to: number;
+  from: number | null;
+  to: number | null;
 }
 
 interface PaginationProps<T = Record<string, unknown>> {
-  data: Pagination<T>;
+  data: PaginationData<T>;
   align?: 'start' | 'center' | 'end';
   showInfo?: boolean;
   buttonStyle?: 'fill' | 'outline' | 'link';
@@ -38,7 +38,7 @@ export function Pagination<T = Record<string, unknown>>({
   buttonStyle = 'fill',
   paginationButtonAs = 'a',
 }: PaginationProps<T>) {
-  if (!data || (!data.next_page_url && !data.prev_page_url)) return null;
+  if (!data) return null;
 
   const {
     prev_page_url,
@@ -49,12 +49,11 @@ export function Pagination<T = Record<string, unknown>>({
     links,
   } = data;
 
-  const pageLinks = links.filter(
-    link =>
-      !link.label.includes('&laquo;') &&
-      !link.label.includes('&raquo;') &&
-      link.label !== '...',
-  );
+  const hasNav =
+    Boolean(prev_page_url || next_page_url) ||
+    (Array.isArray(links) && links.length > 0);
+
+  const pageLinks = links.filter(link => /^\d+$/.test(link.label));
 
   const getAlignStyle = () => {
     if (align === 'end') return 'md:justify-end';
@@ -64,11 +63,11 @@ export function Pagination<T = Record<string, unknown>>({
   };
 
   const Info = ({ showInfo }: { showInfo: boolean }) => {
-    if (!showInfo) return <></>;
+    if (!showInfo) return null;
 
     return (
       <div className="mb-2 w-full text-center text-sm text-gray-600 sm:mb-0 md:text-left" aria-live="polite">
-        Showing {from} to {to} of {total} entries
+        Showing {from ?? 0} to {to ?? 0} of {total} entries
       </div>
     );
   };
@@ -77,53 +76,55 @@ export function Pagination<T = Record<string, unknown>>({
     <div className="flex w-full flex-col items-center justify-center md:flex-row md:justify-between">
       <Info showInfo={showInfo} />
 
-      <nav
-        className={`flex w-full flex-wrap items-center justify-center space-x-2 ${getAlignStyle()}`}
-        aria-label="Pagination Navigation"
-      >
-        <Button
-          variant="secondary"
-          style={buttonStyle}
-          size="medium"
-          disabled={!prev_page_url}
-          as={paginationButtonAs}
-          href={prev_page_url || '#'}
-          className={!prev_page_url ? 'pointer-events-none' : ''}
-          aria-label="Go to previous page"
+      {hasNav && (
+        <nav
+          className={`flex w-full flex-wrap items-center justify-center space-x-2 ${getAlignStyle()}`}
+          aria-label="Pagination Navigation"
         >
-          Previous
-        </Button>
-
-        {pageLinks.map((link, index) => (
           <Button
-            key={index}
-            variant={link.active ? 'primary' : 'secondary'}
+            variant="secondary"
             style={buttonStyle}
             size="medium"
-            disabled={!link.url}
-            as={link.url ? 'a' : paginationButtonAs}
-            href={link.url || '#'}
-            className={!link.url ? 'pointer-events-none' : ''}
-            aria-label={`Go to page ${link.label}`}
-            aria-current={link.active ? 'page' : undefined}
+            disabled={!prev_page_url}
+            as={paginationButtonAs}
+            href={prev_page_url ?? undefined}
+            className={!prev_page_url ? 'pointer-events-none' : ''}
+            aria-label="Go to previous page"
           >
-            {link.label}
+            Previous
           </Button>
-        ))}
 
-        <Button
-          variant="secondary"
-          style={buttonStyle}
-          size="medium"
-          disabled={!next_page_url}
-          as={paginationButtonAs}
-          href={next_page_url || '#'}
-          className={!next_page_url ? 'pointer-events-none' : ''}
-          aria-label="Go to next page"
-        >
-          Next
-        </Button>
-      </nav>
+          {pageLinks.map((link) => (
+            <Button
+              key={link.url ?? `p-${link.label}`}
+              variant={link.active ? 'primary' : 'secondary'}
+              style={buttonStyle}
+              size="medium"
+              disabled={!link.url}
+              as={link.url ? 'a' : paginationButtonAs}
+              href={link.url || '#'}
+              className={!link.url ? 'pointer-events-none' : ''}
+              aria-label={`Go to page ${link.label}`}
+              aria-current={link.active ? 'page' : undefined}
+            >
+              {link.label}
+            </Button>
+          ))}
+
+          <Button
+            variant="secondary"
+            style={buttonStyle}
+            size="medium"
+            disabled={!next_page_url}
+            as={paginationButtonAs}
+            href={next_page_url ?? undefined}
+            className={!next_page_url ? 'pointer-events-none' : ''}
+            aria-label="Go to next page"
+          >
+            Next
+          </Button>
+        </nav>
+      )}
     </div>
   );
 }
