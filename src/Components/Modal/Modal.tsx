@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 export interface ModalProps {
   isOpen: boolean;
   onClose(): void;
-  maxWidth?: string;
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   initialFocus?: React.RefObject<HTMLElement>;
 }
 
