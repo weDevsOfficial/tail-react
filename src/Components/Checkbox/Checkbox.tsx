@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 import { getColorClass } from '../../utils/colorUtils';
 
 interface CheckboxProps {
-  label: string;
+  label: React.ReactNode;
   checked?: boolean;
   className?: string;
   labelClassName?: string;
@@ -12,7 +12,7 @@ interface CheckboxProps {
   onChange?: (checked: boolean) => void;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({
+const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
   label,
   help,
   className,
@@ -20,7 +20,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   disabled = false,
   ...props
-}) => {
+}, ref) => {
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
 
   // Get color classes
@@ -32,6 +32,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     <div className="relative flex gap-x-3 mb-4">
       <div className="flex h-6 items-center">
         <input
+          ref={ref}
           type="checkbox"
           checked={props.checked}
           id={id}
@@ -65,6 +66,8 @@ const Checkbox: React.FC<CheckboxProps> = ({
       </div>
     </div>
   );
-};
+});
+
+Checkbox.displayName = 'Checkbox';
 
 export { Checkbox };
