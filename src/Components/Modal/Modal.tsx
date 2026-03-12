@@ -7,6 +7,7 @@ export interface ModalProps {
   isOpen: boolean;
   onClose(): void;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  initialFocus?: React.RefObject<HTMLElement>;
 }
 
 const Modal = ({ isOpen, onClose, maxWidth = 'lg', children }: PropsWithChildren<ModalProps>) => {
