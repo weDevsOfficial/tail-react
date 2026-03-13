@@ -1,5 +1,5 @@
+import { cn } from '@/utils';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 import { getColorClass } from '../../utils/colorUtils';
 
 interface CheckboxProps {
@@ -29,7 +29,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
   const focusRingColor = getColorClass('focus:ring', '600');
 
   return (
-    <div className="relative flex gap-x-3 mb-4">
+    <div className="relative mb-4 flex gap-x-3">
       <div className="flex h-6 items-center">
         <input
           ref={ref}
@@ -38,12 +38,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
           id={id}
           disabled={disabled}
           {...props}
-          className={twMerge(
-            `h-4 w-4 rounded form-checkbox border-gray-300 ${textColor} ${darkTextColor} ${focusRingColor}`,
+          className={cn(
+            `form-checkbox h-4 w-4 rounded-sm border-gray-300 ${textColor} ${darkTextColor} ${focusRingColor}`,
             className,
-            disabled && 'disabled:opacity-50 cursor-not-allowed'
+            disabled && 'cursor-not-allowed disabled:opacity-50',
           )}
-          onChange={(event) => {
+          onChange={event => {
             if (onChange) {
               onChange(event.target.checked);
             }
@@ -53,10 +53,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
       <div className="text-sm leading-6">
         <label
           htmlFor={id}
-          className={twMerge(
+          className={cn(
             'font-medium text-gray-900 dark:text-gray-300',
             labelClassName,
-            disabled && 'cursor-not-allowed'
+            disabled && 'cursor-not-allowed',
           )}
         >
           {label}

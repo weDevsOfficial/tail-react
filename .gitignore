@@ -27,3 +27,5 @@ storybook-static
 
 .vercel
 .yarnrc.yml
+
+*storybook.log
