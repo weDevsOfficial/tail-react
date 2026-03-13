@@ -23,7 +23,7 @@ export const Default: Story = {
       { value: 'Option 3', key: 'option3' },
       { value: 'Option 4', key: 'option4' },
     ],
-    renderItem: (item) => item.value,
+    renderItem: item => item.value,
   },
 };
 
@@ -38,7 +38,7 @@ export const WithDescription: Story = {
       { value: 'Option 3', key: 'option3' },
       { value: 'Option 4', key: 'option4' },
     ],
-    renderItem: (item) => item.value,
+    renderItem: item => item.value,
   },
 };
 
@@ -53,7 +53,7 @@ export const WithSelectedOption: Story = {
       { value: 'Option 4', key: 'option4' },
     ],
     selectedKey: 'option2',
-    renderItem: (item) => item.value,
+    renderItem: item => item.value,
   },
 };
 
@@ -68,7 +68,7 @@ export const WithError: Story = {
       { value: 'Option 3', key: 'option3' },
       { value: 'Option 4', key: 'option4' },
     ],
-    renderItem: (item) => item.value,
+    renderItem: item => item.value,
   },
 };
 
@@ -81,7 +81,11 @@ export const WithCustomRenderItem: Story = {
         key: 'aws',
         title: 'AWS',
         icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 -30 150 150">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 -30 150 150"
+          >
             <path
               fill="#F90"
               d="M122.714 62.703c5.28-.643 16.924-2.027 18.997.643 2.072 2.621-2.319 13.649-4.293 18.544-.592 1.484.691 2.077 2.023.94 8.684-7.319 10.954-22.6 9.178-24.825-1.777-2.175-17.023-4.055-26.3 2.473-1.431 1.038-1.184 2.423.395 2.225z"
@@ -101,7 +105,11 @@ export const WithCustomRenderItem: Story = {
         key: 'gcp',
         title: 'Google Cloud',
         icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 16 16"
+          >
             <path
               fill="#EA4335"
               d="m10.313 5.376 1.887-1.5-.332-.414a5.935 5.935 0 0 0-5.586-1.217 5.89 5.89 0 0 0-3.978 4.084c-.03.113.312-.098.463-.056l2.608-.428s.127-.124.201-.205c1.16-1.266 3.126-1.432 4.465-.354l.272.09z"
@@ -147,7 +155,10 @@ export const WithCustomRenderItem: Story = {
                     </g>
                     <path id="XMLID_47_" d="M155.3 317.6h-34v-34h34z" />
                     <path id="XMLID_46_" d="M121.3 343.8H95.1v-26.2h26.2z" />
-                    <path id="XMLID_45_" d="M95.1 317.6H73.2v-21.9h21.9v21.9z" />
+                    <path
+                      id="XMLID_45_"
+                      d="M95.1 317.6H73.2v-21.9h21.9v21.9z"
+                    />
                   </g>
                 </g>
               </g>
@@ -156,10 +167,12 @@ export const WithCustomRenderItem: Story = {
         ),
       },
     ],
-    renderItem: (item) => (
-      <div className="w-20 flex flex-col items-center justify-between gap-4">
+    renderItem: item => (
+      <div className="flex w-20 flex-col items-center justify-between gap-4">
         <div className="w-12">{item.icon}</div>
-        <h4 className="block text-xs font-medium text-gray-900">{item.title}</h4>
+        <h4 className="block text-xs font-medium text-gray-900">
+          {item.title}
+        </h4>
       </div>
     ),
   },
@@ -174,7 +187,11 @@ export const WithDisabled: Story = {
         key: 'aws',
         title: 'AWS',
         icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 -30 150 150">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 -30 150 150"
+          >
             <path
               fill="#F90"
               d="M122.714 62.703c5.28-.643 16.924-2.027 18.997.643 2.072 2.621-2.319 13.649-4.293 18.544-.592 1.484.691 2.077 2.023.94 8.684-7.319 10.954-22.6 9.178-24.825-1.777-2.175-17.023-4.055-26.3 2.473-1.431 1.038-1.184 2.423.395 2.225z"
@@ -195,7 +212,11 @@ export const WithDisabled: Story = {
         key: 'gcp',
         title: 'Google Cloud',
         icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 16 16"
+          >
             <path
               fill="#EA4335"
               d="m10.313 5.376 1.887-1.5-.332-.414a5.935 5.935 0 0 0-5.586-1.217 5.89 5.89 0 0 0-3.978 4.084c-.03.113.312-.098.463-.056l2.608-.428s.127-.124.201-.205c1.16-1.266 3.126-1.432 4.465-.354l.272.09z"
@@ -242,7 +263,10 @@ export const WithDisabled: Story = {
                     </g>
                     <path id="XMLID_47_" d="M155.3 317.6h-34v-34h34z" />
                     <path id="XMLID_46_" d="M121.3 343.8H95.1v-26.2h26.2z" />
-                    <path id="XMLID_45_" d="M95.1 317.6H73.2v-21.9h21.9v21.9z" />
+                    <path
+                      id="XMLID_45_"
+                      d="M95.1 317.6H73.2v-21.9h21.9v21.9z"
+                    />
                   </g>
                 </g>
               </g>
@@ -252,10 +276,12 @@ export const WithDisabled: Story = {
         disabled: true,
       },
     ],
-    renderItem: (item) => (
-      <div className="w-20 flex flex-col items-center justify-between gap-4">
+    renderItem: item => (
+      <div className="flex w-20 flex-col items-center justify-between gap-4">
         <div className="w-12">{item.icon}</div>
-        <h4 className="block text-xs font-medium text-gray-900">{item.title}</h4>
+        <h4 className="block text-xs font-medium text-gray-900">
+          {item.title}
+        </h4>
       </div>
     ),
   },

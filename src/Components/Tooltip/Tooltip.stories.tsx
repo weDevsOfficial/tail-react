@@ -32,7 +32,7 @@ export const WithOffset: Story = {
 export const WithCustomContent: Story = {
   args: {
     content: (
-      <div className="p-4 bg-gray-900 text-white rounded-md shadow-lg">
+      <div className="rounded-md bg-gray-900 p-4 text-white shadow-lg">
         <h3 className="text-lg font-semibold">Hello, world!</h3>
         <p className="text-sm">This is a custom tooltip content.</p>
       </div>
@@ -54,7 +54,8 @@ export const WithCustomArrow: Story = {
 export const WithWhiteBackground: Story = {
   args: {
     content: 'Hello, world!',
-    className: 'bg-white text-gray-900 text-sm shadow-lg border border-gray-200',
+    className:
+      'bg-white text-gray-900 text-sm shadow-lg border border-gray-200',
     arrowClassName: 'fill-gray-200',
     children: 'Hover me',
   },

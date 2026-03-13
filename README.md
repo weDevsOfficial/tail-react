@@ -14,9 +14,17 @@ yarn add @wedevs/tail-react
 
 ## Usage
 
+### Tailwind CSS v4
+
+On your app.css file, add the source file:
+
+```diff
++ @source './node_modules/@wedevs/tail-react/dist/index.{js,ts,jsx,tsx}';
+```
+
 ### Tailwind CSS v3
 
-If you're using Tailwind CSS v3, update your `tailwind.config.js` file:
+On your `tailwind.config.js` file, update the content entry:
 
 ```diff
 /** @type {import('tailwindcss').Config} */
@@ -32,21 +40,6 @@ export default {
   plugins: [
 +    import('@tailwindcss/forms'),
   ],
-}
-```
-
-### Tailwind CSS v4
-
-For Tailwind CSS v4, configuration is done in your CSS file:
-
-```css
-@import 'tailwindcss';
-
-/* Import tail-react components */
-@source "node_modules/@wedevs/tail-react/dist/index.js";
-
-@theme {
-  /* Your theme customizations */
 }
 ```
 

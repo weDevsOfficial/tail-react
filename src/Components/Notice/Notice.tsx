@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+
 import {
   ExclamationTriangleIcon,
   XCircleIcon,
@@ -7,6 +7,7 @@ import {
   InformationCircleIcon,
 } from '@heroicons/react/20/solid';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { cn } from '@/utils';
 
 export interface NoticeProps {
   label?: React.ReactNode;
@@ -57,23 +58,32 @@ const Notice: React.FC<NoticeProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={twMerge('rounded-md p-4 ring-1 ring-inset w-full', color, className)}>
+    <div
+      className={cn(
+        'w-full rounded-md p-4 ring-1 ring-inset',
+        color,
+        className,
+      )}
+    >
       <div className="flex justify-between">
         <div className="flex">
-          <div className="flex-shrink-0">{getIcon(type)}</div>
+          <div className="shrink-0">{getIcon(type)}</div>
           <div className="ml-3">
             {label && <h3 className="text-sm font-medium">{label}</h3>}
-            {children && <div className="text-sm mt-2">{children}</div>}
+            {children && <div className="mt-2 text-sm">{children}</div>}
           </div>
         </div>
 
         {dismissible && (
           <button
             onClick={() => setIsVisible(false)}
-            className="flex-shrink-0 ml-4"
+            className="ml-4 shrink-0"
             title="Dismiss the notice"
           >
-            <XMarkIcon className="h-4 w-4 text-gray-500 dark:text-gray-300" aria-hidden="true" />
+            <XMarkIcon
+              className="h-4 w-4 text-gray-500 dark:text-gray-300"
+              aria-hidden="true"
+            />
           </button>
         )}
       </div>

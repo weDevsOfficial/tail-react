@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import classNames from 'classnames';
-import { twMerge } from 'tailwind-merge';
+
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { getColorClass } from '../../utils/colorUtils';
+import { cn } from '@/utils';
 
 interface Option {
   key: string;
@@ -39,7 +39,10 @@ const SelectCard = ({
       return { key: '' };
     }
 
-    return options.find((option: { key: string }) => option.key === selectedKey) || options[0];
+    return (
+      options.find((option: { key: string }) => option.key === selectedKey) ||
+      options[0]
+    );
   });
 
   // Get color classes
@@ -65,32 +68,36 @@ const SelectCard = ({
       {label && (
         <div className="mb-2">
           <label
-            className={twMerge('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
+            className={cn(
+              'block text-sm leading-6 font-medium text-gray-900 dark:text-white',
+            )}
           >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
         </div>
       )}
 
-      <div className={twMerge('flex space-x-4', className)}>
+      <div className={cn('flex space-x-4', className)}>
         {options.map((option: Option, index: React.Key | null | undefined) => (
           <div
             key={index}
-            className={twMerge(
+            className={cn(
               selectedOption.key === option.key
                 ? `${borderColor} ${darkBorderColor}`
                 : 'border-gray-200 dark:border-gray-600',
-              'relative flex cursor-pointer text-center rounded-lg border-2 p-4 bg-white dark:bg-white/10 dark:text-gray-200 focus:outline-none',
-              option.disabled ? 'opacity-75 cursor-not-allowed grayscale' : ''
+              'relative flex cursor-pointer rounded-lg border-2 bg-white p-4 text-center focus:outline-hidden dark:bg-white/10 dark:text-gray-200',
+              option.disabled ? 'cursor-not-allowed opacity-75 grayscale' : '',
             )}
             onClick={() => handleChange(option)}
           >
             {renderItem(option)}
 
             <div
-              className={classNames(
-                'absolute top-0 right-0 p-1 rounded-full',
-                selectedOption.key === option.key ? `${textColor} ${darkTextColor}` : 'invisible'
+              className={cn(
+                'absolute top-0 right-0 rounded-full p-1',
+                selectedOption.key === option.key
+                  ? `${textColor} ${darkTextColor}`
+                  : 'invisible',
               )}
             >
               <CheckCircleIcon className="h-5 w-5" />
@@ -99,8 +106,12 @@ const SelectCard = ({
         ))}
       </div>
 
-      {help && <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">{help}</p>}
-      {error && <p className="text-red-600 dark:text-red-400 text-sm mt-2">{error}</p>}
+      {help && (
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{help}</p>
+      )}
+      {error && (
+        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>
+      )}
     </div>
   );
 };
