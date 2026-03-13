@@ -36,14 +36,14 @@ const ConfirmModal = ({
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>
       <div className="flex">
-        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:h-10 sm:w-10 ml-5 mt-5">
+        <div className="mx-auto mt-5 ml-5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:h-10 sm:w-10">
           <ExclamationTriangleIcon className="h-6 w-6 text-red-600" />
         </div>
 
         <div className="flex-1">
           <ModalHeader>{title}</ModalHeader>
           <ModalBody>
-            <p className="text-sm text-gray-500 mb-4">{message}</p>
+            <p className="mb-4 text-sm text-gray-500">{message}</p>
           </ModalBody>
 
           <ModalActions>

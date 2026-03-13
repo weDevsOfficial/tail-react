@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from '@headlessui/react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/utils';
 
 interface DropdownItemProps {
   children: React.ReactNode;
@@ -16,7 +16,13 @@ const DropdownItem: React.FC<DropdownItemProps> = ({
   return (
     <Menu.Item>
       {({ active }) => (
-        <div className={twMerge('hover:cursor-pointer', active ? activeClass : '', className)}>
+        <div
+          className={cn(
+            'hover:cursor-pointer',
+            active ? activeClass : '',
+            className,
+          )}
+        >
           {children}
         </div>
       )}

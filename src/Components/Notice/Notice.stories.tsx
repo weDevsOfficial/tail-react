@@ -61,9 +61,11 @@ export const ErrorWithList: Story = {
     label: 'There were 2 errors with your submission',
     type: 'error',
     children: (
-      <ul className="list-disc list-inside">
+      <ul className="list-inside list-disc">
         <li>Your password must be at least 8 characters</li>
-        <li>Your password must include at least one pro wrestling finishing move</li>
+        <li>
+          Your password must include at least one pro wrestling finishing move
+        </li>
       </ul>
     ),
   },
@@ -76,7 +78,10 @@ export const WarningWithLink: Story = {
     label: (
       <span>
         You have no credits left.{' '}
-        <a href="#" className="font-medium text-yellow-700 underline hover:text-yellow-600">
+        <a
+          href="#"
+          className="font-medium text-yellow-700 underline hover:text-yellow-600"
+        >
           Upgrade your account to add more credits.
         </a>
       </span>

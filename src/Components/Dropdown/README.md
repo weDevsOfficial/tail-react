@@ -34,13 +34,13 @@ function MyComponent() {
   return (
     <Dropdown
       button={
-        <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+        <button className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
           Options
-          <ChevronDownIcon className="w-5 h-5 ml-2 -mr-1" aria-hidden="true" />
+          <ChevronDownIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
         </button>
       }
     >
-      <div className="absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+      <div className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
         <DropdownItem className="block px-4 py-2 text-sm text-gray-700">Edit</DropdownItem>
         <DropdownItem className="block px-4 py-2 text-sm text-gray-700">Duplicate</DropdownItem>
         <DropdownItem className="block px-4 py-2 text-sm text-gray-700">Delete</DropdownItem>

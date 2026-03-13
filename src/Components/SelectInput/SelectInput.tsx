@@ -1,5 +1,5 @@
+import { cn } from '@/utils';
 import React, { useEffect, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
 import { getColorClass } from '../../utils/colorUtils';
 
 interface Option {
@@ -12,12 +12,16 @@ interface SelectProps {
   help?: React.ReactNode;
   error?: React.ReactNode;
   required?: boolean;
+  disabled?: boolean;
   options: Option[];
   selectedKey?: string;
   className?: string;
   wrapperClassName?: string;
   onChange?: (selectedOption: Option) => void;
-  props?: React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>;
+  props?: React.DetailedHTMLProps<
+    React.SelectHTMLAttributes<HTMLSelectElement>,
+    HTMLSelectElement
+  >;
 }
 
 const SelectInput: React.FC<SelectProps> = ({
@@ -26,6 +30,7 @@ const SelectInput: React.FC<SelectProps> = ({
   error,
   options,
   required = false,
+  disabled = false,
   selectedKey,
   className,
   wrapperClassName,
@@ -33,7 +38,7 @@ const SelectInput: React.FC<SelectProps> = ({
   ...props
 }) => {
   const [selectedOption, setSelectedOption] = useState(
-    options.find((option) => option.key === selectedKey) ?? options[0]
+    options.find(option => option.key === selectedKey) ?? options[0],
   );
 
   useEffect(() => {
@@ -41,7 +46,9 @@ const SelectInput: React.FC<SelectProps> = ({
       return;
     }
 
-    setSelectedOption(options.find((option) => option.key === selectedKey) ?? options[0]);
+    setSelectedOption(
+      options.find(option => option.key === selectedKey) ?? options[0],
+    );
   }, [options, selectedKey]);
 
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
@@ -50,7 +57,9 @@ const SelectInput: React.FC<SelectProps> = ({
   const focusRingColor = getColorClass('focus:ring', '600');
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOption = options.find((option) => option.key == event.target.value);
+    const selectedOption = options.find(
+      option => option.key == event.target.value,
+    );
 
     if (selectedOption) {
       setSelectedOption(selectedOption);
@@ -62,37 +71,49 @@ const SelectInput: React.FC<SelectProps> = ({
   };
 
   return (
-    <div className={twMerge('mb-4', wrapperClassName)}>
+    <div className={cn('mb-4', wrapperClassName)}>
       {label && (
         <div className="mb-2">
           <label
             htmlFor={id}
-            className={twMerge('block text-sm font-medium leading-6 text-gray-900 dark:text-white')}
+            className={
+              'block text-sm leading-6 font-medium text-gray-900 dark:text-white'
+            }
           >
             {label} {required && <span className="text-red-500">*</span>}
           </label>
         </div>
       )}
       <select
-        className={twMerge(
-          `block w-full dark:bg-white/5 rounded-md border-0 py-1.5 px-2 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-500 focus:ring-2 focus:ring-inset ${focusRingColor} sm:text-sm sm:leading-6 outline-none`,
+        className={cn(
+          `block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 outline-hidden ring-inset focus:ring-2 ${focusRingColor} focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500`,
           className,
-          error && 'ring-red-300 text-red-900  placeholder:text-red-300 focus:ring-red-500'
+          {
+            'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500':
+              error,
+            'cursor-not-allowed opacity-50 dark:bg-gray-600 dark:text-gray-400':
+              disabled,
+          },
         )}
         value={selectedOption.key}
         onChange={handleChange}
         required={required}
+        disabled={disabled}
         {...props}
       >
-        {options.map((option) => (
+        {options.map(option => (
           <option key={option.key} value={option.key}>
             {option.value}
           </option>
         ))}
       </select>
 
-      {help && <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">{help}</p>}
-      {error && <p className="text-red-600 dark:text-red-500 text-sm mt-2">{error}</p>}
+      {help && (
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{help}</p>
+      )}
+      {error && (
+        <p className="mt-2 text-sm text-red-600 dark:text-red-500">{error}</p>
+      )}
     </div>
   );
 };

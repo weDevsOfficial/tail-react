@@ -25,10 +25,10 @@ export const Formatted: Story = {
   args: {
     children: (
       <div>
-        <h3 className="font-medium text-gray-900 mb-2">Need Help?</h3>
+        <h3 className="mb-2 font-medium text-gray-900">Need Help?</h3>
         <p className="text-sm text-gray-500">
-          If you're having trouble accessing your account, contact our customer support team for
-          help.
+          If you're having trouble accessing your account, contact our customer
+          support team for help.
         </p>
       </div>
     ),

@@ -25,14 +25,18 @@ export const Default = () => {
         <div className="">
           <ModalHeader>Need Help?</ModalHeader>
           <ModalBody>
-            <p className="text-sm text-gray-500 mb-4">
-              If you're having trouble accessing your account, contact our customer support team for
-              help.
+            <p className="mb-4 text-sm text-gray-500">
+              If you're having trouble accessing your account, contact our
+              customer support team for help.
             </p>
           </ModalBody>
 
           <ModalActions>
-            <Button variant="primary" onClick={() => setIsOpen(false)} className="ml-3">
+            <Button
+              variant="primary"
+              onClick={() => setIsOpen(false)}
+              className="ml-3"
+            >
               Contact Support
             </Button>
 

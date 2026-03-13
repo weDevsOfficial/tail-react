@@ -33,7 +33,7 @@ function MyComponent() {
     <div className="flex items-center gap-2">
       <span>Account Status</span>
       <ContextualHelp>
-        <h3 className="font-medium text-gray-900 mb-2">Account Status Help</h3>
+        <h3 className="mb-2 font-medium text-gray-900">Account Status Help</h3>
         <p className="text-sm text-gray-500">
           Your account status indicates whether your account is active, pending, or requires
           verification. A verified account has full access to all features.
