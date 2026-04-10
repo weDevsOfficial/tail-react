@@ -29,3 +29,4 @@ storybook-static
 .yarnrc.yml
 
 *storybook.log
+config.bat
