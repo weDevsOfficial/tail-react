@@ -25,27 +25,29 @@ const Tooltip: React.FC<TooltipProps> = ({
         <TooltipPrimitive.Trigger asChild>
           {typeof children === 'string' ? <span>{children}</span> : children}
         </TooltipPrimitive.Trigger>
-        <TooltipPrimitive.Content
-          sideOffset={offset}
-          side={side}
-          className="animate-slide-up-fade z-[99] items-center overflow-hidden"
-        >
-          {typeof content === 'string' ? (
-            <span
-              className={cn(
-                'block max-w-xs rounded-md bg-gray-900 px-2.5 py-1.5 text-center text-xs text-white opacity-90 shadow-lg',
-                className,
-              )}
-            >
-              {content}
-            </span>
-          ) : (
-            content
-          )}
-          <TooltipPrimitive.Arrow
-            className={cn('fill-gray-900 opacity-90', arrowClassName)}
-          />
-        </TooltipPrimitive.Content>
+        <TooltipPrimitive.Portal>
+          <TooltipPrimitive.Content
+            sideOffset={offset}
+            side={side}
+            className="animate-slide-up-fade z-99 items-center overflow-hidden"
+          >
+            {typeof content === 'string' ? (
+              <span
+                className={cn(
+                  'block max-w-xs rounded-md bg-gray-900 px-2.5 py-1.5 text-center text-xs text-white opacity-90 shadow-lg',
+                  className,
+                )}
+              >
+                {content}
+              </span>
+            ) : (
+              content
+            )}
+            <TooltipPrimitive.Arrow
+              className={cn('fill-gray-900 opacity-90', arrowClassName)}
+            />
+          </TooltipPrimitive.Content>
+        </TooltipPrimitive.Portal>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>
   );

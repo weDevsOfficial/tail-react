@@ -1,5 +1,6 @@
 import { cn } from '@/utils';
 import React, { useEffect, useState } from 'react';
+import { getColorClass } from '../../utils/colorUtils';
 
 interface Option {
   key: string;
@@ -52,6 +53,9 @@ const SelectInput: React.FC<SelectProps> = ({
 
   const id = `input-${Math.random().toString(36).substr(2, 9)}`;
 
+  // Get color classes
+  const focusRingColor = getColorClass('focus:ring', '600');
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = options.find(
       option => option.key == event.target.value,
@@ -82,7 +86,7 @@ const SelectInput: React.FC<SelectProps> = ({
       )}
       <select
         className={cn(
-          'block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 outline-hidden ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500',
+          `block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 outline-hidden ring-inset focus:ring-2 ${focusRingColor} focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500`,
           className,
           {
             'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500':

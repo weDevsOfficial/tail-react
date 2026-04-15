@@ -1,5 +1,6 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { ContextualHelp } from '../ContextualHelp';
+import { getColorClass } from '../../utils/colorUtils';
 import { cn } from '@/utils';
 
 interface TextFieldProps
@@ -29,7 +30,7 @@ interface TextFieldProps
   onChange: (value: string) => void;
 }
 
-const TextField: React.FC<TextFieldProps> = ({
+const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(({
   label,
   value,
   disabled = false,
@@ -54,10 +55,14 @@ const TextField: React.FC<TextFieldProps> = ({
   trailingAddon,
   onChange,
   ...rest
-}) => {
+}, ref) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
+
+  // Generate focus ring color classes
+  const focusRingClasses = getColorClass('focus-within:ring', '600');
+  const inputFocusRingClasses = getColorClass('focus:ring', '600');
 
   return (
     <div className={cn('mb-4 w-full', wrapperClassName)}>
@@ -79,13 +84,14 @@ const TextField: React.FC<TextFieldProps> = ({
 
       <div
         className={cn('relative', inputWrapperClassName, {
-          'flex rounded-md bg-white shadow-xs ring-1 ring-gray-300 ring-inset focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-inset dark:bg-white/5 dark:ring-white/10':
+          [`flex rounded-md bg-white shadow-xs ring-1 ring-gray-300 ring-inset focus-within:ring-2 focus-within:ring-inset ${focusRingClasses} dark:bg-white/5 dark:ring-white/10`]:
             addon || trailingAddon,
         })}
       >
         {addon ? <>{addon}</> : null}
 
         <input
+          ref={ref}
           id={id}
           type={type}
           value={value}
@@ -99,7 +105,7 @@ const TextField: React.FC<TextFieldProps> = ({
           name={name}
           onChange={handleChange}
           className={cn(
-            'block w-full rounded-md border-0 bg-white px-3 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 outline-hidden ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500',
+            `block w-full rounded-md border-0 bg-white px-3 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 outline-hidden ring-inset placeholder:text-gray-400 focus:ring-2 ${inputFocusRingClasses} focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300 dark:ring-gray-500`,
             className,
             {
               'pl-1': addon,
@@ -122,6 +128,8 @@ const TextField: React.FC<TextFieldProps> = ({
       )}
     </div>
   );
-};
+});
+
+TextField.displayName = 'TextField';
 
 export { TextField };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { getColorClass } from '../../utils/colorUtils';
 import { cn } from '@/utils';
 
 interface Option {
@@ -44,6 +45,12 @@ const SelectCard = ({
     );
   });
 
+  // Get color classes
+  const borderColor = getColorClass('border', '600');
+  const darkBorderColor = getColorClass('dark:border', '300');
+  const textColor = getColorClass('text', '600');
+  const darkTextColor = getColorClass('dark:text', '400');
+
   const handleChange = (option: Option) => {
     if (option.disabled) {
       return;
@@ -76,7 +83,7 @@ const SelectCard = ({
             key={index}
             className={cn(
               selectedOption.key === option.key
-                ? 'border-indigo-600 dark:border-indigo-300'
+                ? `${borderColor} ${darkBorderColor}`
                 : 'border-gray-200 dark:border-gray-600',
               'relative flex cursor-pointer rounded-lg border-2 bg-white p-4 text-center focus:outline-hidden dark:bg-white/10 dark:text-gray-200',
               option.disabled ? 'cursor-not-allowed opacity-75 grayscale' : '',
@@ -89,7 +96,7 @@ const SelectCard = ({
               className={cn(
                 'absolute top-0 right-0 rounded-full p-1',
                 selectedOption.key === option.key
-                  ? 'text-indigo-600 dark:text-indigo-400'
+                  ? `${textColor} ${darkTextColor}`
                   : 'invisible',
               )}
             >

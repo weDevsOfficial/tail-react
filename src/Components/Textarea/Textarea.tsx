@@ -1,5 +1,6 @@
 import { cn } from '@/utils';
 import React from 'react';
+import { getColorClass } from '../../utils/colorUtils';
 
 interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
@@ -34,6 +35,9 @@ const Textarea: React.FC<TextareaProps> = ({
   placeholder,
   ...props
 }) => {
+  // Get color classes
+  const focusRingColor = getColorClass('focus:ring', '600');
+
   return (
     <div className={cn('mb-4 w-full', wrapperClassName)}>
       {label && (
@@ -55,7 +59,7 @@ const Textarea: React.FC<TextareaProps> = ({
           id={id}
           rows={rows}
           className={cn(
-            'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300',
+            `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 ${focusRingColor} focus:ring-inset sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-gray-300`,
             className,
             {
               disabled:

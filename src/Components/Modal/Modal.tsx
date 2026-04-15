@@ -5,13 +5,15 @@ import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 export interface ModalProps {
   isOpen: boolean;
   onClose(): void;
-  maxWidth?: string;
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  initialFocus?: React.RefObject<HTMLElement>;
 }
 
 const Modal = ({
   isOpen,
   onClose,
   maxWidth = 'lg',
+  initialFocus,
   children,
 }: PropsWithChildren<ModalProps>) => {
   const maxWidthClass = {
@@ -32,6 +34,7 @@ const Modal = ({
         transition
         open={isOpen}
         onClose={onClose}
+        initialFocus={initialFocus}
         className="fixed inset-0 z-10 flex w-screen items-center justify-center overflow-auto bg-black/30 p-4 transition duration-300 ease-out data-closed:opacity-0 data-closed:duration-200 data-closed:ease-in"
       >
         <DialogBackdrop className="fixed inset-0 bg-black/30" />

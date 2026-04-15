@@ -1,6 +1,7 @@
 import { cn } from '@/utils';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import React from 'react';
+import { getColorClass, getColorClasses } from '../../utils/colorUtils';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -51,6 +52,48 @@ const Button: React.FC<ButtonProps> = ({
   rel,
   size = 'medium',
 }) => {
+  const getStyleClasses = () => {
+    if (variant === 'primary') {
+      if (style === 'fill') {
+        return cn(
+          getColorClasses({
+            bg: '600',
+            'dark:bg': '500',
+            'hover:bg': '700',
+            'dark:hover:bg': '400',
+          }),
+          getColorClass('focus-visible:outline', '600'),
+          'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+          'text-white shadow-xs',
+        );
+      } else if (style === 'outline') {
+        return cn(
+          getColorClasses({
+            ring: '600',
+            'dark:ring': '400',
+            text: '600',
+            'dark:text': '400',
+            'hover:bg': '600',
+            'dark:hover:bg': '400',
+            'dark:hover:text': '700',
+          }),
+          'bg-white dark:bg-transparent ring-1 ring-inset hover:text-white shadow-xs',
+        );
+      } else if (style === 'link') {
+        return cn(
+          getColorClasses({
+            text: '600',
+            'dark:text': '400',
+            'hover:text': '500',
+          }),
+        );
+      }
+    }
+
+    // If not primary or a different variant, use the existing styles
+    return Styles[`${variant}:${style}`];
+  };
+
   const getSizeStyles = () => {
     switch (size) {
       case 'small':
@@ -78,6 +121,7 @@ const Button: React.FC<ButtonProps> = ({
   const renderButton = () => {
     const commonStyles = 'font-semibold focus:outline-hidden';
     const sizeStyles = getSizeStyles();
+    const styleClasses = getStyleClasses();
 
     const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : '';
 
@@ -86,7 +130,7 @@ const Button: React.FC<ButtonProps> = ({
       {
         className: cn(
           commonStyles,
-          Styles[`${variant}:${style}`],
+          styleClasses,
           sizeStyles,
           disabledStyles,
           className,

@@ -1,6 +1,7 @@
 import { useState, useEffect, ReactNode } from 'react';
 import { Field, Label, Switch } from '@headlessui/react';
 import { cn } from '@/utils';
+import { getColorClass } from '../../utils/colorUtils';
 
 type Props = {
   label: string;
@@ -36,6 +37,11 @@ const SwitchInput = ({
     }
   };
 
+  // Get color classes
+  const bgColor = getColorClass('bg', '600');
+  const darkBgColor = getColorClass('dark:bg', '500');
+  const focusRingColor = getColorClass('focus:ring', '500');
+
   return (
     <Field as="div" className={cn('relative mb-4 flex items-start', className)}>
       <Switch
@@ -44,9 +50,9 @@ const SwitchInput = ({
         onChange={toggleInput}
         className={cn(
           enabled
-            ? 'bg-indigo-600 dark:bg-indigo-500'
+            ? `${bgColor} ${darkBgColor}`
             : 'bg-gray-200 dark:bg-gray-600',
-          'relative mt-1 inline-flex h-5 w-10 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden',
+          `relative mt-1 inline-flex h-5 w-10 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 ${focusRingColor} focus:ring-offset-2 focus:outline-hidden`,
           disabled ? 'cursor-not-allowed opacity-50' : '',
         )}
       >

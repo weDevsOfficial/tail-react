@@ -1,74 +1,224 @@
 # Dropdown Component
 
-The `Dropdown` component is a reusable React component that provides a customizable dropdown menu with fade-in/fade-out animation. It is designed to work seamlessly with Tailwind CSS, allowing you to easily integrate it into your React projects.
+The `Dropdown` component is a flexible and accessible dropdown menu implementation built with React and Tailwind CSS. It uses Headless UI's `Menu` component under the hood, providing robust keyboard navigation and accessibility features out of the box.
+
+## Features
+
+- 🎯 Click-triggered dropdown menu
+- ⌨️ Full keyboard navigation support
+- 🎨 Smooth animations with configurable transitions
+- 🖱️ Click-outside behavior to dismiss
+- 📱 Responsive and properly positioned
+- 🌙 Dark mode compatible
+- ♿ WAI-ARIA compliant
+
+## Installation
+
+The Dropdown component is part of the @wedevs/tail-react package:
+
+```bash
+npm install @wedevs/tail-react
+# or
+yarn add @wedevs/tail-react
+```
 
 ## Usage
 
-Once installed, you can import and use the `Dropdown` component in your React application as follows:
+Import and use the `Dropdown` component in your React application:
 
 ```jsx
-import React from 'react';
 import { Dropdown, DropdownItem } from '@wedevs/tail-react';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
-const MyComponent = () => {
+function MyComponent() {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <Dropdown
-        button={
-          <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
-            Toggle Dropdown
-          </button>
-        }
-        className="mx-4"
-      >
-        <DropdownItem onClick={() => console.log('Option 1')}>
-          Option 1
+    <Dropdown
+      button={
+        <button className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+          Options
+          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        </button>
+      }
+    >
+      <div className="ring-opacity-5 absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black">
+        <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+          Edit
         </DropdownItem>
-        <DropdownItem onClick={() => console.log('Option 2')}>
-          Option 2
+        <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+          Duplicate
         </DropdownItem>
-        <DropdownItem onClick={() => console.log('Option 3')}>
-          Option 3
+        <DropdownItem className="block px-4 py-2 text-sm text-gray-700">
+          Delete
         </DropdownItem>
-      </Dropdown>
-    </div>
+      </div>
+    </Dropdown>
   );
-};
-
-export default MyComponent;
+}
 ```
 
 ## Components
 
-The `Dropdown` component library includes the following components:
+### Dropdown Component
 
-1. `Dropdown`: The main dropdown component that renders the dropdown menu and handles its state and interactions.
+The main wrapper component that handles the dropdown functionality.
 
-2. `DropdownItem`: Represents each item inside the dropdown menu. It can trigger custom actions when clicked.
+#### Props
 
-## Features
+- `button` (React.ReactNode, required): The trigger element that opens the dropdown. Usually a button or similar interactive element.
 
-- Smooth fade-in/fade-out animation when toggling the dropdown.
-- Easy integration with Tailwind CSS for seamless customization.
+- `children` (React.ReactNode, required): The content of the dropdown menu. Usually a container with `DropdownItem` components.
 
-## Customization
+- `className` (string, optional): Additional CSS classes to be applied to the dropdown wrapper.
 
-The `Dropdown` component can be easily customized to fit your project's design and requirements. You can style the dropdown button, menu, and items using Tailwind CSS utility classes. Additionally, you can modify the animation duration and timing function by adjusting the transition classes in the component.
+### DropdownItem Component
 
-## Props
+A component for individual menu items within the dropdown.
 
-### Dropdown Component Props
+#### Props
 
-- `button` (React.ReactNode, required): The content of the button that triggers the dropdown.
+- `children` (React.ReactNode, required): The content of the menu item.
 
-- `children` (React.ReactNode, required): The content of the dropdown menu, including `DropdownItem` components.
+- `className` (string, optional): Additional CSS classes to be applied to the menu item.
 
-- `className` (string, optional): Additional CSS classes to be applied to the `Dropdown` component.
+- `activeClass` (string, optional, default: 'bg-gray-100 text-gray-900'): Classes to apply when the item is active (hovered or focused).
 
-### DropdownItem Component Props
+## Examples
 
-- `onClick` (() => void, optional): A callback function to be executed when the `DropdownItem` is clicked.
+### Basic Dropdown
 
-- `children` (React.ReactNode, required): The content of the `DropdownItem`.
+```jsx
+<Dropdown
+  button={
+    <Button variant="secondary">
+      Options <ChevronDownIcon className="ml-2 h-5 w-5" />
+    </Button>
+  }
+>
+  <div className="py-1">
+    <DropdownItem className="px-4 py-2 text-sm">Account settings</DropdownItem>
+    <DropdownItem className="px-4 py-2 text-sm">Support</DropdownItem>
+    <DropdownItem className="px-4 py-2 text-sm">Sign out</DropdownItem>
+  </div>
+</Dropdown>
+```
 
-- `className` (string, optional): Additional CSS classes to be applied to the `DropdownItem`.
+### With Header and Dividers
+
+```jsx
+<Dropdown
+  button={
+    <Button variant="secondary">
+      Settings <ChevronDownIcon className="ml-2 h-5 w-5" />
+    </Button>
+  }
+>
+  <div className="divide-y divide-gray-100">
+    {/* Header section */}
+    <div className="px-4 py-3">
+      <p className="text-sm">Signed in as</p>
+      <p className="text-sm font-medium text-gray-900">tom@example.com</p>
+    </div>
+
+    {/* Main menu items */}
+    <div className="py-1">
+      <DropdownItem className="px-4 py-2 text-sm">Your Profile</DropdownItem>
+      <DropdownItem className="px-4 py-2 text-sm">Settings</DropdownItem>
+    </div>
+
+    {/* Footer section */}
+    <div className="py-1">
+      <DropdownItem className="px-4 py-2 text-sm text-red-700">
+        Sign out
+      </DropdownItem>
+    </div>
+  </div>
+</Dropdown>
+```
+
+## Styling
+
+The Dropdown component uses Tailwind CSS for styling:
+
+### Default Styles
+
+1. **Dropdown Wrapper**:
+   - Relative positioning for proper menu placement
+   - Left-aligned text by default
+
+2. **Menu Items Container**:
+   - White background
+   - Rounded corners
+   - Drop shadow
+   - Ring/border for definition
+   - Focus outline handling
+
+3. **Menu Items**:
+   - Hover state background
+   - Proper text sizing and spacing
+   - Cursor pointer on hover
+
+### Customization
+
+You can customize the appearance using:
+
+1. **className prop** on both Dropdown and DropdownItem
+2. **activeClass prop** on DropdownItem for hover/focus states
+3. **Tailwind CSS classes** in the children content
+
+## Accessibility
+
+The Dropdown component follows WAI-ARIA practices for menus:
+
+1. **Keyboard Navigation**:
+   - `Space`/`Enter` to open/close menu
+   - `Arrow` keys to navigate items
+   - `Esc` to close menu
+   - `Tab` to move focus out of menu
+
+2. **ARIA Attributes**:
+   - Proper role attributes
+   - State management (expanded/collapsed)
+   - Focus management
+
+3. **Screen Reader Support**:
+   - Announces menu state changes
+   - Proper labeling of menu items
+   - Clear interaction model
+
+## Best Practices
+
+1. **Button Content**:
+   - Use clear, action-oriented labels
+   - Include visual indicators (e.g., chevron icon)
+   - Maintain consistent styling
+
+2. **Menu Items**:
+   - Group related items together
+   - Use dividers to separate groups
+   - Keep lists manageable (not too many items)
+   - Consider using icons for visual aid
+
+3. **Positioning**:
+   - Ensure menu doesn't overflow viewport
+   - Consider mobile viewports
+   - Maintain proper spacing between items
+
+4. **Interaction**:
+   - Close menu when item is selected
+   - Provide feedback for actions
+   - Handle loading states appropriately
+
+## Implementation Details
+
+The component uses:
+
+- Headless UI's `Menu` component for core functionality
+- `Transition` for smooth animations
+- `Fragment` for proper rendering
+- `twMerge` for class name handling
+
+## Browser Support
+
+The component is compatible with all modern browsers and degrades gracefully in older browsers. The animations may not be available in browsers that don't support CSS transitions.
+
+For further customization and integration with your application, refer to the official documentation of React, Headless UI, and Tailwind CSS.
