@@ -2,7 +2,7 @@ name: Publish to NPM
 
 on:
   release:
-    types: [created]
+    types: [published]
   workflow_dispatch:
 
 permissions:
@@ -29,11 +29,22 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Publish package on NPM
+      - name: Detect package version
+        id: pkg
         run: |
-          echo "=== NPM Debug Info ==="
-          npm whoami --registry https://registry.npmjs.org 2>&1 || true
-          echo "=== Testing publish dry-run ==="
-          npm publish --access public --provenance --dry-run --registry https://registry.npmjs.org 2>&1 || true
-          echo "=== Actual publish ==="
-          npm publish --access public --provenance
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Check if version already exists on npm
+        id: exists
+        run: |
+          if npm view "@wedevs/tail-react@${{ steps.pkg.outputs.version }}" version >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Version ${{ steps.pkg.outputs.version }} is already published. Skipping publish."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish package on NPM
+        if: steps.exists.outputs.exists == 'false'
+        run: npm publish --access public --provenance
