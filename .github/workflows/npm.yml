@@ -45,6 +45,48 @@ jobs:
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: OIDC trusted publishing diagnostics
+        if: steps.exists.outputs.exists == 'false'
+        run: |
+          echo "=== GitHub context ==="
+          echo "repository=$GITHUB_REPOSITORY"
+          echo "ref=$GITHUB_REF"
+          echo "event_name=$GITHUB_EVENT_NAME"
+          echo "workflow_ref=$GITHUB_WORKFLOW_REF"
+          echo "workflow_sha=$GITHUB_WORKFLOW_SHA"
+
+          if [ -n "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ] && [ -n "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]; then
+            echo "=== OIDC token claims (audience=npm:registry.npmjs.org) ==="
+            TOKEN_RESPONSE=$(curl -sSf -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm:registry.npmjs.org")
+            ID_TOKEN=$(node -e "const r=JSON.parse(process.argv[1]); process.stdout.write(r.value||'')" "$TOKEN_RESPONSE")
+
+            node -e "
+              const t = process.argv[1];
+              const p = t.split('.')[1];
+              const b64 = p.replace(/-/g, '+').replace(/_/g, '/');
+              const pad = '='.repeat((4 - (b64.length % 4)) % 4);
+              const payload = JSON.parse(Buffer.from(b64 + pad, 'base64').toString('utf8'));
+              const picked = {
+                iss: payload.iss,
+                sub: payload.sub,
+                aud: payload.aud,
+                repository: payload.repository,
+                repository_owner: payload.repository_owner,
+                repository_visibility: payload.repository_visibility,
+                ref: payload.ref,
+                sha: payload.sha,
+                event_name: payload.event_name,
+                job_workflow_ref: payload.job_workflow_ref,
+                workflow_ref: payload.workflow_ref,
+                environment: payload.environment
+              };
+              console.log(JSON.stringify(picked, null, 2));
+            " "$ID_TOKEN"
+          else
+            echo "OIDC request environment variables are missing."
+            exit 1
+          fi
+
       - name: Publish package on NPM
         if: steps.exists.outputs.exists == 'false'
         run: npm publish --access public --provenance
