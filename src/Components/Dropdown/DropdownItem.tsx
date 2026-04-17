@@ -15,11 +15,12 @@ const DropdownItem: React.FC<DropdownItemProps> = ({
 }) => {
   return (
     <Menu.Item>
-      {({ active }) => (
+      {({ focus, close }) => (
         <div
+          onClickCapture={close}
           className={cn(
             'hover:cursor-pointer',
-            active ? activeClass : '',
+            focus ? activeClass : '',
             className,
           )}
         >
