@@ -47,8 +47,6 @@
     "@radix-ui/react-popover": "^1.1.6",
     "@radix-ui/react-tooltip": "^1.1.8",
     "classnames": "^2.5.1",
-    "dotenv": "^8.2.0",
-    "node-fetch": "^3.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.1"
@@ -71,8 +69,8 @@
     "@types/node": "^22.13.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "ajv": "^8.18.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "ajv": "^8.18.0",
     "path": "^0.12.7",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
